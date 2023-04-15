@@ -1,27 +1,32 @@
 package afafi;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import javax.swing.SwingConstants;
 
-public class LoginScreen extends JFrame {
+public class LoginScreen extends JFrame 
+{
 
 	private JPanel contentPane;
 	private JTextField loginField;
-	private JPasswordField passwordField;
+	private JTextField passwordField;
+	
+	private JLabel errorLabel;
 	
 	private File dataDirectory = new File("data");
 	private File accountsFile = new File(dataDirectory.getPath().toString().concat("/accounts.txt"));
@@ -30,10 +35,14 @@ public class LoginScreen extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
 					LoginScreen frame = new LoginScreen();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
@@ -49,7 +58,8 @@ public class LoginScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginScreen() {
+	public LoginScreen() 
+	{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 720, 480);
@@ -61,11 +71,12 @@ public class LoginScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton loginButton = new JButton("Login");
-		loginButton.addMouseListener(new MouseAdapter() {
+		loginButton.addMouseListener(new MouseAdapter() 
+		{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				accountsFileCheck();
+				login();
 			}
 		});
 		loginButton.setBounds(302, 240, 100, 25);
@@ -76,7 +87,7 @@ public class LoginScreen extends JFrame {
 		contentPane.add(loginField);
 		loginField.setColumns(10);
 		
-		passwordField = new JPasswordField();
+		passwordField = new JTextField();
 		passwordField.setBounds(302, 210, 100, 20);
 		contentPane.add(passwordField);
 		
@@ -90,28 +101,144 @@ public class LoginScreen extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				accountsFileCheck();
+				register();
 			}
 		});
 		registerButton.setBounds(302, 270, 100, 25);
 		contentPane.add(registerButton);
+		
+		errorLabel = new JLabel("");
+		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		errorLabel.setBounds(227, 300, 250, 14);
+		contentPane.add(errorLabel);
+		fileExistsCheck(dataDirectory, accountsFile);
 	}
 	
-	private void accountsFileCheck()
+	private void fileExistsCheck(File directory, File file)
 	{
-		if(!accountsFile.isFile()) //Check if exists and is not a directory
+		if(!file.isFile()) //Check if exists and is not a directory
 		{
-			System.out.println("Test2");
-			dataDirectory.mkdir();
+			directory.mkdirs();
 			try
 			{
-				accountsFile.createNewFile();
+				file.createNewFile();
 				
 			}
 			catch(IOException e)
 			{
-				e.setStackTrace(null);
+				e.printStackTrace();
 			}
 		}
+	}
+	
+	private void login()
+	{
+		boolean credentialsHit = false;
+		try
+		{
+			String line;
+			String[] temp;
+			Scanner scanner = new Scanner(accountsFile);
+			while(!credentialsHit && scanner.hasNextLine())
+			{
+				line = scanner.nextLine();
+				temp = line.split(";");
+				temp[0]=temp[0].trim();
+				temp[1]=temp[1].trim();
+				if(temp[0].equals(loginField.getText()) && temp[1].equals(passwordField.getText()))
+				{
+					credentialsHit = true;
+				}
+			}
+			scanner.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		
+		if(credentialsHit)
+		{
+			CharacterSelectionScreen characterSelectionScreen = new CharacterSelectionScreen(loginField.getText());
+			characterSelectionScreen.setVisible(true);
+			this.dispose();	
+		}
+	}
+	
+	private void register()
+	{
+		errorLabel.setText(null);
+		//check for special characters
+		if(checkCredentials(loginField.getText()) && checkCredentials(passwordField.getText()) && !loginField.getText().isBlank() && !passwordField.getText().isBlank())
+		{
+			boolean alreadyExists = false;
+			try
+			{
+				Scanner scanner = new Scanner(accountsFile);
+				String[] temp;
+				String line;
+				while(scanner.hasNextLine())
+				{
+					line = scanner.nextLine();
+					temp = line.split(";");
+					temp[0] = temp[0].trim();
+					if(temp[0].equals(loginField.getText()))
+					{
+						alreadyExists = true;
+					}
+				}
+				scanner.close();
+			}
+			catch(FileNotFoundException e)
+			{
+				e.printStackTrace();
+			}
+			
+			
+			if(!alreadyExists)
+			{
+				try
+				{
+					FileWriter fw = new FileWriter(accountsFile,true);
+					fw.write(loginField.getText() + " ; " + passwordField.getText() + "\n");
+					fw.close();
+					errorLabel.setForeground(new Color(49,200,11));
+					errorLabel.setText("Registered successfully");
+					
+					
+					//Create account file, containing names of all characters made with this account
+					fileExistsCheck(new File(dataDirectory.getPath().toString().concat("/accounts")),
+							new File(dataDirectory.getPath().toString().concat("/accounts/"+loginField.getText()+".txt")));
+					
+				}
+				catch(IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				errorLabel.setForeground(new Color(255,0,0));
+				errorLabel.setText("Account already exists");
+			}
+			
+		}
+		else
+		{
+			errorLabel.setForeground(new Color(255, 0, 0));
+			errorLabel.setText("Incorrect characters in one of text fields");
+		}
+	}
+	
+	private boolean checkCredentials(String text)
+	{
+		char[] chars = text.toCharArray();
+		
+		for(char c:chars)
+		{
+			if(!Character.isLetterOrDigit(c))
+				return false;
+		}
+		return true;
 	}
 }
