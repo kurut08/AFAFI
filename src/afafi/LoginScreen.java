@@ -29,7 +29,7 @@ public class LoginScreen extends JFrame
 	private JLabel errorLabel;
 	
 	private File dataDirectory = new File("data");
-	private File accountsFile = new File(dataDirectory.getPath().toString().concat("/accounts.txt"));
+	private File accountsFile = new File(dataDirectory.getPath().concat("/accounts.txt"));
 	
 	
 	/**
@@ -133,6 +133,7 @@ public class LoginScreen extends JFrame
 	
 	private void login()
 	{
+		errorLabel.setText("");
 		boolean credentialsHit = false;
 		try
 		{
@@ -163,12 +164,29 @@ public class LoginScreen extends JFrame
 			characterSelectionScreen.setVisible(true);
 			this.dispose();	
 		}
+		else
+		{
+			errorLabel.setForeground(new Color(255,0,0));
+			errorLabel.setText("Incorrect login and/or password");
+		}
 	}
 	
 	private void register()
 	{
 		errorLabel.setText(null);
 		//check for special characters
+		if(!accountsFile.isFile())
+		{
+			try
+			{
+				accountsFile.createNewFile();
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
+			
 		if(checkCredentials(loginField.getText()) && checkCredentials(passwordField.getText()) && !loginField.getText().isBlank() && !passwordField.getText().isBlank())
 		{
 			boolean alreadyExists = false;
@@ -207,9 +225,14 @@ public class LoginScreen extends JFrame
 					
 					
 					//Create account file, containing names of all characters made with this account
-					fileExistsCheck(new File(dataDirectory.getPath().toString().concat("/accounts")),
-							new File(dataDirectory.getPath().toString().concat("/accounts/"+loginField.getText()+".txt")));
-					
+					File accountsDirectory = new File(dataDirectory.getPath().concat("/accounts"));
+					File account = new File(accountsDirectory.getPath().concat("/" + loginField.getText() + ".txt"));
+					if(account.isFile())
+					{
+						account.delete();
+					}
+					fileExistsCheck(accountsDirectory, account);
+					new File(accountsDirectory + "/" + loginField.getText()).mkdir();
 				}
 				catch(IOException e)
 				{
