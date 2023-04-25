@@ -60,6 +60,7 @@ public class LoginScreen extends JFrame
 	 */
 	public LoginScreen() 
 	{
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 720, 480);
@@ -118,7 +119,7 @@ public class LoginScreen extends JFrame
 	{
 		if(!file.isFile()) //Check if exists and is not a directory
 		{
-			directory.mkdirs();
+			directory.mkdirs(); //makes all directories in specified path
 			try
 			{
 				file.createNewFile();
@@ -135,7 +136,7 @@ public class LoginScreen extends JFrame
 	{
 		errorLabel.setText("");
 		boolean credentialsHit = false;
-		try
+		try		//check if accounts exists and password is correct
 		{
 			String line;
 			String[] temp;
@@ -158,13 +159,13 @@ public class LoginScreen extends JFrame
 			e.printStackTrace();
 		}
 		
-		if(credentialsHit)
+		if(credentialsHit) // if login and password are correct, start character selection screen and dispose of login screen
 		{
 			CharacterSelectionScreen characterSelectionScreen = new CharacterSelectionScreen(loginField.getText());
 			characterSelectionScreen.setVisible(true);
 			this.dispose();	
 		}
-		else
+		else //if login and password are not correct, display error message
 		{
 			errorLabel.setForeground(new Color(255,0,0));
 			errorLabel.setText("Incorrect login and/or password");
@@ -174,8 +175,7 @@ public class LoginScreen extends JFrame
 	private void register()
 	{
 		errorLabel.setText(null);
-		//check for special characters
-		if(!accountsFile.isFile())
+		if(!accountsFile.isFile()) //if there is no file associated with this account name, make it
 		{
 			try
 			{
@@ -186,7 +186,8 @@ public class LoginScreen extends JFrame
 				e.printStackTrace();
 			}
 		}
-			
+		
+		//check for special characters and if login or password field are empty
 		if(checkCredentials(loginField.getText()) && checkCredentials(passwordField.getText()) && !loginField.getText().isBlank() && !passwordField.getText().isBlank())
 		{
 			boolean alreadyExists = false;
@@ -195,7 +196,7 @@ public class LoginScreen extends JFrame
 				Scanner scanner = new Scanner(accountsFile);
 				String[] temp;
 				String line;
-				while(scanner.hasNextLine())
+				while(scanner.hasNextLine()) //check if accounts already exists
 				{
 					line = scanner.nextLine();
 					temp = line.split(";");
@@ -217,6 +218,7 @@ public class LoginScreen extends JFrame
 			{
 				try
 				{
+					//Add login and password to file with list of accounts
 					FileWriter fw = new FileWriter(accountsFile,true);
 					fw.write(loginField.getText() + " ; " + passwordField.getText() + "\n");
 					fw.close();
@@ -231,8 +233,8 @@ public class LoginScreen extends JFrame
 					{
 						account.delete();
 					}
-					fileExistsCheck(accountsDirectory, account);
-					new File(accountsDirectory + "/" + loginField.getText()).mkdir();
+					fileExistsCheck(accountsDirectory, account); //function creates specified directory and a file inside
+					new File(accountsDirectory + "/" + loginField.getText()).mkdir(); //create a directory associated with created account
 				}
 				catch(IOException e)
 				{
@@ -253,10 +255,11 @@ public class LoginScreen extends JFrame
 		}
 	}
 	
-	private boolean checkCredentials(String text)
+	public static boolean checkCredentials(String text)
 	{
 		char[] chars = text.toCharArray();
 		
+		//check if all characters are letters of latin alphabet or digits
 		for(char c:chars)
 		{
 			if(!Character.isLetterOrDigit(c))

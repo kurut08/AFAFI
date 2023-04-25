@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -49,6 +51,8 @@ public class CharacterSelectionScreen extends JFrame
 		
 		charactersDirectory = new File("data/accounts/" + login + "/");
 		charactersListFile = new File("data/accounts/" + login + ".txt");
+		
+		//Adding panels and labels to handle them more efficiently
 		charactersPanels = new JPanel[5];
 		charactersLabels = new JLabel[5][6];
 		charactersValuesLabels = new JLabel[5][6];
@@ -61,14 +65,16 @@ public class CharacterSelectionScreen extends JFrame
 		 * 5 - Save Date
 		 */
 		
+		//Will probably add another 5 labels for icons, once we have them lmao
+		
 		try
 		{
 			Scanner charactersListFileScanner = new Scanner(charactersListFile);
-			for(int i = 0; i < 5; i++)
+			for(int i = 0; i < 5; i++) //Add labels to every panel and read stats from character files, if they exist
 			{
 				String characterName = "";
 				Scanner characterScanner;
-				String[] temp = new String[5]; // Labels 2-6
+				String[] temp = new String[5]; // Labels 1-5
 				if(charactersListFileScanner.hasNext())
 				{
 					characterName = charactersListFileScanner.next();
@@ -131,6 +137,8 @@ public class CharacterSelectionScreen extends JFrame
 		{
 			e.printStackTrace();
 		}
+		
+		//Adds MouseListeners for every character panel, so we can actually load or create them by clicking at right panel
 		charactersPanels[0].addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -205,6 +213,7 @@ public class CharacterSelectionScreen extends JFrame
 	
 	public void startGame(String characterName)
 	{
+		//open game screen and close character selection screen
 		GameWindow gameWindow = new GameWindow(characterName);
 		gameWindow.setVisible(true);
 		this.dispose();
@@ -212,29 +221,49 @@ public class CharacterSelectionScreen extends JFrame
 	
 	public void createCharacter()
 	{
+		//Input character's name
 		String characterName = "";
-		while(characterName.isEmpty() || !checkCredentials(characterName) || alreadyExists(characterName))
+		while(characterName.isEmpty() || !LoginScreen.checkCredentials(characterName) || alreadyExists(characterName))
 		{
 			characterName = JOptionPane.showInputDialog("What's your name?");
 		}
 		
+		//Remove file with character's name if it already exists for some reason
 		File characterFile = new File(charactersDirectory + "/" + characterName + ".txt");
-		if(!characterFile.isFile())
+		if(characterFile.isFile())
 		{
-			try
-			{
-				characterFile.createNewFile();
-			}
-			catch(IOException e)
-			{
-				e.printStackTrace();
-			}
+			characterFile.delete();
+		}
+		
+		//Make file with character's general info
+		try
+		{
+			characterFile.createNewFile();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+		//Make character's save folder
+		File characterSaveFolder = new File(charactersDirectory + "/" + characterName + "/");
+		if(!characterSaveFolder.isDirectory())
+		{
+			characterSaveFolder.mkdir();
 		}
 		
 		try
 		{
+			//Add character to file with character list 
 			FileWriter fw = new FileWriter(charactersListFile, true);
 			fw.write(characterName + "\n");
+			fw.close();
+			
+			//Write starting statistics to character file
+			fw = new FileWriter(characterFile);
+			SimpleDateFormat formatter = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+			Date date = new Date();
+			fw.write("Null;" + formatter.format(date) + ";13;0;" + formatter.format(date));
 			fw.close();
 		}
 		catch(IOException e)
@@ -245,20 +274,10 @@ public class CharacterSelectionScreen extends JFrame
 		startGame(characterName);
 	}
 	
-	private boolean checkCredentials(String text)
-	{
-		char[] chars = text.toCharArray();
-		
-		for(char c:chars)
-		{
-			if(!Character.isLetterOrDigit(c))
-				return false;
-		}
-		return true;
-	}
 	
 	private boolean alreadyExists(String characterName)
 	{
+		//Check if there already is a character with such name
 		boolean hit = false;
 		try 
 		{
