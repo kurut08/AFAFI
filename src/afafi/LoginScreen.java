@@ -93,7 +93,7 @@ public class LoginScreen extends JFrame
 		contentPane.add(passwordField);
 		
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon(LoginScreen.class.getResource("/afafi/images/loginScreenLogo.png")));
+		logo.setIcon(new ImageIcon(LoginScreen.class.getResource("/afafi/images/logo.png")));
 		logo.setBounds(252, 52, 200, 117);
 		contentPane.add(logo);
 		
