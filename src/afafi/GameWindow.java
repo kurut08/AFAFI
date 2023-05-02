@@ -123,67 +123,372 @@ public class GameWindow extends JFrame {
 		combatAttackPanel.setBounds(0, 0, combatSelectionPanel.getWidth(), 32);
 		combatAttackPanel.setLayout(null);
 		combatAttackPanel.setBackground(new Color(255, 0, 0));
+		combatAttackPanel.setBorder(new LineBorder(new Color(0,0,0),1));
 		combatSelectionPanel.add(combatAttackPanel);
 		
 		JLabel attackIconLabel = new JLabel("Icon");
 		attackIconLabel.setBounds(0, 0, 32, 32);
 		attackIconLabel.setBackground(new Color(255, 255, 255)); attackIconLabel.setOpaque(true); //TODO REMOVE
+		attackIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
 		combatAttackPanel.add(attackIconLabel);
-		
+
 		JLabel attackNameLabel = new JLabel("Attack");
 		attackNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		attackNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatAttackPanel.getHeight()/4, 75, 16);
 		combatAttackPanel.add(attackNameLabel);
-		
+
 		JProgressBar attackProgressBar = new JProgressBar();
 		attackProgressBar.setBounds(attackNameLabel.getX() + attackNameLabel.getWidth(), combatAttackPanel.getHeight()/4
 				, combatAttackPanel.getWidth() - attackNameLabel.getX() - attackNameLabel.getWidth() - 10, 16);
 		combatAttackPanel.add(attackProgressBar);
-		
-		JPanel nonCombatPanel = new JPanel();
-		nonCombatPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		nonCombatPanel.setBounds(0, 475, sidePanel.getWidth(), 295);
-		sidePanel.add(nonCombatPanel);
-		nonCombatPanel.setLayout(null);
-		
+		//Defense
+		JPanel combatDefensePanel = new JPanel();
+		combatDefensePanel.setBounds(0, 33, sidePanel.getWidth(), 32);
+		combatDefensePanel.setLayout(null);
+		combatDefensePanel.setBackground(new Color(255, 0, 0));
+		combatDefensePanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		combatSelectionPanel.add(combatDefensePanel);
+
+		JLabel defenseIconLabel = new JLabel("Icon");
+		defenseIconLabel.setBounds(0, 0, 32, 32);
+		defenseIconLabel.setBackground(new Color(255, 255, 255)); defenseIconLabel.setOpaque(true); //TODO REMOVE
+		defenseIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		combatDefensePanel.add(defenseIconLabel);
+
+		JLabel defenseNameLabel = new JLabel("Defense");
+		defenseNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		defenseNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatDefensePanel.getHeight()/4, 75, 16);
+		combatDefensePanel.add(defenseNameLabel);
+
+		JProgressBar defenseProgressBar = new JProgressBar();
+		defenseProgressBar.setBounds(defenseNameLabel.getX() + defenseNameLabel.getWidth(), combatDefensePanel.getHeight()/4
+				, combatDefensePanel.getWidth() - defenseNameLabel.getX() - defenseNameLabel.getWidth() - 10, 16);
+		combatDefensePanel.add(defenseProgressBar);
+		//Hitpoints
+		JPanel combatHpPanel = new JPanel();
+		combatHpPanel.setBounds(0, 66, sidePanel.getWidth(), 32);
+		combatHpPanel.setLayout(null);
+		combatHpPanel.setBackground(new Color(255, 0, 0));
+		combatHpPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		combatSelectionPanel.add(combatHpPanel);
+
+		JLabel hpIconLabel = new JLabel("Icon");
+		hpIconLabel.setBounds(0, 0, 32, 32);
+		hpIconLabel.setBackground(new Color(255, 255, 255)); hpIconLabel.setOpaque(true); //TODO REMOVE
+		hpIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		combatHpPanel.add(hpIconLabel);
+
+		JLabel hpNameLabel = new JLabel("Hitpoints");
+		hpNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		hpNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatHpPanel.getHeight()/4, 75, 16);
+		combatHpPanel.add(hpNameLabel);
+
+		JProgressBar hpProgressBar = new JProgressBar();
+		hpProgressBar.setBounds(hpNameLabel.getX() + hpNameLabel.getWidth(), combatHpPanel.getHeight()/4
+				, combatHpPanel.getWidth() - hpNameLabel.getX() - hpNameLabel.getWidth() - 10, 16);
+		combatHpPanel.add(hpProgressBar);
+		//Magic
+		JPanel combatMagicPanel = new JPanel();
+		combatMagicPanel.setBounds(0, 99, sidePanel.getWidth(), 32);
+		combatMagicPanel.setLayout(null);
+		combatMagicPanel.setBackground(new Color(255, 0, 0));
+		combatMagicPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		combatSelectionPanel.add(combatMagicPanel);
+
+		JLabel magicIconLabel = new JLabel("Icon");
+		magicIconLabel.setBounds(0, 0, 32, 32);
+		magicIconLabel.setBackground(new Color(255, 255, 255)); magicIconLabel.setOpaque(true); //TODO REMOVE
+		magicIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		combatMagicPanel.add(magicIconLabel);
+
+		JLabel magicNameLabel = new JLabel("Magic");
+		magicNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		magicNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatMagicPanel.getHeight()/4, 75, 16);
+		combatMagicPanel.add(magicNameLabel);
+
+		JProgressBar magicProgressBar = new JProgressBar();
+		magicProgressBar.setBounds(magicNameLabel.getX() + magicNameLabel.getWidth(), combatMagicPanel.getHeight()/4
+				, combatMagicPanel.getWidth() - magicNameLabel.getX() - magicNameLabel.getWidth() - 10, 16);
+		combatMagicPanel.add(magicProgressBar);
+		//Ranged
+		JPanel combatRangedPanel = new JPanel();
+		combatRangedPanel.setBounds(0, 132, sidePanel.getWidth(), 32);
+		combatRangedPanel.setLayout(null);
+		combatRangedPanel.setBackground(new Color(255, 0, 0));
+		combatRangedPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		combatSelectionPanel.add(combatRangedPanel);
+
+		JLabel rangedIconLabel = new JLabel("Icon");
+		rangedIconLabel.setBounds(0, 0, 32, 32);
+		rangedIconLabel.setBackground(new Color(255, 255, 255)); rangedIconLabel.setOpaque(true); //TODO REMOVE
+		rangedIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		combatRangedPanel.add(rangedIconLabel);
+
+		JLabel rangedNameLabel = new JLabel("Ranged");
+		rangedNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		rangedNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatRangedPanel.getHeight()/4, 75, 16);
+		combatRangedPanel.add(rangedNameLabel);
+
+		JProgressBar rangedProgressBar = new JProgressBar();
+		rangedProgressBar.setBounds(rangedNameLabel.getX() + rangedNameLabel.getWidth(), combatRangedPanel.getHeight()/4
+				, combatRangedPanel.getWidth() - rangedNameLabel.getX() - rangedNameLabel.getWidth() - 10, 16);
+		combatRangedPanel.add(rangedProgressBar);
+		//Strength
+		JPanel combatStrengthPanel = new JPanel();
+		combatStrengthPanel.setBounds(0, 165, sidePanel.getWidth(), 32);
+		combatStrengthPanel.setLayout(null);
+		combatStrengthPanel.setBackground(new Color(255, 0, 0));
+		combatStrengthPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		combatSelectionPanel.add(combatStrengthPanel);
+
+		JLabel strengthIconLabel = new JLabel("Icon");
+		strengthIconLabel.setBounds(0, 0, 32, 32);
+		strengthIconLabel.setBackground(new Color(255, 255, 255)); strengthIconLabel.setOpaque(true); //TODO REMOVE
+		strengthIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		combatStrengthPanel.add(strengthIconLabel);
+
+		JLabel strengthNameLabel = new JLabel("Strength");
+		strengthNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		strengthNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatStrengthPanel.getHeight()/4, 75, 16);
+		combatStrengthPanel.add(strengthNameLabel);
+
+		JProgressBar strengthProgressBar = new JProgressBar();
+		strengthProgressBar.setBounds(strengthNameLabel.getX() + strengthNameLabel.getWidth(), combatStrengthPanel.getHeight()/4
+				, combatStrengthPanel.getWidth() - strengthNameLabel.getX() - strengthNameLabel.getWidth() - 10, 16);
+		combatStrengthPanel.add(strengthProgressBar);
+
 		JPanel nonCombatTitlePanel = new JPanel();
-		nonCombatTitlePanel.setBounds(0, 1, nonCombatPanel.getWidth() - 1, 45);
-		nonCombatPanel.add(nonCombatTitlePanel);
-		
+		nonCombatTitlePanel.setBounds(0, 475, sidePanel.getWidth(), 45);
+		sidePanel.add(nonCombatTitlePanel);
+
 		JLabel nonCombatTitleLabel = new JLabel("Non-Combat");
 		nonCombatTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		nonCombatTitlePanel.add(nonCombatTitleLabel);
-		
-		JPanel nonCombatSelectionPanel = new JPanel();
-		nonCombatSelectionPanel.setBounds(0, 45, nonCombatPanel.getWidth() - 1, 250);
-		nonCombatPanel.add(nonCombatSelectionPanel);
-		nonCombatSelectionPanel.setLayout(null);
-		
-		JPanel woodcuttingPanel = new JPanel();
-		woodcuttingPanel.addMouseListener(new MouseAdapter() 
+
+		JPanel noncombatSelectionPanel = new JPanel();
+		noncombatSelectionPanel.setBounds(0, 520, sidePanel.getWidth(), 250);
+		sidePanel.add(noncombatSelectionPanel);
+		noncombatSelectionPanel.setLayout(null);
+		//crafting
+		JPanel craftingPanel = new JPanel();
+		craftingPanel.addMouseListener(new MouseAdapter()
 		{
 			@Override
-			public void mouseClicked(MouseEvent e) 
+			public void mouseClicked(MouseEvent e)
 			{
-				
+
+			}
+		});
+		craftingPanel.setBackground(new Color(255, 0, 0));
+		craftingPanel.setBounds(0, 0, sidePanel.getWidth(), 32);
+		craftingPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		noncombatSelectionPanel.add(craftingPanel);
+		craftingPanel.setLayout(null);
+
+		JLabel craftingIconLabel = new JLabel("Icon");
+		craftingIconLabel.setBackground(new Color(255, 255, 255));
+		craftingIconLabel.setOpaque(true);
+		craftingIconLabel.setBounds(0, 0, 32, 32);
+		craftingIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		craftingPanel.add(craftingIconLabel);
+
+		JLabel craftingNameLabel = new JLabel("Crafting");
+		craftingNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		craftingNameLabel.setBounds(craftingIconLabel.getWidth() + 10, craftingPanel.getHeight()/4, 75, 16);
+		craftingPanel.add(craftingNameLabel);
+
+		JProgressBar craftingProgressBar = new JProgressBar();
+		craftingProgressBar.setBounds(craftingNameLabel.getX() + craftingNameLabel.getWidth(), craftingPanel.getHeight()/4
+				, craftingPanel.getWidth() - craftingNameLabel.getX() - craftingNameLabel.getWidth() - 10, 16);
+		craftingPanel.add(craftingProgressBar);
+		//cooking
+		JPanel cookingPanel = new JPanel();
+		cookingPanel.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+
+			}
+		});
+		cookingPanel.setBackground(new Color(255, 0, 0));
+		cookingPanel.setBounds(0, 33, sidePanel.getWidth(), 32);
+		cookingPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		noncombatSelectionPanel.add(cookingPanel);
+		cookingPanel.setLayout(null);
+
+		JLabel cookingIconLabel = new JLabel("Icon");
+		cookingIconLabel.setBackground(new Color(255, 255, 255));
+		cookingIconLabel.setOpaque(true);
+		cookingIconLabel.setBounds(0, 0, 32, 32);
+		cookingIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		cookingPanel.add(cookingIconLabel);
+
+		JLabel cookingNameLabel = new JLabel("Cooking");
+		cookingNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		cookingNameLabel.setBounds(cookingIconLabel.getWidth() + 10, cookingPanel.getHeight()/4, 75, 16);
+		cookingPanel.add(cookingNameLabel);
+
+		JProgressBar cookingProgressBar = new JProgressBar();
+		cookingProgressBar.setBounds(cookingNameLabel.getX() + cookingNameLabel.getWidth(), cookingPanel.getHeight()/4
+				, cookingPanel.getWidth() - cookingNameLabel.getX() - cookingNameLabel.getWidth() - 10, 16);
+		cookingPanel.add(cookingProgressBar);
+		//Farming
+		JPanel farmingPanel = new JPanel();
+		farmingPanel.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+
+			}
+		});
+		farmingPanel.setBackground(new Color(255, 0, 0));
+		farmingPanel.setBounds(0, 66, sidePanel.getWidth(), 32);
+		farmingPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		noncombatSelectionPanel.add(farmingPanel);
+		farmingPanel.setLayout(null);
+
+		JLabel farmingIconLabel = new JLabel("Icon");
+		farmingIconLabel.setBackground(new Color(255, 255, 255));
+		farmingIconLabel.setOpaque(true);
+		farmingIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		farmingIconLabel.setBounds(0, 0, 32, 32);
+		farmingPanel.add(farmingIconLabel);
+
+		JLabel farmingNameLabel = new JLabel("Farming");
+		farmingNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		farmingNameLabel.setBounds(farmingIconLabel.getWidth() + 10, farmingPanel.getHeight()/4, 75, 16);
+		farmingPanel.add(farmingNameLabel);
+
+		JProgressBar farmingProgressBar = new JProgressBar();
+		farmingProgressBar.setBounds(farmingNameLabel.getX() + farmingNameLabel.getWidth(), farmingPanel.getHeight()/4
+				, farmingPanel.getWidth() - farmingNameLabel.getX() - farmingNameLabel.getWidth() - 10, 16);
+		farmingPanel.add(farmingProgressBar);
+		//Fishing
+		JPanel fishingPanel = new JPanel();
+		fishingPanel.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+
+			}
+		});
+		fishingPanel.setBackground(new Color(255, 0, 0));
+		fishingPanel.setBounds(0, 99, sidePanel.getWidth(), 32);
+		fishingPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		noncombatSelectionPanel.add(fishingPanel);
+		fishingPanel.setLayout(null);
+
+		JLabel fishingIconLabel = new JLabel("Icon");
+		fishingIconLabel.setBackground(new Color(255, 255, 255));
+		fishingIconLabel.setOpaque(true);
+		fishingIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		fishingIconLabel.setBounds(0, 0, 32, 32);
+		fishingPanel.add(fishingIconLabel);
+
+		JLabel fishingNameLabel = new JLabel("Fishing");
+		fishingNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		fishingNameLabel.setBounds(fishingIconLabel.getWidth() + 10, fishingPanel.getHeight()/4, 75, 16);
+		fishingPanel.add(fishingNameLabel);
+
+		JProgressBar fishingProgressBar = new JProgressBar();
+		fishingProgressBar.setBounds(fishingNameLabel.getX() + fishingNameLabel.getWidth(), fishingPanel.getHeight()/4
+				, fishingPanel.getWidth() - fishingNameLabel.getX() - fishingNameLabel.getWidth() - 10, 16);
+		fishingPanel.add(fishingProgressBar);
+		//Mining
+		JPanel miningPanel = new JPanel();
+		miningPanel.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+
+			}
+		});
+		miningPanel.setBackground(new Color(255, 0, 0));
+		miningPanel.setBounds(0, 132, sidePanel.getWidth(), 32);
+		miningPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		noncombatSelectionPanel.add(miningPanel);
+		miningPanel.setLayout(null);
+
+		JLabel miningIconLabel = new JLabel("Icon");
+		miningIconLabel.setBackground(new Color(255, 255, 255));
+		miningIconLabel.setOpaque(true);
+		miningIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		miningIconLabel.setBounds(0, 0, 32, 32);
+		miningPanel.add(miningIconLabel);
+
+		JLabel miningNameLabel = new JLabel("Mining");
+		miningNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		miningNameLabel.setBounds(miningIconLabel.getWidth() + 10, miningPanel.getHeight()/4, 75, 16);
+		miningPanel.add(miningNameLabel);
+
+		JProgressBar miningProgressBar = new JProgressBar();
+		miningProgressBar.setBounds(miningNameLabel.getX() + miningNameLabel.getWidth(), miningPanel.getHeight()/4
+				, miningPanel.getWidth() - miningNameLabel.getX() - miningNameLabel.getWidth() - 10, 16);
+		miningPanel.add(miningProgressBar);
+		//Smithing
+		JPanel smithingPanel = new JPanel();
+		smithingPanel.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+
+			}
+		});
+		smithingPanel.setBackground(new Color(255, 0, 0));
+		smithingPanel.setBounds(0, 165, sidePanel.getWidth(), 32);
+		smithingPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		noncombatSelectionPanel.add(smithingPanel);
+		smithingPanel.setLayout(null);
+
+		JLabel smithingIconLabel = new JLabel("Icon");
+		smithingIconLabel.setBackground(new Color(255, 255, 255));
+		smithingIconLabel.setOpaque(true);
+		smithingIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
+		smithingIconLabel.setBounds(0, 0, 32, 32);
+		smithingPanel.add(smithingIconLabel);
+
+		JLabel smithingNameLabel = new JLabel("Smithing");
+		smithingNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		smithingNameLabel.setBounds(smithingIconLabel.getWidth() + 10, smithingPanel.getHeight()/4, 75, 16);
+		smithingPanel.add(smithingNameLabel);
+
+		JProgressBar smithingProgressBar = new JProgressBar();
+		smithingProgressBar.setBounds(smithingNameLabel.getX() + smithingNameLabel.getWidth(), smithingPanel.getHeight()/4
+				, smithingPanel.getWidth() - smithingNameLabel.getX() - smithingNameLabel.getWidth() - 10, 16);
+		smithingPanel.add(smithingProgressBar);
+		//woodcutting
+		JPanel woodcuttingPanel = new JPanel();
+		woodcuttingPanel.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+
 			}
 		});
 		woodcuttingPanel.setBackground(new Color(255, 0, 0));
-		woodcuttingPanel.setBounds(0, 0, nonCombatSelectionPanel.getWidth(), 32);
-		nonCombatSelectionPanel.add(woodcuttingPanel);
+		woodcuttingPanel.setBounds(0, 198, sidePanel.getWidth(), 32);
+		woodcuttingPanel.setBorder(new LineBorder(new Color(0,0,0),1));
+		noncombatSelectionPanel.add(woodcuttingPanel);
 		woodcuttingPanel.setLayout(null);
-		
+
 		JLabel woodcuttingIconLabel = new JLabel("Icon");
 		woodcuttingIconLabel.setBackground(new Color(255, 255, 255));
 		woodcuttingIconLabel.setOpaque(true);
+		woodcuttingIconLabel.setBorder(new LineBorder(new Color(0,0,0),1));
 		woodcuttingIconLabel.setBounds(0, 0, 32, 32);
 		woodcuttingPanel.add(woodcuttingIconLabel);
-		
+
 		JLabel woodcuttingNameLabel = new JLabel("Woodcutting");
 		woodcuttingNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		woodcuttingNameLabel.setBounds(woodcuttingIconLabel.getWidth() + 10, woodcuttingPanel.getHeight()/4, 75, 16);
 		woodcuttingPanel.add(woodcuttingNameLabel);
-		
+
 		JProgressBar woodcuttingProgressBar = new JProgressBar();
 		woodcuttingProgressBar.setBounds(woodcuttingNameLabel.getX() + woodcuttingNameLabel.getWidth(), woodcuttingPanel.getHeight()/4
 				, woodcuttingPanel.getWidth() - woodcuttingNameLabel.getX() - woodcuttingNameLabel.getWidth() - 10, 16);
