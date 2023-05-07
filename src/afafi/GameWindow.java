@@ -13,8 +13,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Color;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.*;
 
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
@@ -49,6 +48,8 @@ public class GameWindow extends JFrame {
 	private JPanel sidePanel, topPanel;
 	private JPanel contentPanel;
 	private JPanel logoPanel;
+
+	private String activity;
 	
 	public GameWindow(String characterName) 
 	{
@@ -340,7 +341,8 @@ public class GameWindow extends JFrame {
 		woodcuttingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		nonCombatSelectionPanel.add(woodcuttingPanel);
 		woodcuttingPanel.setLayout(null);
-		
+
+
 		JLabel woodcuttingIconLabel = new JLabel("Icon");
 		woodcuttingIconLabel.setBackground(new Color(255, 255, 255)); woodcuttingIconLabel.setOpaque(true); //TODO REMOVE
 		woodcuttingIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
@@ -356,6 +358,7 @@ public class GameWindow extends JFrame {
 		woodcuttingProgressBar.setBounds(woodcuttingNameLabel.getX() + woodcuttingNameLabel.getWidth(), woodcuttingPanel.getHeight()/4
 				, woodcuttingPanel.getWidth() - woodcuttingNameLabel.getX() - woodcuttingNameLabel.getWidth() - 10, 16);
 		woodcuttingPanel.add(woodcuttingProgressBar);
+
 		
 		//Noncombat crafting
 		JPanel craftingPanel = new JPanel();
@@ -500,8 +503,20 @@ public class GameWindow extends JFrame {
 		contentPanel.setBounds(sidePanel.getWidth(), 60,
 				this.getWidth()-sidePanel.getWidth(), this.getHeight()-topPanel.getHeight());
 		contentPane.add(contentPanel);
-
-
+		int getw = this.getWidth();
+		int geth = this.getHeight();
+		woodcuttingPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				activity = "woodcutting";
+				contentPane.remove(contentPanel);
+				contentPanel = new JPanel();
+				contentPanel = setContentPanel(contentPanel, activity);
+				contentPanel.setBounds(sidePanel.getWidth(), 60,
+						getw-sidePanel.getWidth(), geth-topPanel.getHeight());
+				contentPane.add(contentPanel);
+			}
+		});
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) 
@@ -526,128 +541,131 @@ public class GameWindow extends JFrame {
 		{
 			contentPane.remove(contentPanel);
 		}
+		System.out.println(activity);
 		contentPanel = new JPanel();
-		
-		
 		contentPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contentPanel.setLayout(null); //Perhaps will change it later
 		//sets background to blue for debugging, change it to a picture / different 
 		contentPanel.setBackground(new Color(0, 0, 255));
 		//this layout is static, works fine only in 1920x1080
-		JPanel woodcuttingS01 = new JPanel();
-		woodcuttingS01.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS01.setBackground(new Color(0, 32, 128));
-		woodcuttingS01.setBounds(50, 25, 350, 250);
-		woodcuttingS01.setLayout(null);
-		contentPanel.add(woodcuttingS01);
-		JLabel woodcuttingS01NameLabel = new JLabel("Oak Tree", SwingConstants.CENTER);
-		woodcuttingS01NameLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
-		woodcuttingS01NameLabel.setForeground(new Color(255,255,255));
-		woodcuttingS01NameLabel.setBounds(0, 0,350,100);
-		woodcuttingS01NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		woodcuttingS01.add(woodcuttingS01NameLabel);
-		JLabel woodcuttingS01IconLabel = new JLabel("Icon", SwingConstants.CENTER);
-		woodcuttingS01IconLabel.setBackground(new Color(255, 255, 255));
-		woodcuttingS01IconLabel.setOpaque(true); //TODO REMOVE
-		woodcuttingS01IconLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		woodcuttingS01IconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
-		woodcuttingS01IconLabel.setBounds(350/2-25, 90, 64, 64);
-		woodcuttingS01.add(woodcuttingS01IconLabel);
-		JLabel woodcuttingS01LevelLabel = new JLabel("Progres: 0/100", SwingConstants.CENTER);//need string variable instead of text
-		woodcuttingS01LevelLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		woodcuttingS01LevelLabel.setForeground(new Color(255,255,255));
-		woodcuttingS01LevelLabel.setBounds(0, 130,350,100);
-		woodcuttingS01LevelLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		woodcuttingS01.add(woodcuttingS01LevelLabel);
-		JProgressBar woodcuttingS01progressBar = new JProgressBar();
-		woodcuttingS01progressBar.setBounds(25, 210, 300, 15);//need variable to fill progress bar
-		woodcuttingS01.add(woodcuttingS01progressBar);
-
-		JPanel woodcuttingS02 = new JPanel();
-		woodcuttingS02.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS02.setBackground(new Color(0, 32, 128));
-		woodcuttingS02.setBounds(425, 25, 350, 250);
-		contentPanel.add(woodcuttingS02);
-		JPanel woodcuttingS03 = new JPanel();
-		woodcuttingS03.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS03.setBackground(new Color(0, 32, 128));
-		woodcuttingS03.setBounds(800, 25, 350, 250);
-		contentPanel.add(woodcuttingS03);
-		JPanel woodcuttingS04 = new JPanel();
-		woodcuttingS04.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS04.setBackground(new Color(0, 32, 128));
-		woodcuttingS04.setBounds(1175, 25, 350, 250);
-		contentPanel.add(woodcuttingS04);
-		JPanel woodcuttingS05 = new JPanel();
-		woodcuttingS05.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS05.setBackground(new Color(0, 32, 128));
-		woodcuttingS05.setBounds(50, 300, 350, 250);
-		contentPanel.add(woodcuttingS05);
-		JPanel woodcuttingS06 = new JPanel();
-		woodcuttingS06.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS06.setBackground(new Color(0, 32, 128));
-		woodcuttingS06.setBounds(425, 300, 350, 250);
-		contentPanel.add(woodcuttingS06);
-		JPanel woodcuttingS07 = new JPanel();
-		woodcuttingS07.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS07.setBackground(new Color(0, 32, 128));
-		woodcuttingS07.setBounds(800, 300, 350, 250);
-		contentPanel.add(woodcuttingS07);
-		JPanel woodcuttingS08 = new JPanel();
-		woodcuttingS08.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS08.setBackground(new Color(0, 32, 128));
-		woodcuttingS08.setBounds(1175, 300, 350, 250);
-		contentPanel.add(woodcuttingS08);
-		JPanel woodcuttingS09 = new JPanel();
-		woodcuttingS09.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS09.setBackground(new Color(0, 32, 128));
-		woodcuttingS09.setBounds(50, 575, 350, 250);
-		contentPanel.add(woodcuttingS09);
-		JPanel woodcuttingS10 = new JPanel();
-		woodcuttingS10.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS10.setBackground(new Color(0, 32, 128));
-		woodcuttingS10.setBounds(425, 575, 350, 250);
-		contentPanel.add(woodcuttingS10);
-		JPanel woodcuttingS11 = new JPanel();
-		woodcuttingS11.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS11.setBackground(new Color(0, 32, 128));
-		woodcuttingS11.setBounds(800, 575, 350, 250);
-		contentPanel.add(woodcuttingS11);
-		JPanel woodcuttingS12 = new JPanel();
-		woodcuttingS12.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS12.setBackground(new Color(0, 32, 128));
-		woodcuttingS12.setBounds(1175, 575, 350, 250);
-		contentPanel.add(woodcuttingS12);
-		JPanel woodcuttingS13 = new JPanel();
-		woodcuttingS13.setBorder(new LineBorder(new Color(0,0,0)));
-		woodcuttingS13.setBackground(new Color(0,32,128));
-		woodcuttingS13.setBounds(50, 850, 1475, 90);
-		contentPanel.add(woodcuttingS13);
-		JLabel woodcuttingS13NameLabel = new JLabel("Overall level: 0/100", SwingConstants.CENTER);
-		woodcuttingS13NameLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
-		woodcuttingS13NameLabel.setForeground(new Color(255,255,255));
-		woodcuttingS13NameLabel.setBounds(0, 0,350,30);
-		woodcuttingS13NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		woodcuttingS13.add(woodcuttingS13NameLabel);
-		JProgressBar woodcuttingS13progressBar = new JProgressBar();
-		woodcuttingS13progressBar.setBounds(25, 75, 1425, 20);//NIE WIEM CZEMU NIE DZIAŁA XD
-		woodcuttingS13.add(woodcuttingS13progressBar);//it should be under text Overall level
 		setContentPanelContent(contentPanel, activity);
 		return contentPanel;
+
 		
 	}
 	
 	private void setContentPanelContent(JPanel contentPanel,String activity)
 	{
-		switch(activity)
-		{
-			case "Summary":
+		switch (activity) {
+			case "Summary" -> {
 				JLabel test = new JLabel("test");
 				test.setBounds(200, 200, 20, 20);
 				test.setForeground(new Color(255, 0, 0));
 				contentPanel.add(test);
-				break;
+			}
+			case "woodcutting" -> {
+				System.out.println("WORK");
+				JPanel woodcuttingS01 = new JPanel();
+				woodcuttingS01.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS01.setBackground(new Color(0, 32, 128));
+				woodcuttingS01.setBounds(50, 25, 350, 250);
+				woodcuttingS01.setLayout(null);
+				contentPanel.add(woodcuttingS01);
+				JLabel woodcuttingS01NameLabel = new JLabel("Oak Tree", SwingConstants.CENTER);
+				woodcuttingS01NameLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
+				woodcuttingS01NameLabel.setForeground(new Color(255,255,255));
+				woodcuttingS01NameLabel.setBounds(0, 0,350,100);
+				woodcuttingS01NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+				woodcuttingS01.add(woodcuttingS01NameLabel);
+				JLabel woodcuttingS01IconLabel = new JLabel("Icon", SwingConstants.CENTER);
+				woodcuttingS01IconLabel.setBackground(new Color(255, 255, 255));
+				woodcuttingS01IconLabel.setOpaque(true); //TODO REMOVE
+				woodcuttingS01IconLabel.setHorizontalAlignment(SwingConstants.CENTER);
+				woodcuttingS01IconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+				woodcuttingS01IconLabel.setBounds(350/2-25, 90, 64, 64);
+				woodcuttingS01.add(woodcuttingS01IconLabel);
+				JLabel woodcuttingS01LevelLabel = new JLabel("Progres: 0/100", SwingConstants.CENTER);//need string variable instead of text
+				woodcuttingS01LevelLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+				woodcuttingS01LevelLabel.setForeground(new Color(255,255,255));
+				woodcuttingS01LevelLabel.setBounds(0, 130,350,100);
+				woodcuttingS01LevelLabel.setHorizontalAlignment(SwingConstants.CENTER);
+				woodcuttingS01.add(woodcuttingS01LevelLabel);
+				JProgressBar woodcuttingS01progressBar = new JProgressBar();
+				woodcuttingS01progressBar.setBounds(25, 210, 300, 15);//need variable to fill progress bar
+				woodcuttingS01.add(woodcuttingS01progressBar);
+
+				JPanel woodcuttingS02 = new JPanel();
+				woodcuttingS02.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS02.setBackground(new Color(0, 32, 128));
+				woodcuttingS02.setBounds(425, 25, 350, 250);
+				contentPanel.add(woodcuttingS02);
+				JPanel woodcuttingS03 = new JPanel();
+				woodcuttingS03.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS03.setBackground(new Color(0, 32, 128));
+				woodcuttingS03.setBounds(800, 25, 350, 250);
+				contentPanel.add(woodcuttingS03);
+				JPanel woodcuttingS04 = new JPanel();
+				woodcuttingS04.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS04.setBackground(new Color(0, 32, 128));
+				woodcuttingS04.setBounds(1175, 25, 350, 250);
+				contentPanel.add(woodcuttingS04);
+				JPanel woodcuttingS05 = new JPanel();
+				woodcuttingS05.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS05.setBackground(new Color(0, 32, 128));
+				woodcuttingS05.setBounds(50, 300, 350, 250);
+				contentPanel.add(woodcuttingS05);
+				JPanel woodcuttingS06 = new JPanel();
+				woodcuttingS06.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS06.setBackground(new Color(0, 32, 128));
+				woodcuttingS06.setBounds(425, 300, 350, 250);
+				contentPanel.add(woodcuttingS06);
+				JPanel woodcuttingS07 = new JPanel();
+				woodcuttingS07.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS07.setBackground(new Color(0, 32, 128));
+				woodcuttingS07.setBounds(800, 300, 350, 250);
+				contentPanel.add(woodcuttingS07);
+				JPanel woodcuttingS08 = new JPanel();
+				woodcuttingS08.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS08.setBackground(new Color(0, 32, 128));
+				woodcuttingS08.setBounds(1175, 300, 350, 250);
+				contentPanel.add(woodcuttingS08);
+				JPanel woodcuttingS09 = new JPanel();
+				woodcuttingS09.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS09.setBackground(new Color(0, 32, 128));
+				woodcuttingS09.setBounds(50, 575, 350, 250);
+				contentPanel.add(woodcuttingS09);
+				JPanel woodcuttingS10 = new JPanel();
+				woodcuttingS10.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS10.setBackground(new Color(0, 32, 128));
+				woodcuttingS10.setBounds(425, 575, 350, 250);
+				contentPanel.add(woodcuttingS10);
+				JPanel woodcuttingS11 = new JPanel();
+				woodcuttingS11.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS11.setBackground(new Color(0, 32, 128));
+				woodcuttingS11.setBounds(800, 575, 350, 250);
+				contentPanel.add(woodcuttingS11);
+				JPanel woodcuttingS12 = new JPanel();
+				woodcuttingS12.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS12.setBackground(new Color(0, 32, 128));
+				woodcuttingS12.setBounds(1175, 575, 350, 250);
+				contentPanel.add(woodcuttingS12);
+				JPanel woodcuttingS13 = new JPanel();
+				woodcuttingS13.setBorder(new LineBorder(new Color(0,0,0)));
+				woodcuttingS13.setBackground(new Color(0,32,128));
+				woodcuttingS13.setBounds(50, 850, 1475, 90);
+				contentPanel.add(woodcuttingS13);
+				JLabel woodcuttingS13NameLabel = new JLabel("Overall level: 0/100", SwingConstants.CENTER);
+				woodcuttingS13NameLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+				woodcuttingS13NameLabel.setForeground(new Color(255,255,255));
+				woodcuttingS13NameLabel.setBounds(0, 0,350,30);
+				woodcuttingS13NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+				woodcuttingS13.add(woodcuttingS13NameLabel);
+				JProgressBar woodcuttingS13progressBar = new JProgressBar();
+				woodcuttingS13progressBar.setBounds(25, 75, 1425, 20);//NIE WIEM CZEMU NIE DZIAŁA XD
+				woodcuttingS13.add(woodcuttingS13progressBar);//it should be under text Overall level
+			}
 		}
+
 		
 	}
 }
