@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -27,6 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JProgressBar;
 import javax.swing.JButton;
+import java.awt.Component;
 
 public class GameWindow extends JFrame 
 {
@@ -60,6 +60,8 @@ public class GameWindow extends JFrame
 	private JPanel sidePanel, topPanel;
 	private JPanel contentPanel;
 	private JPanel logoPanel;
+	private EquipmentWindow equipmentWindow;
+	private DevMenu devMenu;
 	
 	public GameWindow(String characterName) 
 	{
@@ -474,6 +476,24 @@ public class GameWindow extends JFrame
 				cookingPanel.getWidth() - cookingNameLabel.getX() - cookingNameLabel.getWidth() - 10, 16);
 		cookingPanel.add(cookingProgressBar);
 		
+		JPanel devMenuPanel = new JPanel();
+		devMenuPanel.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				if(devMenu != null)
+				{
+					devMenu.dispose();
+				}
+				devMenu = new DevMenu();
+				devMenu.setVisible(true);
+			}
+		});
+		devMenuPanel.setOpaque(false);
+		devMenuPanel.setBounds(0, 970, 320, 34);
+		sidePanel.add(devMenuPanel);
+		
 		
 		//Top Panel
 		
@@ -506,16 +526,36 @@ public class GameWindow extends JFrame
 		shopPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		shopPanel.setBounds(520, 0, 260, 60);
 		topPanel.add(shopPanel);
+		shopPanel.setLayout(new BoxLayout(shopPanel, BoxLayout.Y_AXIS));
 		
 		JLabel shopLabel = new JLabel("Shop");
-		shopLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		shopLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		shopLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		shopPanel.add(shopLabel);
+		
+		JLabel goldLabel = new JLabel("0 g");
+		goldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		goldLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		shopPanel.add(goldLabel);
 		
 		JButton saveButtton = new JButton("Save");
 		saveButtton.setBounds(1500, 0, 90, 60);
 		topPanel.add(saveButtton);
 		
 		JButton equipmentButton = new JButton("");
+		equipmentButton.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				if(equipmentWindow != null)
+				{
+					equipmentWindow.dispose();
+				}
+				equipmentWindow = new EquipmentWindow();
+				equipmentWindow.setVisible(true);
+			}
+		});
 		equipmentButton.setLayout(new BoxLayout(equipmentButton, BoxLayout.Y_AXIS));
 		equipmentButton.setBounds(1400, 0, 100, 60);
 		
@@ -613,7 +653,7 @@ public class GameWindow extends JFrame
 		woodcuttingS01IconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		woodcuttingS01IconLabel.setBounds(350/2-25, 90, 64, 64);
 		woodcuttingS01.add(woodcuttingS01IconLabel);
-		JLabel woodcuttingS01LevelLabel = new JLabel("Progres: 0/100", SwingConstants.CENTER);//need string variable instead of text
+		JLabel woodcuttingS01LevelLabel = new JLabel("Progres: 0/99", SwingConstants.CENTER);//need string variable instead of text
 		woodcuttingS01LevelLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		woodcuttingS01LevelLabel.setForeground(new Color(255,255,255));
 		woodcuttingS01LevelLabel.setBounds(0, 130,350,100);
@@ -685,7 +725,7 @@ public class GameWindow extends JFrame
 		woodcuttingSummary.setBounds(50, 850, 1475, 90);
 		woodcuttingSummary.setLayout(null);
 		contentPanel.add(woodcuttingSummary);
-		JLabel woodcuttingSummaryNameLabel = new JLabel("Overall level: 0/100", SwingConstants.CENTER);
+		JLabel woodcuttingSummaryNameLabel = new JLabel("Overall level: 0/99", SwingConstants.CENTER);
 		woodcuttingSummaryNameLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
 		woodcuttingSummaryNameLabel.setForeground(new Color(255,255,255));
 		woodcuttingSummaryNameLabel.setBounds(0, 0,350,30);
