@@ -65,6 +65,7 @@ public class GameWindow extends JFrame
 	
 	public GameWindow(String characterName) 
 	{
+		setTitle("AFAFI");
 		setMaximumSize(new Dimension(1920, 1080));
 		setMinimumSize(new Dimension(1280, 720));
 		setLocationRelativeTo(null);

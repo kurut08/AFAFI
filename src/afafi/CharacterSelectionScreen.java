@@ -38,6 +38,7 @@ public class CharacterSelectionScreen extends JFrame
 	 */
 	public CharacterSelectionScreen(String login) 
 	{
+		setTitle("AFAFI - Character selection");
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
