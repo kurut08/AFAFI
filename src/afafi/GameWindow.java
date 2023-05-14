@@ -78,6 +78,7 @@ public class GameWindow extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		contentPanel = new JPanel();
 		//Side Panel
 		
 		sidePanel = new JPanel();
@@ -89,6 +90,14 @@ public class GameWindow extends JFrame
 		
 		//Logo Panel
 		logoPanel = new JPanel();
+		logoPanel.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				contentPanel = setContentPanel(contentPanel, "Summary");
+			}
+		});
 		logoPanel.setBounds(0, 0, sidePanel.getWidth(), sidePanel.getHeight()/8);
 		logoPanel.setBackground(sidePanel.getBackground());
 		sidePanel.add(logoPanel);
@@ -569,7 +578,6 @@ public class GameWindow extends JFrame
 		
 		//Content Panel
 		
-		contentPanel = new JPanel();
 		contentPanel = setContentPanel(contentPanel, "Summary");
 		contentPanel.setBounds(sidePanel.getWidth(), 60,
 				this.getWidth()-sidePanel.getWidth(), this.getHeight()-topPanel.getHeight());
@@ -621,10 +629,6 @@ public class GameWindow extends JFrame
 		switch(activity)
 		{
 			case "Summary":
-				JLabel test = new JLabel("test");
-				test.setBounds(200, 200, 20, 20);
-				test.setForeground(new Color(255, 0, 0));
-				contentPanel.add(test);
 				break;
 			case "Woodcutting":
 				setWoodcuttingContent(contentPanel);
