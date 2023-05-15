@@ -698,7 +698,12 @@ public class GameWindow extends JFrame
         
         activityContent.addMouseListener( new MouseAdapter() 
         {
-            public void mouseExited(MouseEvent e) {
+        	public void mouseEntered( MouseEvent e ) 
+        	{
+                activityContent.setBackground(new Color(0, 32, 64));
+            }
+            public void mouseExited(MouseEvent e) 
+            {
                 activityContent.setBackground(new Color(0, 32, 128));
             }
             public void mouseClicked(MouseEvent e) 
