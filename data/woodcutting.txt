@@ -1,0 +1,12 @@
+Oak Tree, Icon, 1, 10, 1200
+Spruce Tree, Icon, 4, 15, 1200
+Birch Tree, Icon, 7, 25, 1200
+Acocoa Tree, Icon, 10, 40, 900
+Mangrove Tree, Icon, 13, 65, 900
+Ash Tree, Icon, 16, 105, 1200
+Maple Tree, Icon, 19, 170, 1500
+Sycamore Tree, Icon, 22, 275, 188
+Adler Tree, Icon, 25, 445, 2100
+Hornbeam Tree, Icon, 28, 720, 2400
+Pine Tree, Icon, 31, 1165, 2700
+Baobab Tree, Icon, 34, 1885, 3600
