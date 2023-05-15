@@ -685,12 +685,29 @@ public class GameWindow extends JFrame
         iconLabel.setBounds(350/2-25, 90, 64, 64);
         activityContent.add(iconLabel);
         
-        JLabel levelLabel = new JLabel("Progres: "+level, SwingConstants.CENTER);//need string variable instead of text
+        JLabel levelLabel = new JLabel("Progress: ", SwingConstants.CENTER);//need string variable instead of text
         levelLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-        levelLabel.setForeground(new Color(255,255,255));
-        levelLabel.setBounds(0, 130,350,100);
+        levelLabel.setForeground(new Color(255, 255, 255));
+        levelLabel.setBounds(50, 130, 100, 100);
         levelLabel.setHorizontalAlignment(SwingConstants.CENTER);
         activityContent.add(levelLabel);
+        
+        System.out.println(level);
+        JLabel currentLevelLabel = new JLabel(Integer.valueOf(level).toString(), SwingConstants.CENTER);
+        currentLevelLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+        currentLevelLabel.setForeground(new Color(255, 255, 255));
+        currentLevelLabel.setBounds(levelLabel.getX() + levelLabel.getWidth(), 130, 30, 100);
+        currentLevelLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        activityContent.add(currentLevelLabel);
+        
+        JLabel maxLevelLabel = new JLabel("/99", SwingConstants.CENTER);
+        maxLevelLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+        maxLevelLabel.setForeground(new Color(255, 255, 255));
+        maxLevelLabel.setBounds(currentLevelLabel.getX() + currentLevelLabel.getWidth(), 130, 35, 100);
+        maxLevelLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        activityContent.add(maxLevelLabel);
+        
+        
         
         JProgressBar progressBar = new JProgressBar();
         progressBar.setBounds(25, 210, 300, 15);//need variable to fill progress bar
