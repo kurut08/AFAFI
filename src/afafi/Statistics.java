@@ -1,121 +1,121 @@
 package afafi;
 
 public class Statistics {
-    private int attackoverall;
-    private int strengthoverall;
-    private int defenceoverall;
-    private int hitpointsoverall;
-    private int rangedoverall;
-    private int magicoverall;
-    private int woodcuttingoverall;
-    private int craftingoverall;
-    private int miningoverall;
-    private int smitingoverall;
-    private int fishingoverall;
-    private int farmingoverall;
-    private int cookingoverall;
+    private int attackOverall;
+    private int strengthOverall;
+    private int defenceOverall;
+    private int hitpointsOverall;
+    private int rangedOverall;
+    private int magicOverall;
+    private int woodcuttingOverall;
+    private int craftingOverall;
+    private int miningOverall;
+    private int smithingOverall;
+    private int fishingOverall;
+    private int farmingOverall;
+    private int cookingOverall;
 
-    public int getDefenceoverall() {
-        return defenceoverall;
+    public int getDefenceOverall() {
+        return defenceOverall;
     }
 
-    public void setDefenceoverall(int defenceoverall) {
-        this.defenceoverall = defenceoverall;
+    public void setDefenceOverall(int defenceOverall) {
+        this.defenceOverall = defenceOverall;
     }
 
-    public int getHitpointsoverall() {
-        return hitpointsoverall;
+    public int getHitpointsOverall() {
+        return hitpointsOverall;
     }
 
-    public void setHitpointsoverall(int hitpointsoverall) {
-        this.hitpointsoverall = hitpointsoverall;
+    public void setHitpointsOverall(int hitpointsOverall) {
+        this.hitpointsOverall = hitpointsOverall;
     }
 
-    public int getRangedoverall() {
-        return rangedoverall;
+    public int getRangedOverall() {
+        return rangedOverall;
     }
 
-    public void setRangedoverall(int rangedoverall) {
-        this.rangedoverall = rangedoverall;
+    public void setRangedOverall(int rangedOverall) {
+        this.rangedOverall = rangedOverall;
     }
 
-    public int getMagicoverall() {
-        return magicoverall;
+    public int getMagicOverall() {
+        return magicOverall;
     }
 
-    public void setMagicoverall(int magicoverall) {
-        this.magicoverall = magicoverall;
+    public void setMagicOverall(int magicOverall) {
+        this.magicOverall = magicOverall;
     }
 
-    public int getWoodcuttingoverall() {
-        return woodcuttingoverall;
+    public int getWoodcuttingOverall() {
+        return woodcuttingOverall;
     }
 
-    public void setWoodcuttingoverall(int woodcuttingoverall) {
-        this.woodcuttingoverall = woodcuttingoverall;
+    public void setWoodcuttingOverall(int woodcuttingOverall) {
+        this.woodcuttingOverall = woodcuttingOverall;
     }
 
-    public int getCraftingoverall() {
-        return craftingoverall;
+    public int getCraftingOverall() {
+        return craftingOverall;
     }
 
-    public void setCraftingoverall(int craftingoverall) {
-        this.craftingoverall = craftingoverall;
+    public void setCraftingOverall(int craftingOverall) {
+        this.craftingOverall = craftingOverall;
     }
 
-    public int getMiningoverall() {
-        return miningoverall;
+    public int getMiningOverall() {
+        return miningOverall;
     }
 
-    public void setMiningoverall(int miningoverall) {
-        this.miningoverall = miningoverall;
+    public void setMiningOverall(int miningOverall) {
+        this.miningOverall = miningOverall;
     }
 
-    public int getSmitingoverall() {
-        return smitingoverall;
+    public int getSmithingOverall() {
+        return smithingOverall;
     }
 
-    public void setSmitingoverall(int smitingoverall) {
-        this.smitingoverall = smitingoverall;
+    public void setSmithingOverall(int smithingOverall) {
+        this.smithingOverall = smithingOverall;
     }
 
-    public int getFishingoverall() {
-        return fishingoverall;
+    public int getFishingOverall() {
+        return fishingOverall;
     }
 
-    public void setFishingoverall(int fishingoverall) {
-        this.fishingoverall = fishingoverall;
+    public void setFishingOverall(int fishingOverall) {
+        this.fishingOverall = fishingOverall;
     }
 
-    public int getFarmingoverall() {
-        return farmingoverall;
+    public int getFarmingOverall() {
+        return farmingOverall;
     }
 
-    public void setFarmingoverall(int farmingoverall) {
-        this.farmingoverall = farmingoverall;
+    public void setFarmingOverall(int farmingOverall) {
+        this.farmingOverall = farmingOverall;
     }
 
-    public int getCookingoverall() {
-        return cookingoverall;
+    public int getCookingOverall() {
+        return cookingOverall;
     }
 
-    public void setCookingoverall(int cookingoverall) {
-        this.cookingoverall = cookingoverall;
+    public void setCookingOverall(int cookingOverall) {
+        this.cookingOverall = cookingOverall;
     }
 
-    public int getAttackoverall() {
-        return attackoverall;
+    public int getAttackOverall() {
+        return attackOverall;
     }
 
-    public void setAttackoverall(int attackoverall) {
-        this.attackoverall = attackoverall;
+    public void setAttackOverall(int attackOverall) {
+        this.attackOverall = attackOverall;
     }
 
-    public int getStrengthoverall() {
-        return strengthoverall;
+    public int getStrengthOverall() {
+        return strengthOverall;
     }
 
-    public void setStrengthoverall(int strengthoverall) {
-        this.strengthoverall = strengthoverall;
+    public void setStrengthOverall(int strengthOverall) {
+        this.strengthOverall = strengthOverall;
     }
 }

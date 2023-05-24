@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -301,6 +300,12 @@ public class GameWindow extends JFrame
         miningPanel.setBounds(0, 0, nonCombatSelectionPanel.getWidth(), 32);
         miningPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         miningPanel.setLayout(null);
+        miningPanel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e)
+            {
+                contentPanel = setContentPanel(contentPanel, "Mining");
+            }
+        });
         nonCombatSelectionPanel.add(miningPanel);
 
         JLabel miningIconLabel = new JLabel("Icon");
@@ -325,6 +330,12 @@ public class GameWindow extends JFrame
         smithingPanel.setBounds(0, miningPanel.getHeight(), nonCombatSelectionPanel.getWidth(), 32);
         smithingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         smithingPanel.setLayout(null);
+        smithingPanel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e)
+            {
+                contentPanel = setContentPanel(contentPanel, "Smithing");
+            }
+        });
         nonCombatSelectionPanel.add(smithingPanel);
 
         JLabel smithingIconLabel = new JLabel("Icon");
@@ -351,7 +362,6 @@ public class GameWindow extends JFrame
         woodcuttingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         woodcuttingPanel.setLayout(null);
         woodcuttingPanel.addMouseListener(new MouseAdapter() {
-            @Override
             public void mouseClicked(MouseEvent e)
             {
                 contentPanel = setContentPanel(contentPanel, "Woodcutting");
@@ -381,6 +391,12 @@ public class GameWindow extends JFrame
         craftingPanel.setBounds(0, woodcuttingPanel.getY() + woodcuttingPanel.getHeight(), nonCombatSelectionPanel.getWidth(), 32);
         craftingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         craftingPanel.setLayout(null);
+        craftingPanel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e)
+            {
+                contentPanel = setContentPanel(contentPanel, "Crafting");
+            }
+        });
         nonCombatSelectionPanel.add(craftingPanel);
 
         JLabel craftingIconLabel = new JLabel("Icon");
@@ -406,6 +422,12 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         farmingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         farmingPanel.setLayout(null);
+        farmingPanel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e)
+            {
+                contentPanel = setContentPanel(contentPanel, "Farming");
+            }
+        });
         nonCombatSelectionPanel.add(farmingPanel);
 
         JLabel farmingIconLabel = new JLabel("Icon");
@@ -431,6 +453,12 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         fishingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         fishingPanel.setLayout(null);
+        fishingPanel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e)
+            {
+                contentPanel = setContentPanel(contentPanel, "Fishing");
+            }
+        });
         nonCombatSelectionPanel.add(fishingPanel);
 
         JLabel fishingIconLabel = new JLabel("Icon");
@@ -456,6 +484,12 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         cookingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         cookingPanel.setLayout(null);
+        cookingPanel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e)
+            {
+                contentPanel = setContentPanel(contentPanel, "Cooking");
+            }
+        });
         nonCombatSelectionPanel.add(cookingPanel);
 
         JLabel cookingIconLabel = new JLabel("Icon");
@@ -487,6 +521,18 @@ public class GameWindow extends JFrame
         JPanel activityPanel = new JPanel();
         activityPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         activityPanel.setBounds(0, 0, 260, 60);
+        activityPanel.setBackground(new Color(255,255,255));
+        activityPanel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered( MouseEvent e ) {
+                activityPanel.setBackground(new Color(179, 255, 179));
+            }
+            public void mouseExited(MouseEvent e) {
+                activityPanel.setBackground(new Color(255, 255,255));
+            }
+            public void mouseClicked(MouseEvent e) {
+                //turn on eq
+            }
+        } );
         topPanel.add(activityPanel);
 
         JLabel activityLabel = new JLabel("Activity");
@@ -496,6 +542,18 @@ public class GameWindow extends JFrame
         JPanel equipmentPanel = new JPanel();
         equipmentPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         equipmentPanel.setBounds(260, 0, 260, 60);
+        equipmentPanel.setBackground(new Color(255, 255,255));
+        equipmentPanel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered( MouseEvent e ) {
+                equipmentPanel.setBackground(new Color(179, 255, 179));
+            }
+            public void mouseExited(MouseEvent e) {
+                equipmentPanel.setBackground(new Color(255, 255,255));
+            }
+            public void mouseClicked(MouseEvent e) {
+                //turn on eq
+            }
+        } );
         topPanel.add(equipmentPanel);
 
         JLabel equipmentLabel = new JLabel("Equipment");
@@ -505,6 +563,18 @@ public class GameWindow extends JFrame
         JPanel shopPanel = new JPanel();
         shopPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         shopPanel.setBounds(520, 0, 260, 60);
+        shopPanel.setBackground(new Color(255, 255,255));
+        shopPanel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered( MouseEvent e ) {
+                shopPanel.setBackground(new Color(179, 255, 179));
+            }
+            public void mouseExited(MouseEvent e) {
+                shopPanel.setBackground(new Color(255, 255,255));
+            }
+            public void mouseClicked(MouseEvent e) {
+                //turn on eq
+            }
+        } );
         topPanel.add(shopPanel);
 
         JLabel shopLabel = new JLabel("Shop");
@@ -586,8 +656,26 @@ public class GameWindow extends JFrame
                 contentPanel.add(test);
                 break;
             case "Woodcutting":
-                player.setWoodcuttingoverall(5);//example
+                player.setWoodcuttingOverall(5);//example
                 setWoodcuttingContent(contentPanel);
+                break;
+            case "Cooking":
+                setCookingContent(contentPanel);
+                break;
+            case "Crafting":
+                //setCraftingContent(contentPanel);
+                break;
+            case "Farming":
+                setFarmingContent(contentPanel);
+                break;
+            case "Fishing":
+                setFishingContent(contentPanel);
+                break;
+            case "Mining":
+                setMiningContent(contentPanel);
+                break;
+            case "Smithing":
+                setSmithingContent(contentPanel);
                 break;
         }
 
@@ -668,20 +756,89 @@ public class GameWindow extends JFrame
     }
     private void setWoodcuttingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Oak Tree", "Icon", player.getWoodcuttingoverall(), 1,50,25,10,1200 );
-        skillcontent(contentPanel,"Spruce Tree", "0000",  player.getWoodcuttingoverall(), 4,425,25,15,1200);
-        skillcontent(contentPanel,"Birch Tree", "Icon",  player.getWoodcuttingoverall(), 7,800,25,25,1200);
-        skillcontent(contentPanel,"Acocoa Tree", "Icon",  player.getWoodcuttingoverall(), 10,1175,25,40,900 );
-        skillcontent(contentPanel,"Mangrove Tree", "Icon",  player.getWoodcuttingoverall(), 13,50,300,65,900);
-        skillcontent(contentPanel,"Ash Tree", "Icon",  player.getWoodcuttingoverall(), 16,425,300,105,1200);
-        skillcontent(contentPanel,"Maple Tree", "Icon",  player.getWoodcuttingoverall(), 19,800,300,170,1500);
-        skillcontent(contentPanel,"Sycamore Tree", "Icon",  player.getWoodcuttingoverall(), 22,1175,300,275,188);
-        skillcontent(contentPanel,"Adler Tree", "Icon",  player.getWoodcuttingoverall(), 25,50,575,445,2100);
-        skillcontent(contentPanel,"Hornbeam Tree", "Icon", player.getWoodcuttingoverall(), 28,425,575,720,2400);
-        skillcontent(contentPanel,"Pine Tree", "Icon",  player.getWoodcuttingoverall(), 31,800,575,1165,2700);
-        skillcontent(contentPanel,"Baobab Tree", "Icon", player.getWoodcuttingoverall(), 34,1175,575,1885,3600);
-        overallContent(contentPanel, player.getWoodcuttingoverall());
+        skillcontent(contentPanel,"Oak Tree", "Icon", player.getWoodcuttingOverall(), 1,50,25,10,1200 );
+        skillcontent(contentPanel,"Spruce Tree", "0000",  player.getWoodcuttingOverall(), 4,425,25,15,1200);
+        skillcontent(contentPanel,"Birch Tree", "Icon",  player.getWoodcuttingOverall(), 7,800,25,25,1200);
+        skillcontent(contentPanel,"Acocoa Tree", "Icon",  player.getWoodcuttingOverall(), 10,1175,25,40,900 );
+        skillcontent(contentPanel,"Mangrove Tree", "Icon",  player.getWoodcuttingOverall(), 13,50,300,65,900);
+        skillcontent(contentPanel,"Ash Tree", "Icon",  player.getWoodcuttingOverall(), 16,425,300,105,1200);
+        skillcontent(contentPanel,"Maple Tree", "Icon",  player.getWoodcuttingOverall(), 19,800,300,170,1500);
+        skillcontent(contentPanel,"Sycamore Tree", "Icon",  player.getWoodcuttingOverall(), 22,1175,300,275,188);
+        skillcontent(contentPanel,"Adler Tree", "Icon",  player.getWoodcuttingOverall(), 25,50,575,445,2100);
+        skillcontent(contentPanel,"Hornbeam Tree", "Icon", player.getWoodcuttingOverall(), 28,425,575,720,2400);
+        skillcontent(contentPanel,"Pine Tree", "Icon",  player.getWoodcuttingOverall(), 31,800,575,1165,2700);
+        skillcontent(contentPanel,"Baobab Tree", "Icon", player.getWoodcuttingOverall(), 34,1175,575,1885,3600);
+        overallContent(contentPanel, player.getWoodcuttingOverall());
+    }
+    private void setCookingContent(JPanel contentPanel)
+    {
+        skillcontent(contentPanel,"Toasts with butter", "Icon", player.getCookingOverall(), 1,50,25,10,1200 );
+        skillcontent(contentPanel,"Fish Soup", "0000",  player.getCookingOverall(), 3,425,25,15,1200);
+        skillcontent(contentPanel,"Instant soup", "Icon",  player.getCookingOverall(), 6,800,25,25,1200);
+        skillcontent(contentPanel,"Muesli", "Icon",  player.getCookingOverall(), 10,1175,25,40,900 );
+        skillcontent(contentPanel,"Pasta", "Icon",  player.getCookingOverall(), 14,50,300,65,900);
+        skillcontent(contentPanel,"Ravioli", "Icon",  player.getCookingOverall(), 18,425,300,105,1200);
+        skillcontent(contentPanel,"Ramen", "Icon",  player.getCookingOverall(), 22,800,300,170,1500);
+        skillcontent(contentPanel,"Grilled steak", "Icon",  player.getCookingOverall(), 26,1175,300,275,188);
+        skillcontent(contentPanel,"Roasted Chicken", "Icon",  player.getCookingOverall(), 30,50,575,445,2100);
+        skillcontent(contentPanel,"Chicken soup", "Icon", player.getCookingOverall(), 34,425,575,720,2400);
+        overallContent(contentPanel, player.getCookingOverall());
+    }
+    private void setFarmingContent(JPanel contentPanel)
+    {
+        skillcontent(contentPanel,"Wheat", "Icon", player.getFarmingOverall(), 1,50,25,30,2400 );
+        skillcontent(contentPanel,"Rye", "0000",  player.getFarmingOverall(), 4,425,25,50,3600);
+        skillcontent(contentPanel,"Barley", "Icon",  player.getFarmingOverall(), 7,800,25,80,4800);
+        skillcontent(contentPanel,"Corn", "Icon",  player.getFarmingOverall(), 11,1175,25,200,6000 );
+        skillcontent(contentPanel,"Oat", "Icon",  player.getFarmingOverall(), 15,50,300,420,7200);
+        skillcontent(contentPanel,"Hop", "Icon",  player.getFarmingOverall(), 19,425,300,840,8400);
+        skillcontent(contentPanel,"Pumpkin", "Icon",  player.getFarmingOverall(), 23,800,300,1680,9600);
+        skillcontent(contentPanel,"Rice", "Icon",  player.getFarmingOverall(), 27,1175,300,3360,10800);
+        skillcontent(contentPanel,"Melon", "Icon",  player.getFarmingOverall(), 31,50,575,6720,1200);
+        skillcontent(contentPanel,"Potato", "Icon", player.getCookingOverall(), 35,425,575,13340,13200);
+
+        overallContent(contentPanel, player.getFarmingOverall());
     }
 
+    private void setFishingContent(JPanel contentPanel)
+    {
+        skillcontent(contentPanel,"Perch", "Icon", player.getFishingOverall(), 1,50,25,25,1800 );
+        skillcontent(contentPanel,"Pike", "0000",  player.getFishingOverall(), 5,425,25,50,2400);
+        skillcontent(contentPanel,"Bream", "Icon",  player.getFishingOverall(), 9,800,25,100,3000);
+        skillcontent(contentPanel,"Cod", "Icon",  player.getFishingOverall(), 13,1175,25,205,3600 );
+        skillcontent(contentPanel,"Sea Trout", "Icon",  player.getFishingOverall(), 17,50,300,410,4200);
+        skillcontent(contentPanel,"Catfish", "Icon",  player.getFishingOverall(), 21,425,300,815,4800);
+        skillcontent(contentPanel,"Barbel", "Icon",  player.getFishingOverall(), 25,800,300,1625,5400);
+        skillcontent(contentPanel,"Powan", "Icon",  player.getFishingOverall(), 29,1175,300,3250,6000);
+        skillcontent(contentPanel,"Shark", "Icon",  player.getFishingOverall(), 33,50,575,6500,6600);
+        overallContent(contentPanel, player.getFishingOverall());
+    }
 
+    private void setMiningContent(JPanel contentPanel)
+    {
+        skillcontent(contentPanel,"Coal", "Icon", player.getMiningOverall(), 1,50,25,5,600);
+        skillcontent(contentPanel,"Copper", "0000",  player.getMiningOverall(), 2,425,25,10,600);
+        skillcontent(contentPanel,"Silver", "Icon",  player.getMiningOverall(), 5,800,25,25,1200);
+        skillcontent(contentPanel,"Iron", "Icon",  player.getMiningOverall(), 10,1175,25,75,1800 );
+        skillcontent(contentPanel,"Nickel", "Icon",  player.getMiningOverall(), 15,50,300,180,2400);
+        skillcontent(contentPanel,"Allumium", "Icon",  player.getMiningOverall(), 20,425,300,350,3000);
+        skillcontent(contentPanel,"Platinium", "Icon",  player.getMiningOverall(), 25,800,300,750,3600);
+        skillcontent(contentPanel,"Cobalt", "Icon",  player.getMiningOverall(), 30,1175,300,1500,4200);
+        skillcontent(contentPanel,"Titanium", "Icon",  player.getMiningOverall(), 35,50,575,3500,4800);
+        overallContent(contentPanel, player.getMiningOverall());
+    }
+
+    private void setSmithingContent(JPanel contentPanel)
+    {
+        skillcontent(contentPanel,"Stone", "Icon", player.getSmithingOverall(), 1,50,25,10,1200);
+        skillcontent(contentPanel,"Copper", "0000",  player.getSmithingOverall(), 3,425,25,20,1200);
+        skillcontent(contentPanel,"Silver", "Icon",  player.getSmithingOverall(), 6,800,25,50,2400);
+        skillcontent(contentPanel,"Iron", "Icon",  player.getSmithingOverall(), 11,1175,25,150,3600 );
+        skillcontent(contentPanel,"Nickel", "Icon",  player.getSmithingOverall(), 16,50,300,360,4800);
+        skillcontent(contentPanel,"Allumium", "Icon",  player.getSmithingOverall(), 21,425,300,700,6000);
+        skillcontent(contentPanel,"Platinium", "Icon",  player.getSmithingOverall(), 26,800,300,1500,7200);
+        skillcontent(contentPanel,"Cobalt", "Icon",  player.getSmithingOverall(), 31,1175,300,3000,8400);
+        skillcontent(contentPanel,"Titanium", "Icon",  player.getSmithingOverall(), 36,50,575,7000,9600);
+        overallContent(contentPanel, player.getSmithingOverall());
+    }
 }
