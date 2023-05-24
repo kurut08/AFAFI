@@ -60,6 +60,7 @@ public class LoginScreen extends JFrame
 	 */
 	public LoginScreen() 
 	{
+		setTitle("AFAFI - Login screen");
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

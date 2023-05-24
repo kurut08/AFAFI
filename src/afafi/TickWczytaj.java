@@ -2,9 +2,9 @@ package afafi;
 //Przykładowy sposób wczytywania
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.Clock;
 import java.util.Scanner;
+
 public class TickWczytaj {
     public static void Wczytaj() {
         try {
