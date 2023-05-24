@@ -79,7 +79,7 @@ public class Player
         this.miningOverall = miningOverall;
     }
 
-    public int getSmitingOverall() {
+    public int getSmithingOverall() {
         return smithingOverall;
     }
 

@@ -31,7 +31,7 @@ public class GameWindow extends JFrame
 {
 
     private JPanel contentPane;
-    Statistics player = new Statistics();
+    Player player = new Player();
 
     public static void main(String[] args)
     {
