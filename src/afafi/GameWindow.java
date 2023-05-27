@@ -551,7 +551,7 @@ public class GameWindow extends JFrame
                 equipmentPanel.setBackground(new Color(255, 255,255));
             }
             public void mouseClicked(MouseEvent e) {
-                //turn on eq
+                contentPanel = setContentPanel(contentPanel, "Equipment");
             }
         } );
         topPanel.add(equipmentPanel);
@@ -677,9 +677,48 @@ public class GameWindow extends JFrame
             case "Smithing":
                 setSmithingContent(contentPanel);
                 break;
+            case "Equipment":
+                setEquipmentContent(contentPanel, 6, 10);
         }
 
     }
+    private void equipment(JPanel contentPanel, int id, String icon, int x, int y){
+        // template, without item file there is no point of doing working equipment
+        JPanel eq = new JPanel();
+        eq.setBorder(new LineBorder(new Color(0,0,0)));
+        eq.setBackground(new Color(0, 32, 128));
+        eq.setBounds(x,y, 100, 100);
+        eq.setLayout(null);
+        contentPanel.add(eq);
+
+        JLabel iconLabel = new JLabel(icon, SwingConstants.CENTER);
+        iconLabel.setBackground(new Color(255, 255, 255));
+        iconLabel.setOpaque(true); //TODO REMOVE
+        iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        iconLabel.setBounds(16, 10, 64, 64);
+        eq.add(iconLabel);
+
+        JLabel amount = new JLabel("Amount", SwingConstants.CENTER);
+        amount.setFont(new Font("Tahoma", Font.BOLD, 10));
+        amount.setForeground(new Color(255,255,255));
+        amount.setBounds(0, 68,100,30);
+        amount.setHorizontalAlignment(SwingConstants.CENTER);
+        eq.add(amount);
+    }
+    private void setEquipmentContent(JPanel contentPanel,int x, int y ){
+        int axis_X = 25;
+        int axis_Y = 25;
+        for (int i = 0; i <= x; i++) {
+            axis_X = 25;
+            for (int j = 0; j <= y; j++) {
+                equipment(contentPanel, 0,"Icon", axis_X, axis_Y);
+                axis_X += 105;
+            }
+            axis_Y += 105;
+        }
+    }
+
 
     private void skillcontent(JPanel contentPanel, String name, String icon, int level,int reqlevel, int x, int y, int exp, int tick ){
         //if we need, we can add parameters to change position of .setBounds
