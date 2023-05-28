@@ -59,9 +59,12 @@ public class GameWindow extends JFrame
     private JPanel sidePanel, topPanel;
     private JPanel contentPanel;
     private JPanel logoPanel;
+    private EquipmentWindow equipmentWindow;
+    private DevMenu devMenu;
 
     public GameWindow(String characterName)
     {
+    	setTitle("AFAFI - Another Freaking Awesome Fantasy Idle");
         setMaximumSize(new Dimension(1920, 1080));
         setMinimumSize(new Dimension(1280, 720));
         setLocationRelativeTo(null);
@@ -85,6 +88,14 @@ public class GameWindow extends JFrame
 
         //Logo Panel
         logoPanel = new JPanel();
+        logoPanel.addMouseListener(new MouseAdapter() 
+        {
+        	@Override
+        	public void mouseClicked(MouseEvent e) 
+        	{
+        		contentPanel = setContentPanel(contentPanel, "Summary");
+        	}
+        });
         logoPanel.setBounds(0, 0, sidePanel.getWidth(), sidePanel.getHeight()/8);
         logoPanel.setBackground(sidePanel.getBackground());
         sidePanel.add(logoPanel);
@@ -300,7 +311,8 @@ public class GameWindow extends JFrame
         miningPanel.setBounds(0, 0, nonCombatSelectionPanel.getWidth(), 32);
         miningPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         miningPanel.setLayout(null);
-        miningPanel.addMouseListener(new MouseAdapter() {
+        miningPanel.addMouseListener(new MouseAdapter() 
+        {
             public void mouseClicked(MouseEvent e)
             {
                 contentPanel = setContentPanel(contentPanel, "Mining");
@@ -330,7 +342,8 @@ public class GameWindow extends JFrame
         smithingPanel.setBounds(0, miningPanel.getHeight(), nonCombatSelectionPanel.getWidth(), 32);
         smithingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         smithingPanel.setLayout(null);
-        smithingPanel.addMouseListener(new MouseAdapter() {
+        smithingPanel.addMouseListener(new MouseAdapter() 
+        {
             public void mouseClicked(MouseEvent e)
             {
                 contentPanel = setContentPanel(contentPanel, "Smithing");
@@ -361,7 +374,8 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         woodcuttingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         woodcuttingPanel.setLayout(null);
-        woodcuttingPanel.addMouseListener(new MouseAdapter() {
+        woodcuttingPanel.addMouseListener(new MouseAdapter() 
+        {
             public void mouseClicked(MouseEvent e)
             {
                 contentPanel = setContentPanel(contentPanel, "Woodcutting");
@@ -391,7 +405,8 @@ public class GameWindow extends JFrame
         craftingPanel.setBounds(0, woodcuttingPanel.getY() + woodcuttingPanel.getHeight(), nonCombatSelectionPanel.getWidth(), 32);
         craftingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         craftingPanel.setLayout(null);
-        craftingPanel.addMouseListener(new MouseAdapter() {
+        craftingPanel.addMouseListener(new MouseAdapter() 
+        {
             public void mouseClicked(MouseEvent e)
             {
                 contentPanel = setContentPanel(contentPanel, "Crafting");
@@ -422,7 +437,8 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         farmingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         farmingPanel.setLayout(null);
-        farmingPanel.addMouseListener(new MouseAdapter() {
+        farmingPanel.addMouseListener(new MouseAdapter() 
+        {
             public void mouseClicked(MouseEvent e)
             {
                 contentPanel = setContentPanel(contentPanel, "Farming");
@@ -453,7 +469,8 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         fishingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         fishingPanel.setLayout(null);
-        fishingPanel.addMouseListener(new MouseAdapter() {
+        fishingPanel.addMouseListener(new MouseAdapter() 
+        {
             public void mouseClicked(MouseEvent e)
             {
                 contentPanel = setContentPanel(contentPanel, "Fishing");
@@ -484,7 +501,8 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         cookingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         cookingPanel.setLayout(null);
-        cookingPanel.addMouseListener(new MouseAdapter() {
+        cookingPanel.addMouseListener(new MouseAdapter() 
+        {
             public void mouseClicked(MouseEvent e)
             {
                 contentPanel = setContentPanel(contentPanel, "Cooking");
@@ -507,6 +525,24 @@ public class GameWindow extends JFrame
         cookingProgressBar.setBounds(cookingNameLabel.getX() + cookingNameLabel.getWidth(), cookingPanel.getHeight()/4,
                 cookingPanel.getWidth() - cookingNameLabel.getX() - cookingNameLabel.getWidth() - 10, 16);
         cookingPanel.add(cookingProgressBar);
+        
+        JPanel devMenuPanel = new JPanel();
+        devMenuPanel.addMouseListener(new MouseAdapter() 
+        {
+        	@Override
+        	public void mouseClicked(MouseEvent e) 
+        	{
+        		if(devMenu != null)
+        		{
+        			devMenu.dispose();
+        		}
+        		devMenu = new DevMenu();
+        		devMenu.setVisible(true);
+        	}
+        });
+        devMenuPanel.setOpaque(false);
+        devMenuPanel.setBounds(0, 880, 320, 145);
+        sidePanel.add(devMenuPanel);
 
 
         //Top Panel
@@ -522,14 +558,18 @@ public class GameWindow extends JFrame
         activityPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         activityPanel.setBounds(0, 0, 260, 60);
         activityPanel.setBackground(new Color(255,255,255));
-        activityPanel.addMouseListener(new MouseAdapter() {
-            public void mouseEntered( MouseEvent e ) {
+        activityPanel.addMouseListener(new MouseAdapter() 
+        {
+            public void mouseEntered( MouseEvent e ) 
+            {
                 activityPanel.setBackground(new Color(179, 255, 179));
             }
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(MouseEvent e) 
+            {
                 activityPanel.setBackground(new Color(255, 255,255));
             }
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) 
+            {
                 //turn on eql
             }
         } );
@@ -543,14 +583,18 @@ public class GameWindow extends JFrame
         equipmentPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         equipmentPanel.setBounds(260, 0, 260, 60);
         equipmentPanel.setBackground(new Color(255, 255,255));
-        equipmentPanel.addMouseListener(new MouseAdapter() {
-            public void mouseEntered( MouseEvent e ) {
+        equipmentPanel.addMouseListener(new MouseAdapter() 
+        {
+            public void mouseEntered( MouseEvent e ) 
+            {
                 equipmentPanel.setBackground(new Color(179, 255, 179));
             }
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(MouseEvent e) 
+            {
                 equipmentPanel.setBackground(new Color(255, 255,255));
             }
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) 
+            {
                 contentPanel = setContentPanel(contentPanel, "Equipment");
             }
         } );
@@ -564,14 +608,18 @@ public class GameWindow extends JFrame
         shopPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         shopPanel.setBounds(520, 0, 260, 60);
         shopPanel.setBackground(new Color(255, 255,255));
-        shopPanel.addMouseListener(new MouseAdapter() {
-            public void mouseEntered( MouseEvent e ) {
+        shopPanel.addMouseListener(new MouseAdapter() 
+        {
+            public void mouseEntered( MouseEvent e ) 
+            {
                 shopPanel.setBackground(new Color(179, 255, 179));
             }
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(MouseEvent e) 
+            {
                 shopPanel.setBackground(new Color(255, 255,255));
             }
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) 
+            {
                 //turn on eq
             }
         } );
@@ -586,6 +634,19 @@ public class GameWindow extends JFrame
         topPanel.add(saveButtton);
 
         JButton equipmentButton = new JButton("");
+        equipmentButton.addMouseListener(new MouseAdapter() 
+        {
+        	@Override
+        	public void mouseClicked(MouseEvent e) 
+        	{
+        		if(equipmentWindow!=null)
+        		{
+        			equipmentWindow.dispose();
+        		}
+        		equipmentWindow = new EquipmentWindow();
+        		equipmentWindow.setVisible(true);
+        	}
+        });
         equipmentButton.setLayout(new BoxLayout(equipmentButton, BoxLayout.Y_AXIS));
         equipmentButton.setBounds(1400, 0, 100, 60);
 
@@ -633,7 +694,7 @@ public class GameWindow extends JFrame
 
         contentPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         contentPanel.setLayout(null); //Perhaps will change it later
-        contentPanel.setBounds(sidePanel.getWidth(), topPanel.getHeight(),
+        contentPanel.setBounds(320, 101,
                 contentPane.getWidth()-sidePanel.getWidth(),contentPane.getHeight()-topPanel.getHeight());
         //sets background to blue for debugging, change it to a picture / different
         contentPanel.setBackground(new Color(0, 0, 255));
@@ -682,7 +743,8 @@ public class GameWindow extends JFrame
         }
 
     }
-    private void equipment(JPanel contentPanel, int id, String icon, int x, int y){
+    private void equipment(JPanel contentPanel, int id, String icon, int x, int y)
+    {
         // template, without item file there is no point of doing working equipment
         JPanel eq = new JPanel();
         eq.setBorder(new LineBorder(new Color(0,0,0)));
@@ -706,12 +768,15 @@ public class GameWindow extends JFrame
         amount.setHorizontalAlignment(SwingConstants.CENTER);
         eq.add(amount);
     }
-    private void setEquipmentContent(JPanel contentPanel,int x, int y ){
+    private void setEquipmentContent(JPanel contentPanel,int x, int y )
+    {
         int axis_X = 25;
         int axis_Y = 25;
-        for (int i = 0; i <= x; i++) {
+        for (int i = 0; i <= x; i++) 
+        {
             axis_X = 25;
-            for (int j = 0; j <= y; j++) {
+            for (int j = 0; j <= y; j++) 
+            {
                 equipment(contentPanel, 0,"Icon", axis_X, axis_Y);
                 axis_X += 105;
             }
@@ -720,7 +785,8 @@ public class GameWindow extends JFrame
     }
 
 
-    private void skillcontent(JPanel contentPanel, String name, String icon, int level,int reqlevel, int x, int y, int exp, int tick ){
+    private void skillcontent(JPanel contentPanel, String name, String icon, int level,int reqlevel, int x, int y, int exp, int tick )
+    {
         //if we need, we can add parameters to change position of .setBounds
         JPanel activityContent = new JPanel();
         activityContent.setBorder(new LineBorder(new Color(0,0,0)));
@@ -750,22 +816,28 @@ public class GameWindow extends JFrame
         JProgressBar progressBar = new JProgressBar();
         progressBar.setBounds(25, 210, 300, 15);//need variable to fill progress bar
         activityContent.add(progressBar);
-        if(reqlevel>level){
+        if(reqlevel>level)
+        {
             activityContent.setBorder(new LineBorder(new Color(0,0,0)));
             activityContent.setBackground(new Color(230, 0, 0));
             activityContent.setBounds(x,y, 350, 250);
             activityContent.setLayout(null);
             contentPanel.add(activityContent);
         }
-        else{
-            activityContent.addMouseListener( new MouseAdapter() {
-                public void mouseEntered( MouseEvent e ) {
+        else
+        {
+            activityContent.addMouseListener( new MouseAdapter() 
+            {
+                public void mouseEntered( MouseEvent e ) 
+                {
                     activityContent.setBackground(new Color(0, 32, 64));
                 }
-                public void mouseExited(MouseEvent e) {
+                public void mouseExited(MouseEvent e)
+                {
                     activityContent.setBackground(new Color(0, 32, 128));
                 }
-                public void mouseClicked(MouseEvent e) {
+                public void mouseClicked(MouseEvent e) 
+                {
                     //start activity
                     System.out.println(exp);
                     System.out.println(tick);
@@ -776,7 +848,8 @@ public class GameWindow extends JFrame
 
          */
     }
-    private  void overallContent(JPanel contentPanel, int overall){
+    private  void overallContent(JPanel contentPanel, int overall)
+    {
         JPanel summary = new JPanel();
         summary.setBorder(new LineBorder(new Color(0,0,0)));
         summary.setBackground(new Color(0,32,128));
