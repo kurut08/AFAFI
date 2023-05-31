@@ -7,25 +7,17 @@ package afafi;
  * Make all components scalable
  */
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Font;
+import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 import javax.swing.border.LineBorder;
-import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import javax.swing.JProgressBar;
-import javax.swing.JButton;
 
 public class GameWindow extends JFrame
 {
@@ -620,7 +612,7 @@ public class GameWindow extends JFrame
             }
             public void mouseClicked(MouseEvent e) 
             {
-                //turn on eq
+                contentPanel = setContentPanel(contentPanel, "Shop");
             }
         } );
         topPanel.add(shopPanel);
@@ -740,6 +732,9 @@ public class GameWindow extends JFrame
                 break;
             case "Equipment":
                 setEquipmentContent(contentPanel, 6, 10);
+                break;
+            case "Shop":
+                setShopContent(contentPanel);
         }
 
     }
@@ -782,6 +777,29 @@ public class GameWindow extends JFrame
             }
             axis_Y += 105;
         }
+    }
+    private Image getScaledImage(Image srcImg, int w, int h){
+        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = resizedImg.createGraphics();
+
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(srcImg, 0, 0, w, h, null);
+        g2.dispose();
+
+        return resizedImg;
+    }
+    private void setShopContent(JPanel contentPanel){
+        JPanel shopMain = new JPanel();
+        shopMain.setBorder(new LineBorder(new Color(0,0,0)));
+        //shopMain.setBackground(new Color(0, 32, 128));
+        shopMain.setBounds(0,0,getWidth(), getHeight());
+        shopMain.setLayout(null);
+        JLabel bgImage = new JLabel();
+        bgImage.setBounds(0, 0, shopMain.getWidth(), shopMain.getHeight());
+        //tried to scale image but results with white box -_-
+        bgImage.setIcon(new ImageIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("/afafi/images/shop.png"))).getImage().getScaledInstance(200, 50, Image.SCALE_SMOOTH)));
+        contentPanel.add(shopMain);
+        contentPanel.add(bgImage);
     }
 
 
@@ -953,4 +971,5 @@ public class GameWindow extends JFrame
         skillcontent(contentPanel,"Titanium", "Icon",  player.getSmithingOverall(), 36,50,575,7000,9600);
         overallContent(contentPanel, player.getSmithingOverall());
     }
+
 }
