@@ -56,12 +56,19 @@ public class GameWindow extends JFrame
 
     public GameWindow(String characterName)
     {
+    	setResizable(false);
+    	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+    	
+    	ImageIcon windowIcon = new ImageIcon(GameWindow.class.getResource("/afafi/images/logo.png"));
+    	setIconImage(windowIcon.getImage());
+    	
     	setTitle("AFAFI - Another Freaking Awesome Fantasy Idle");
         setMaximumSize(new Dimension(1920, 1080));
         setMinimumSize(new Dimension(1280, 720));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(0, 0, 1920, 1080);
+        //setBounds(0, 0, 1920, 1080);
+        setSize(gd.getDisplayMode().getWidth(), gd.getDisplayMode().getHeight()); //Set fullscreen
         setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -571,30 +578,30 @@ public class GameWindow extends JFrame
         activityLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
         activityPanel.add(activityLabel);
 
-        JPanel equipmentPanel = new JPanel();
-        equipmentPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-        equipmentPanel.setBounds(260, 0, 260, 60);
-        equipmentPanel.setBackground(new Color(255, 255,255));
-        equipmentPanel.addMouseListener(new MouseAdapter() 
+        JPanel inventoryPanel = new JPanel();
+        inventoryPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+        inventoryPanel.setBounds(260, 0, 260, 60);
+        inventoryPanel.setBackground(new Color(255, 255,255));
+        inventoryPanel.addMouseListener(new MouseAdapter() 
         {
             public void mouseEntered( MouseEvent e ) 
             {
-                equipmentPanel.setBackground(new Color(179, 255, 179));
+                inventoryPanel.setBackground(new Color(179, 255, 179));
             }
             public void mouseExited(MouseEvent e) 
             {
-                equipmentPanel.setBackground(new Color(255, 255,255));
+                inventoryPanel.setBackground(new Color(255, 255,255));
             }
             public void mouseClicked(MouseEvent e) 
             {
                 contentPanel = setContentPanel(contentPanel, "Equipment");
             }
         } );
-        topPanel.add(equipmentPanel);
+        topPanel.add(inventoryPanel);
 
-        JLabel equipmentLabel = new JLabel("Equipment");
-        equipmentLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
-        equipmentPanel.add(equipmentLabel);
+        JLabel inventoryLabel = new JLabel("Inventory");
+        inventoryLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
+        inventoryPanel.add(inventoryLabel);
 
         JPanel shopPanel = new JPanel();
         shopPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -657,36 +664,19 @@ public class GameWindow extends JFrame
                 this.getWidth()-sidePanel.getWidth(), this.getHeight()-topPanel.getHeight());
         contentPane.add(contentPanel);
 
-
-        addComponentListener(new ComponentAdapter()
-        {
-            @Override
-            public void componentResized(ComponentEvent e)
-            {
-				/*
-				sidePanel.setBounds(0, 0, contentPane.getWidth()/6, contentPane.getHeight());
-				logoPanel.setBounds(0, 0, sidePanel.getWidth(), sidePanel.getHeight()/8);
-
-
-				topPanel.setBounds(sidePanel.getWidth(), 0, contentPane.getWidth() - sidePanel.getWidth(), contentPane.getHeight()/18);
-				contentPanel.setBounds(sidePanel.getWidth(), topPanel.getHeight(),
-						contentPane.getWidth()-sidePanel.getWidth(),contentPane.getHeight()-topPanel.getHeight());
-				*/
-            }
-        });
     }
 
     //Set general parameters
     private JPanel setContentPanel(JPanel contentPanel, String activity)
     {
-        if(contentPanel != null) //if InternalFrame exists - get rid of it
+        if(contentPanel != null) //if contentPanel exists - get rid of it's contents
         {
             contentPanel.removeAll();
         }
 
         contentPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         contentPanel.setLayout(null); //Perhaps will change it later
-        contentPanel.setBounds(320, 101,
+        contentPanel.setBounds(sidePanel.getWidth(), topPanel.getHeight(),
                 contentPane.getWidth()-sidePanel.getWidth(),contentPane.getHeight()-topPanel.getHeight());
         //sets background to blue for debugging, change it to a picture / different
         contentPanel.setBackground(new Color(0, 0, 255));
@@ -797,9 +787,10 @@ public class GameWindow extends JFrame
         JLabel bgImage = new JLabel();
         bgImage.setBounds(0, 0, shopMain.getWidth(), shopMain.getHeight());
         //tried to scale image but results with white box -_-
-        bgImage.setIcon(new ImageIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("/afafi/images/shop.png"))).getImage().getScaledInstance(200, 50, Image.SCALE_SMOOTH)));
+        bgImage.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/shop.png")).getImage().getScaledInstance(
+        		bgImage.getWidth(), bgImage.getHeight(), Image.SCALE_SMOOTH)));
+        shopMain.add(bgImage);
         contentPanel.add(shopMain);
-        contentPanel.add(bgImage);
     }
 
 
