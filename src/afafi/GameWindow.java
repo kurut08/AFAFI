@@ -24,7 +24,6 @@ public class GameWindow extends JFrame
 
     private JPanel contentPane;
     Player player = new Player();
-
     public static void main(String[] args)
     {
         EventQueue.invokeLater(new Runnable()
@@ -32,8 +31,10 @@ public class GameWindow extends JFrame
             public void run() {
                 try
                 {
+                    TickWatek tickWatek = new TickWatek();
                     GameWindow frame = new GameWindow("test");
                     frame.setVisible(true);
+                    tickWatek.start();
                 }
                 catch (Exception e)
                 {
@@ -42,6 +43,7 @@ public class GameWindow extends JFrame
             }
         });
     }
+
 
     /**
      *
@@ -678,7 +680,6 @@ public class GameWindow extends JFrame
                 contentPane.getWidth()-sidePanel.getWidth(),contentPane.getHeight()-topPanel.getHeight());
         //sets background to blue for debugging, change it to a picture / different
         contentPanel.setBackground(new Color(0, 0, 255));
-
         setContentPanelContent(contentPanel, activity);
         contentPane.validate();
         contentPane.repaint();
@@ -719,7 +720,7 @@ public class GameWindow extends JFrame
                 setSmithingContent(contentPanel);
                 break;
             case "Equipment":
-                setEquipmentContent(contentPanel, 6, 10);
+                setEquimentContent(contentPanel);
                 break;
             case "Shop":
                 setShopContent(contentPanel);
@@ -767,15 +768,32 @@ public class GameWindow extends JFrame
             axis_Y += 105;
         }
     }
-    private Image getScaledImage(Image srcImg, int w, int h){
-        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2 = resizedImg.createGraphics();
-
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(srcImg, 0, 0, w, h, null);
-        g2.dispose();
-
-        return resizedImg;
+    private void setEquimentContent(JPanel contentPanel){
+        JPanel eqMain = new JPanel();
+        eqMain.setBorder(new LineBorder(new Color(0,0,0)));
+        //shopMain.setBackground(new Color(0, 32, 128));
+        eqMain.setBounds(0,0,getWidth(), getHeight());
+        eqMain.setLayout(null);
+        JLabel bgImage = new JLabel();
+        bgImage.setBounds(0, 0, eqMain.getWidth(), eqMain.getHeight());
+        //tried to scale image but results with white box -_-
+        bgImage.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/eqiupment.png")).getImage().getScaledInstance(
+                bgImage.getWidth(), bgImage.getHeight(), Image.SCALE_SMOOTH)));
+        eqMain.add(bgImage);
+        JPanel shelf = new JPanel();
+        shelf.setBackground(new Color(255, 255, 255, 128));
+        shelf.setOpaque(true);
+        shelf.setBounds(100,100 , contentPanel.getWidth()-210, contentPanel.getHeight()-210);
+        shelf.setLayout(null);
+        //co 200
+        // rgb(143, 102, 61)
+        for (int i = 30; i < shelf.getHeight()- 60; i=i+66) {
+            for (int j = 30; j < shelf.getWidth() - 60; j=j+66) {
+                setEquipmentShop(shelf, "id", "name", j,i );
+            }
+        }
+        contentPanel.add(shelf);
+        contentPanel.add(eqMain);
     }
     private void itemShop(JPanel shelf, String id, String name, int x){
         JLabel iconLabel = new JLabel(id, SwingConstants.CENTER);
@@ -793,6 +811,7 @@ public class GameWindow extends JFrame
         amount.setHorizontalAlignment(SwingConstants.CENTER);
         shelf.add(amount);
     }
+
     private void setEquipmentShop(JPanel eqView, String id, String name, int x, int y){
         JPanel border = new JPanel();
         border.setBounds(x, y, 64, 64);
@@ -892,7 +911,8 @@ public class GameWindow extends JFrame
         levelLabel.setBounds(0, 130,350,100);
         levelLabel.setHorizontalAlignment(SwingConstants.CENTER);
         activityContent.add(levelLabel);
-        JProgressBar progressBar = new JProgressBar();
+        JProgressBar progressBar = new JProgressBar(0,tick);
+        progressBar.setValue(0);
         progressBar.setBounds(25, 210, 300, 15);//need variable to fill progress bar
         activityContent.add(progressBar);
         if(reqlevel>level)
@@ -918,8 +938,22 @@ public class GameWindow extends JFrame
                 public void mouseClicked(MouseEvent e) 
                 {
                     //start activity
-                    System.out.println(exp);
-                    System.out.println(tick);
+                    TickWatek tickWatek = new TickWatek();
+                    int value = 0;
+                    tickWatek.start();
+                    for(int i = 0; i<tick; i++){
+                        value = value+1;
+                        progressBar.setValue(value);
+                        progressBar.update(progressBar.getGraphics());
+                        try {
+                            tickWatek.sleep(1000);
+                        } catch (InterruptedException a) {
+                            System.out.println("Thread stopped");
+                        }
+                    }
+                    tickWatek.interrupt();
+                    System.out.println("DZIAŁA");
+                    //needs to and exp after finishing Thread
                 }
             } );
         }
@@ -947,7 +981,7 @@ public class GameWindow extends JFrame
     }
     private void setWoodcuttingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Oak Tree", "Icon", player.getWoodcuttingOverall(), 1,50,25,10,1200 );
+        skillcontent(contentPanel,"Oak Tree", "Icon", player.getWoodcuttingOverall(), 1,50,25,10,100 );
         skillcontent(contentPanel,"Spruce Tree", "0000",  player.getWoodcuttingOverall(), 4,425,25,15,1200);
         skillcontent(contentPanel,"Birch Tree", "Icon",  player.getWoodcuttingOverall(), 7,800,25,25,1200);
         skillcontent(contentPanel,"Acocoa Tree", "Icon",  player.getWoodcuttingOverall(), 10,1175,25,40,900 );
@@ -960,6 +994,10 @@ public class GameWindow extends JFrame
         skillcontent(contentPanel,"Pine Tree", "Icon",  player.getWoodcuttingOverall(), 31,800,575,1165,2700);
         skillcontent(contentPanel,"Baobab Tree", "Icon", player.getWoodcuttingOverall(), 34,1175,575,1885,3600);
         overallContent(contentPanel, player.getWoodcuttingOverall());
+        JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
+        bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
+        bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+        contentPanel.add(bgImageMain);
     }
     private void setCookingContent(JPanel contentPanel)
     {
@@ -974,6 +1012,10 @@ public class GameWindow extends JFrame
         skillcontent(contentPanel,"Roasted Chicken", "Icon",  player.getCookingOverall(), 30,50,575,445,2100);
         skillcontent(contentPanel,"Chicken soup", "Icon", player.getCookingOverall(), 34,425,575,720,2400);
         overallContent(contentPanel, player.getCookingOverall());
+        JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
+        bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
+        bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+        contentPanel.add(bgImageMain);
     }
     private void setFarmingContent(JPanel contentPanel)
     {
@@ -987,8 +1029,11 @@ public class GameWindow extends JFrame
         skillcontent(contentPanel,"Rice", "Icon",  player.getFarmingOverall(), 27,1175,300,3360,10800);
         skillcontent(contentPanel,"Melon", "Icon",  player.getFarmingOverall(), 31,50,575,6720,1200);
         skillcontent(contentPanel,"Potato", "Icon", player.getCookingOverall(), 35,425,575,13340,13200);
-
         overallContent(contentPanel, player.getFarmingOverall());
+        JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
+        bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
+        bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+        contentPanel.add(bgImageMain);
     }
 
     private void setFishingContent(JPanel contentPanel)
@@ -1003,6 +1048,10 @@ public class GameWindow extends JFrame
         skillcontent(contentPanel,"Powan", "Icon",  player.getFishingOverall(), 29,1175,300,3250,6000);
         skillcontent(contentPanel,"Shark", "Icon",  player.getFishingOverall(), 33,50,575,6500,6600);
         overallContent(contentPanel, player.getFishingOverall());
+        JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
+        bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
+        bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+        contentPanel.add(bgImageMain);
     }
 
     private void setMiningContent(JPanel contentPanel)
@@ -1017,6 +1066,10 @@ public class GameWindow extends JFrame
         skillcontent(contentPanel,"Cobalt", "Icon",  player.getMiningOverall(), 30,1175,300,1500,4200);
         skillcontent(contentPanel,"Titanium", "Icon",  player.getMiningOverall(), 35,50,575,3500,4800);
         overallContent(contentPanel, player.getMiningOverall());
+        JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
+        bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
+        bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+        contentPanel.add(bgImageMain);
     }
 
     private void setSmithingContent(JPanel contentPanel)
@@ -1031,6 +1084,10 @@ public class GameWindow extends JFrame
         skillcontent(contentPanel,"Cobalt", "Icon",  player.getSmithingOverall(), 31,1175,300,3000,8400);
         skillcontent(contentPanel,"Titanium", "Icon",  player.getSmithingOverall(), 36,50,575,7000,9600);
         overallContent(contentPanel, player.getSmithingOverall());
+        JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
+        bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
+        bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+        contentPanel.add(bgImageMain);
     }
 
 }
