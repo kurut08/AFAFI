@@ -10,10 +10,7 @@ package afafi;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 
@@ -119,6 +116,13 @@ public class GameWindow extends JFrame
         JPanel combatPanel = new JPanel();
         combatPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         combatPanel.setBounds(0, 180, 320, 295);
+        combatPanel.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                contentPanel = setContentPanel(contentPanel, "Combat");
+            }
+        });
         sidePanel.add(combatPanel);
         combatPanel.setLayout(null);
 
@@ -720,55 +724,19 @@ public class GameWindow extends JFrame
                 setSmithingContent(contentPanel);
                 break;
             case "Equipment":
-                setEquimentContent(contentPanel);
+                setEqupimentContent(contentPanel);
                 break;
             case "Shop":
                 setShopContent(contentPanel);
                 break;
+            case "Combat":
+                setCombatContent(contentPanel);
+                break;
         }
 
     }
-    private void equipment(JPanel contentPanel, int id, String icon, int x, int y)
-    {
-        // template, without item file there is no point of doing working equipment
-        JPanel eq = new JPanel();
-        eq.setBorder(new LineBorder(new Color(0,0,0)));
-        eq.setBackground(new Color(0, 32, 128));
-        eq.setBounds(x,y, 100, 100);
-        eq.setLayout(null);
-        contentPanel.add(eq);
 
-        JLabel iconLabel = new JLabel(icon, SwingConstants.CENTER);
-        iconLabel.setBackground(new Color(255, 255, 255));
-        iconLabel.setOpaque(true); //TODO REMOVE
-        iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
-        iconLabel.setBounds(16, 10, 64, 64);
-        eq.add(iconLabel);
-
-        JLabel amount = new JLabel("Amount", SwingConstants.CENTER);
-        amount.setFont(new Font("Tahoma", Font.BOLD, 10));
-        amount.setForeground(new Color(255,255,255));
-        amount.setBounds(0, 68,100,30);
-        amount.setHorizontalAlignment(SwingConstants.CENTER);
-        eq.add(amount);
-    }
-    private void setEquipmentContent(JPanel contentPanel,int x, int y )
-    {
-        int axis_X = 25;
-        int axis_Y = 25;
-        for (int i = 0; i <= x; i++) 
-        {
-            axis_X = 25;
-            for (int j = 0; j <= y; j++) 
-            {
-                equipment(contentPanel, 0,"Icon", axis_X, axis_Y);
-                axis_X += 105;
-            }
-            axis_Y += 105;
-        }
-    }
-    private void setEquimentContent(JPanel contentPanel){
+    private void setEqupimentContent(JPanel contentPanel){
         JPanel eqMain = new JPanel();
         eqMain.setBorder(new LineBorder(new Color(0,0,0)));
         //shopMain.setBackground(new Color(0, 32, 128));
@@ -881,7 +849,43 @@ public class GameWindow extends JFrame
         contentPanel.add(eqView);
         contentPanel.add(shopMain);
     }
+    private void combatcontent(JPanel contentPanel, String name, int size, int x){
+        JPanel combat = new JPanel();
+        combat.setBorder(new LineBorder(new Color(0,0,0)));
+        combat.setBackground(new Color(203, 184, 184));
+        combat.setBounds(x,100, 350, 100);
+        combat.setLayout(null);
+        contentPanel.add(combat);
+        JButton dung = new JButton(name);
+        dung.setBackground(new Color(91, 45, 45));
+        dung.setBounds(0,0,350,100);
+        combat.add(dung);
+        dung.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                if(combat.getHeight()> 100){
+                    combat.setSize(combat.getWidth(), 100);
+                }else{
+                    combat.setSize(combat.getWidth(), (size+1)*101);
+                }
+            }
+        });
 
+        JButton[] buttons = new JButton[size];
+        for (int i = 0; i < size; i++) {
+            buttons[i] = new JButton("Monster name");
+            buttons[i].setBackground(new Color(42, 141, 110));
+            buttons[i].setBounds(0, (i+1)*101, 350, 100);
+            combat.add(buttons[i]);
+        }
+    }
+    private void setCombatContent(JPanel contentPanel){
+        combatcontent(contentPanel, "Catacombs", 4, 40);
+        combatcontent(contentPanel, "Skidway's basement", 4, 430);
+        combatcontent(contentPanel, "Kurut08's basement", 4, 820);
+        combatcontent(contentPanel, "Mangekyou's basement", 4, 1210);
+    }
 
     private void skillcontent(JPanel contentPanel, String name, String icon, int level,int reqlevel, int x, int y, int exp, int tick )
     {
