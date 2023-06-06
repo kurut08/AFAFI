@@ -72,11 +72,9 @@ public class GameWindow extends JFrame
         setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
         setContentPane(contentPane);
         contentPane.setLayout(null);
-
-        //Side Panel
+         //Side Panel
 
         sidePanel = new JPanel();
         sidePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -693,10 +691,10 @@ public class GameWindow extends JFrame
         switch(activity)
         {
             case "Summary":
-                JLabel test = new JLabel("test");
-                test.setBounds(200, 200, 20, 20);
-                test.setForeground(new Color(255, 0, 0));
-                contentPanel.add(test);
+                JLabel bgImageMain = new JLabel();
+                bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
+                bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+                contentPanel.add(bgImageMain);
                 break;
             case "Woodcutting":
                 player.setWoodcuttingOverall(5);//example
@@ -725,6 +723,7 @@ public class GameWindow extends JFrame
                 break;
             case "Shop":
                 setShopContent(contentPanel);
+                break;
         }
 
     }
@@ -778,6 +777,53 @@ public class GameWindow extends JFrame
 
         return resizedImg;
     }
+    private void itemShop(JPanel shelf, String id, String name, int x){
+        JLabel iconLabel = new JLabel(id, SwingConstants.CENTER);
+        iconLabel.setBackground(new Color(255, 255, 255));
+        iconLabel.setOpaque(true); //TODO REMOVE
+        iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        iconLabel.setBounds(x, shelf.getHeight()/4, 64, 64);
+        shelf.add(iconLabel);
+
+        JLabel amount = new JLabel(name, SwingConstants.CENTER);
+        amount.setFont(new Font("Tahoma", Font.BOLD, 10));
+        amount.setForeground(new Color(255,255,255));
+        amount.setBounds(x-18, (shelf.getHeight()/4)+65,100,30);
+        amount.setHorizontalAlignment(SwingConstants.CENTER);
+        shelf.add(amount);
+    }
+    private void setEquipmentShop(JPanel eqView, String id, String name, int x, int y){
+        JPanel border = new JPanel();
+        border.setBounds(x, y, 64, 64);
+        border.setBackground(new Color(143, 102, 61));
+        border.setBorder(new LineBorder(new Color(0,0,0),1));
+        border.addMouseListener(new MouseAdapter()
+        {
+            public void mouseEntered( MouseEvent e )
+            {
+                border.setBackground(new Color(255, 102, 61));
+            }
+            public void mouseExited(MouseEvent e)
+            {
+                border.setBackground(new Color(143, 102, 61));
+            }
+        } );
+        ImageIcon icon = new ImageIcon(GameWindow.class.getResource("/afafi/images/test.png"),"TEST");
+        JLabel iconLabel = new JLabel(icon);
+        iconLabel.setBackground(new Color(255, 255, 255));
+        iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        iconLabel.setBounds(16, 16, 64, 64);
+        border.add(iconLabel);
+
+        JLabel amount = new JLabel(name, SwingConstants.CENTER);
+        amount.setFont(new Font("Tahoma", Font.BOLD, 10));
+        amount.setForeground(new Color(255,255,255));
+        amount.setBounds(54, 20,43,30);
+        amount.setHorizontalAlignment(SwingConstants.CENTER);
+        border.add(amount);
+        eqView.add(border);
+    }
     private void setShopContent(JPanel contentPanel){
         JPanel shopMain = new JPanel();
         shopMain.setBorder(new LineBorder(new Color(0,0,0)));
@@ -790,6 +836,30 @@ public class GameWindow extends JFrame
         bgImage.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/shop.png")).getImage().getScaledInstance(
         		bgImage.getWidth(), bgImage.getHeight(), Image.SCALE_SMOOTH)));
         shopMain.add(bgImage);
+        JPanel shelf = new JPanel();
+        shelf.setBackground(new Color(255, 255, 255, 128));
+        shelf.setOpaque(true);
+        shelf.setBounds(contentPanel.getWidth()/8,100 , contentPanel.getWidth()*3/4, 150);
+        shelf.setLayout(null);
+        itemShop(shelf, "id1", "item1", 168);
+        itemShop(shelf, "id2", "item2", 368);
+        itemShop(shelf, "id3", "item3", 568);
+        itemShop(shelf, "id4", "item4", 768);
+        itemShop(shelf, "id5", "item5", 968);
+        //co 200
+        // rgb(143, 102, 61)
+        JPanel eqView = new JPanel();
+        eqView.setBackground(new Color(143, 102, 61,192));
+        eqView.setOpaque(true);
+        eqView.setBounds(0,contentPanel.getHeight()*3/5,contentPanel.getWidth(),contentPanel.getHeight()*3/5);
+        eqView.setLayout(null);
+        for (int i = 30; i < 320; i=i+66) {
+            for (int j = 30; j < 1500; j=j+66) {
+                setEquipmentShop(eqView, "id", "name", j,i );
+            }
+        }
+        contentPanel.add(shelf);
+        contentPanel.add(eqView);
         contentPanel.add(shopMain);
     }
 
