@@ -104,7 +104,7 @@ public class GameWindow extends JFrame
         characterNamePanel.setBounds(0, 135, sidePanel.getWidth(), 45);
         sidePanel.add(characterNamePanel);
 
-        JLabel characterNameLabel = new JLabel("Nickname");
+        JLabel characterNameLabel = new JLabel(characterName);
         characterNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
         characterNamePanel.add(characterNameLabel);
 
