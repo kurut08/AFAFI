@@ -11,9 +11,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.util.Objects;
-
 import javax.swing.border.LineBorder;
 
 public class GameWindow extends JFrame
@@ -664,8 +661,13 @@ public class GameWindow extends JFrame
 
         contentPanel = new JPanel();
         contentPanel = setContentPanel(contentPanel, "Summary");
-        contentPanel.setBounds(sidePanel.getWidth(), 60,
+        contentPanel.setBounds(sidePanel.getWidth(), topPanel.getHeight(),
                 this.getWidth()-sidePanel.getWidth(), this.getHeight()-topPanel.getHeight());
+        JLabel bgImageMain = new JLabel();
+        bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
+        bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png"))
+        		.getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+        contentPanel.add(bgImageMain);
         contentPane.add(contentPanel);
 
     }
@@ -685,8 +687,8 @@ public class GameWindow extends JFrame
         //sets background to blue for debugging, change it to a picture / different
         contentPanel.setBackground(new Color(0, 0, 255));
         setContentPanelContent(contentPanel, activity);
-        contentPane.validate();
-        contentPane.repaint();
+        contentPanel.validate();
+        contentPanel.repaint();
         return contentPanel;
 
     }
@@ -698,7 +700,8 @@ public class GameWindow extends JFrame
             case "Summary":
                 JLabel bgImageMain = new JLabel();
                 bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
-                bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+                bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png"))
+                		.getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
                 contentPanel.add(bgImageMain);
                 break;
             case "Woodcutting":

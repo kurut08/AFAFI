@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.*;
+
 public class activityThread extends Thread {
     public long start, stop;
     JPanel activityContent;
