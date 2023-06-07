@@ -929,37 +929,8 @@ public class GameWindow extends JFrame
         }
         else
         {
-            activityContent.addMouseListener( new MouseAdapter() 
-            {
-                public void mouseEntered( MouseEvent e ) 
-                {
-                    activityContent.setBackground(new Color(0, 32, 64));
-                }
-                public void mouseExited(MouseEvent e)
-                {
-                    activityContent.setBackground(new Color(0, 32, 128));
-                }
-                public void mouseClicked(MouseEvent e) 
-                {
-                    //start activity
-                    TickWatek tickWatek = new TickWatek();
-                    int value = 0;
-                    tickWatek.start();
-                    for(int i = 0; i<tick; i++){
-                        value = value+1;
-                        progressBar.setValue(value);
-                        progressBar.update(progressBar.getGraphics());
-                        try {
-                            tickWatek.sleep(1000);
-                        } catch (InterruptedException a) {
-                            System.out.println("Thread stopped");
-                        }
-                    }
-                    tickWatek.interrupt();
-                    System.out.println("DZIAŁA");
-                    //needs to and exp after finishing Thread
-                }
-            } );
+            activityThread activityThread = new activityThread(activityContent, progressBar, tick);
+            activityThread.start();
         }
         /*
 
