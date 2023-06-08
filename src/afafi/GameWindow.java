@@ -730,6 +730,8 @@ public class GameWindow extends JFrame
 
         //loading items/monsters/etc
         itemID.readItems();
+        //just example
+        itemID.playerEq.put(1,2);
     }
 
     //Set general parameters
@@ -818,15 +820,17 @@ public class GameWindow extends JFrame
         shelf.setLayout(null);
         //co 200
         // rgb(143, 102, 61)
-        for (int i = 30; i < shelf.getHeight()- 60; i=i+66) {
-            for (int j = 30; j < shelf.getWidth() - 60; j=j+66) {
-                setEquipmentShop(shelf, "id", "name", j,i );
+        int help = 1;
+        for (int i = 30; i < 380; i=i+66) {
+            for (int j = 30; j < 1300; j=j+66) {
+                setEquipmentShop(shelf, help,  j,i );
+                help++;
             }
         }
         contentPanel.add(shelf);
         contentPanel.add(eqMain);
     }
-    private void itemShop(JPanel shelf, String name, String price, String source, int x){
+    private void itemShop(JPanel shelf, String name, String price, String source, int x, int id){
         //unitil we dont have icons
         //ImageIcon icon = new ImageIcon(GameWindow.class.getResource(source),"Brak ikony!");
         JLabel iconLabel = new JLabel("ICON");
@@ -841,7 +845,9 @@ public class GameWindow extends JFrame
             {
                 public void mouseClicked(MouseEvent e)
                 {
-                    //will be fixed;
+                    itemID.playerEq.put(idItemID, id);
+                    idItemID++;
+                    player.setMoney(player.getMoney()-Integer.parseInt(price));
                 }
             } );
         }
@@ -866,36 +872,37 @@ public class GameWindow extends JFrame
         shelf.add(priceLabel);
     }
 
-    private void setEquipmentShop(JPanel eqView, String id, String name, int x, int y){
+    private void setEquipmentShop(JPanel eqView, int id, int x, int y) {
         JPanel border = new JPanel();
         border.setBounds(x, y, 64, 64);
         border.setBackground(new Color(143, 102, 61));
-        border.setBorder(new LineBorder(new Color(0,0,0),1));
-        border.addMouseListener(new MouseAdapter()
-        {
-            public void mouseEntered( MouseEvent e )
-            {
+        border.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        border.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
                 border.setBackground(new Color(255, 102, 61));
             }
-            public void mouseExited(MouseEvent e)
-            {
+
+            public void mouseExited(MouseEvent e) {
                 border.setBackground(new Color(143, 102, 61));
             }
-        } );
-        ImageIcon icon = new ImageIcon(GameWindow.class.getResource("/afafi/images/test.png"),"TEST");
-        JLabel iconLabel = new JLabel(icon);
-        iconLabel.setBackground(new Color(255, 255, 255));
-        iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
-        iconLabel.setBounds(16, 16, 64, 64);
-        border.add(iconLabel);
+        });
+        if (itemID.playerEq.get(id) != null) {
+            //ImageIcon icon = new ImageIcon(GameWindow.class.getResource(itemID.id_list.get(id)[6]), "TEST");
+            JLabel iconLabel = new JLabel("ICON");
+            iconLabel.setBackground(new Color(255, 255, 255));
+            iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+            iconLabel.setBounds(16, 16, 64, 64);
+            border.add(iconLabel);
 
-        JLabel amount = new JLabel(name, SwingConstants.CENTER);
-        amount.setFont(new Font("Tahoma", Font.BOLD, 10));
-        amount.setForeground(new Color(255,255,255));
-        amount.setBounds(54, 20,43,30);
-        amount.setHorizontalAlignment(SwingConstants.CENTER);
-        border.add(amount);
+            JLabel amount = new JLabel(itemID.id_list.get(id)[0], SwingConstants.CENTER);
+            amount.setFont(new Font("Tahoma", Font.BOLD, 10));
+            amount.setForeground(new Color(255, 255, 255));
+            amount.setBounds(54, 20, 43, 30);
+            amount.setHorizontalAlignment(SwingConstants.CENTER);
+            border.add(amount);
+        }
         eqView.add(border);
+
     }
     private void setShopContent(JPanel contentPanel){
         JPanel shopMain = new JPanel();
@@ -914,11 +921,11 @@ public class GameWindow extends JFrame
         shelf.setOpaque(true);
         shelf.setBounds(contentPanel.getWidth()/8,100 , contentPanel.getWidth()*3/4, 150);
         shelf.setLayout(null);
-        itemShop(shelf,  itemID.id_list.get(15)[0],itemID.id_list.get(15)[5], itemID.id_list.get(15)[6], 168);
-        itemShop(shelf, itemID.id_list.get(18)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 368);
-        itemShop(shelf, itemID.id_list.get(26)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 568);
-        itemShop(shelf, itemID.id_list.get(27)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 768);
-        itemShop(shelf, itemID.id_list.get(28)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 968);
+        itemShop(shelf,  itemID.id_list.get(15)[0],itemID.id_list.get(15)[5], itemID.id_list.get(15)[6], 168, 15);
+        itemShop(shelf, itemID.id_list.get(18)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 368, 18);
+        itemShop(shelf, itemID.id_list.get(26)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 568, 26);
+        itemShop(shelf, itemID.id_list.get(27)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 768, 27);
+        itemShop(shelf, itemID.id_list.get(28)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 968, 28);
 
         //co 200
         // rgb(143, 102, 61)
@@ -927,9 +934,11 @@ public class GameWindow extends JFrame
         eqView.setOpaque(true);
         eqView.setBounds(0,contentPanel.getHeight()*3/5,contentPanel.getWidth(),contentPanel.getHeight()*3/5);
         eqView.setLayout(null);
+        int help = 1;
         for (int i = 30; i < 320; i=i+66) {
             for (int j = 30; j < 1500; j=j+66) {
-                setEquipmentShop(eqView, "id", "name", j,i );
+                setEquipmentShop(eqView, help,  j,i );
+                help++;
             }
         }
         contentPanel.add(shelf);
