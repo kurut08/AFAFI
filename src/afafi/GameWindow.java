@@ -89,6 +89,11 @@ public class GameWindow extends JFrame
         	@Override
         	public void mouseClicked(MouseEvent e) 
         	{
+        		if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
         		contentPanel = setContentPanel(contentPanel, "Summary");
         	}
         });
@@ -120,6 +125,11 @@ public class GameWindow extends JFrame
         {
             public void mouseClicked(MouseEvent e)
             {
+            	if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
                 contentPanel = setContentPanel(contentPanel, "Combat");
             }
         });
@@ -318,6 +328,11 @@ public class GameWindow extends JFrame
         {
             public void mouseClicked(MouseEvent e)
             {
+            	if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
                 contentPanel = setContentPanel(contentPanel, "Mining");
             }
         });
@@ -349,6 +364,11 @@ public class GameWindow extends JFrame
         {
             public void mouseClicked(MouseEvent e)
             {
+            	if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
                 contentPanel = setContentPanel(contentPanel, "Smithing");
             }
         });
@@ -381,6 +401,11 @@ public class GameWindow extends JFrame
         {
             public void mouseClicked(MouseEvent e)
             {
+            	if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
                 contentPanel = setContentPanel(contentPanel, "Woodcutting");
             }
         });
@@ -412,6 +437,11 @@ public class GameWindow extends JFrame
         {
             public void mouseClicked(MouseEvent e)
             {
+            	if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
                 contentPanel = setContentPanel(contentPanel, "Crafting");
             }
         });
@@ -444,6 +474,11 @@ public class GameWindow extends JFrame
         {
             public void mouseClicked(MouseEvent e)
             {
+            	if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
                 contentPanel = setContentPanel(contentPanel, "Farming");
             }
         });
@@ -476,6 +511,11 @@ public class GameWindow extends JFrame
         {
             public void mouseClicked(MouseEvent e)
             {
+            	if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
                 contentPanel = setContentPanel(contentPanel, "Fishing");
             }
         });
@@ -508,6 +548,11 @@ public class GameWindow extends JFrame
         {
             public void mouseClicked(MouseEvent e)
             {
+            	if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
                 contentPanel = setContentPanel(contentPanel, "Cooking");
             }
         });
@@ -573,7 +618,7 @@ public class GameWindow extends JFrame
             }
             public void mouseClicked(MouseEvent e) 
             {
-
+            	
             }
         } );
         topPanel.add(activityPanel);
@@ -598,6 +643,11 @@ public class GameWindow extends JFrame
             }
             public void mouseClicked(MouseEvent e) 
             {
+            	if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
                 contentPanel = setContentPanel(contentPanel, "Equipment");
             }
         } );
@@ -623,6 +673,11 @@ public class GameWindow extends JFrame
             }
             public void mouseClicked(MouseEvent e) 
             {
+            	if(activityThread != null)
+    			{
+    				activityThread.finish();
+    				activityThread = null;
+    			}
                 contentPanel = setContentPanel(contentPanel, "Shop");
             }
         } );
@@ -975,14 +1030,13 @@ public class GameWindow extends JFrame
         			if(activityThread != null)
         			{
         				activityThread.finish();
+        				activityThread = null;
         			}
         			activityThread = new ActivityThread(activityContent, progressBar, tick);
                     activityThread.start();
         		}
         	});
-            
-            
-            
+        
         }
         /*
 
