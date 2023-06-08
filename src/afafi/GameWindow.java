@@ -52,6 +52,7 @@ public class GameWindow extends JFrame
     private DevMenu devMenu;
     itemID itemID = new itemID();
     public int idItemID=1;
+    ActivityThread activityThread;
     public GameWindow(String characterName)
     {
     	setResizable(false);
@@ -960,8 +961,28 @@ public class GameWindow extends JFrame
         }
         else
         {
-            activityThread activityThread = new activityThread(activityContent, progressBar, tick);
-            activityThread.start();
+        	activityContent.addMouseListener(new MouseAdapter(){
+        		public void mouseEntered(MouseEvent e)
+        		{
+        			activityContent.setBackground(new Color(0, 32, 64));
+        		}
+        		public void mouseExited(MouseEvent e)
+        		{
+        			activityContent.setBackground(new Color(0, 32, 128));
+        		}
+        		public void mousePressed(MouseEvent e)
+        		{
+        			if(activityThread != null)
+        			{
+        				activityThread.finish();
+        			}
+        			activityThread = new ActivityThread(activityContent, progressBar, tick);
+                    activityThread.start();
+        		}
+        	});
+            
+            
+            
         }
         /*
 
