@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
 import javax.swing.border.LineBorder;
 
 public class GameWindow extends JFrame
@@ -49,7 +50,8 @@ public class GameWindow extends JFrame
     private JPanel logoPanel;
     private EquipmentWindow equipmentWindow;
     private DevMenu devMenu;
-
+    itemID itemID = new itemID();
+    public int idItemID=1;
     public GameWindow(String characterName)
     {
     	setResizable(false);
@@ -570,7 +572,7 @@ public class GameWindow extends JFrame
             }
             public void mouseClicked(MouseEvent e) 
             {
-                //turn on eql
+
             }
         } );
         topPanel.add(activityPanel);
@@ -670,6 +672,8 @@ public class GameWindow extends JFrame
         contentPanel.add(bgImageMain);
         contentPane.add(contentPanel);
 
+        //loading items/monsters/etc
+        itemID.readItems();
     }
 
     //Set general parameters
@@ -766,21 +770,44 @@ public class GameWindow extends JFrame
         contentPanel.add(shelf);
         contentPanel.add(eqMain);
     }
-    private void itemShop(JPanel shelf, String id, String name, int x){
-        JLabel iconLabel = new JLabel(id, SwingConstants.CENTER);
+    private void itemShop(JPanel shelf, String name, String price, String source, int x){
+        //unitil we dont have icons
+        //ImageIcon icon = new ImageIcon(GameWindow.class.getResource(source),"Brak ikony!");
+        JLabel iconLabel = new JLabel("ICON");
         iconLabel.setBackground(new Color(255, 255, 255));
         iconLabel.setOpaque(true); //TODO REMOVE
         iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
         iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         iconLabel.setBounds(x, shelf.getHeight()/4, 64, 64);
         shelf.add(iconLabel);
+        if (player.getMoney()>Integer.parseInt(price)){
+            iconLabel.addMouseListener(new MouseAdapter()
+            {
+                public void mouseClicked(MouseEvent e)
+                {
+                    //will be fixed;
+                }
+            } );
+        }
 
         JLabel amount = new JLabel(name, SwingConstants.CENTER);
         amount.setFont(new Font("Tahoma", Font.BOLD, 10));
         amount.setForeground(new Color(255,255,255));
-        amount.setBounds(x-18, (shelf.getHeight()/4)+65,100,30);
+        amount.setBounds(x-18, (shelf.getHeight()/4)+60,100,30);
         amount.setHorizontalAlignment(SwingConstants.CENTER);
         shelf.add(amount);
+
+        JLabel priceLabel = new JLabel(price, SwingConstants.CENTER);
+        priceLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
+        if (player.getMoney()>Integer.parseInt(price)){
+            priceLabel.setForeground(new Color(255,255,255));
+        }
+        else{
+            priceLabel.setForeground(new Color(255,0,0));
+        }
+        priceLabel.setBounds(x-18, (shelf.getHeight()/4)+75,100,30);
+        priceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        shelf.add(priceLabel);
     }
 
     private void setEquipmentShop(JPanel eqView, String id, String name, int x, int y){
@@ -831,11 +858,12 @@ public class GameWindow extends JFrame
         shelf.setOpaque(true);
         shelf.setBounds(contentPanel.getWidth()/8,100 , contentPanel.getWidth()*3/4, 150);
         shelf.setLayout(null);
-        itemShop(shelf, "id1", "item1", 168);
-        itemShop(shelf, "id2", "item2", 368);
-        itemShop(shelf, "id3", "item3", 568);
-        itemShop(shelf, "id4", "item4", 768);
-        itemShop(shelf, "id5", "item5", 968);
+        itemShop(shelf,  itemID.id_list.get(15)[0],itemID.id_list.get(15)[5], itemID.id_list.get(15)[6], 168);
+        itemShop(shelf, itemID.id_list.get(18)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 368);
+        itemShop(shelf, itemID.id_list.get(26)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 568);
+        itemShop(shelf, itemID.id_list.get(27)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 768);
+        itemShop(shelf, itemID.id_list.get(28)[0], itemID.id_list.get(18)[5], itemID.id_list.get(18)[6], 968);
+
         //co 200
         // rgb(143, 102, 61)
         JPanel eqView = new JPanel();
@@ -1067,5 +1095,4 @@ public class GameWindow extends JFrame
         bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
         contentPanel.add(bgImageMain);
     }
-
 }

@@ -4,7 +4,7 @@ public class Player
 {
 	private int attackOverall, strengthOverall, defenseOverall, hitpointsOverall, rangedOverall,
 	magicOverall, woodcuttingOverall, craftingOverall, miningOverall, smithingOverall, fishingOverall,
-	farmingOverall, cookingOverall;
+	farmingOverall, cookingOverall, money;
 
 	
 	public int getAttackOverall() {
@@ -109,5 +109,13 @@ public class Player
 
     public void setCookingOverall(int cookingOverall) {
         this.cookingOverall = cookingOverall;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 }
