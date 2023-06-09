@@ -3,13 +3,14 @@ package afafi;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CombatWindow extends JFrame{
 
     private JPanel contentPane;
     private int playerHP = 30;
     private int monsterHP = 70;
-    private String[] monster;
 
 
     public CombatWindow(String[] monster){
@@ -87,6 +88,51 @@ public class CombatWindow extends JFrame{
         monsterDef.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         monsterDef.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(monsterDef);
+
+        JLabel playerAtk = new JLabel("Attack: "+10, SwingConstants.CENTER);
+        playerAtk.setFont(new Font("Tahoma", Font.BOLD, 14));
+        playerAtk.setForeground(new Color(218, 98, 98));
+        playerAtk.setBounds(25, 323, 250, 25);
+        playerAtk.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        playerAtk.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(playerAtk);
+
+        JLabel playerDef = new JLabel("Defence: "+20, SwingConstants.CENTER);
+        playerDef.setFont(new Font("Tahoma", Font.BOLD, 14));
+        playerDef.setForeground(new Color(218, 98, 98));
+        playerDef.setBounds(25, 347, 250, 25);
+        playerDef.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        playerDef.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(playerDef);
+
+        JButton fight = new JButton("Fight");
+        fight.setBackground(new Color(55, 245, 2));
+        fight.setBounds(325,450,150,75);
+        contentPane.add(fight);
+
+        JButton runAway = new JButton("Run away");
+        runAway.setBackground(new Color(91, 45, 45));
+        runAway.setBounds(325,450,150,75);
+
+        fight.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                contentPane.remove(fight);
+                contentPane.add(runAway);
+            }
+        });
+        runAway.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                contentPane.remove(runAway);
+                contentPane.add(fight);
+            }
+        });
+
+
+
 
 
 
