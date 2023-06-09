@@ -56,13 +56,13 @@ public class GameWindow extends JFrame
     ActivityThread activityThread;
     public GameWindow(String characterName)
     {
-    	setResizable(false);
-    	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-    	
-    	ImageIcon windowIcon = new ImageIcon(GameWindow.class.getResource("/afafi/images/logo.png"));
-    	setIconImage(windowIcon.getImage());
-    	
-    	setTitle("AFAFI - Another Freaking Awesome Fantasy Idle");
+        setResizable(false);
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+
+        ImageIcon windowIcon = new ImageIcon(GameWindow.class.getResource("/afafi/images/logo.png"));
+        setIconImage(windowIcon.getImage());
+
+        setTitle("AFAFI - Another Freaking Awesome Fantasy Idle");
         setMaximumSize(new Dimension(1920, 1080));
         setMinimumSize(new Dimension(1280, 720));
         setLocationRelativeTo(null);
@@ -74,7 +74,7 @@ public class GameWindow extends JFrame
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
-         //Side Panel
+        //Side Panel
 
         sidePanel = new JPanel();
         sidePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -85,18 +85,18 @@ public class GameWindow extends JFrame
 
         //Logo Panel
         logoPanel = new JPanel();
-        logoPanel.addMouseListener(new MouseAdapter() 
+        logoPanel.addMouseListener(new MouseAdapter()
         {
-        	@Override
-        	public void mouseClicked(MouseEvent e) 
-        	{
-        		if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
-        		contentPanel = setContentPanel(contentPanel, "Summary");
-        	}
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
+                contentPanel = setContentPanel(contentPanel, "Summary");
+            }
         });
         logoPanel.setBounds(0, 0, sidePanel.getWidth(), sidePanel.getHeight()/8);
         logoPanel.setBackground(sidePanel.getBackground());
@@ -126,11 +126,11 @@ public class GameWindow extends JFrame
         {
             public void mouseClicked(MouseEvent e)
             {
-            	if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
                 contentPanel = setContentPanel(contentPanel, "Combat");
             }
         });
@@ -325,15 +325,15 @@ public class GameWindow extends JFrame
         miningPanel.setBounds(0, 0, nonCombatSelectionPanel.getWidth(), 32);
         miningPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         miningPanel.setLayout(null);
-        miningPanel.addMouseListener(new MouseAdapter() 
+        miningPanel.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent e)
             {
-            	if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
                 contentPanel = setContentPanel(contentPanel, "Mining");
             }
         });
@@ -361,15 +361,15 @@ public class GameWindow extends JFrame
         smithingPanel.setBounds(0, miningPanel.getHeight(), nonCombatSelectionPanel.getWidth(), 32);
         smithingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         smithingPanel.setLayout(null);
-        smithingPanel.addMouseListener(new MouseAdapter() 
+        smithingPanel.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent e)
             {
-            	if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
                 contentPanel = setContentPanel(contentPanel, "Smithing");
             }
         });
@@ -398,15 +398,15 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         woodcuttingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         woodcuttingPanel.setLayout(null);
-        woodcuttingPanel.addMouseListener(new MouseAdapter() 
+        woodcuttingPanel.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent e)
             {
-            	if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
                 contentPanel = setContentPanel(contentPanel, "Woodcutting");
             }
         });
@@ -434,15 +434,15 @@ public class GameWindow extends JFrame
         craftingPanel.setBounds(0, woodcuttingPanel.getY() + woodcuttingPanel.getHeight(), nonCombatSelectionPanel.getWidth(), 32);
         craftingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         craftingPanel.setLayout(null);
-        craftingPanel.addMouseListener(new MouseAdapter() 
+        craftingPanel.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent e)
             {
-            	if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
                 contentPanel = setContentPanel(contentPanel, "Crafting");
             }
         });
@@ -471,15 +471,15 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         farmingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         farmingPanel.setLayout(null);
-        farmingPanel.addMouseListener(new MouseAdapter() 
+        farmingPanel.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent e)
             {
-            	if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
                 contentPanel = setContentPanel(contentPanel, "Farming");
             }
         });
@@ -508,15 +508,15 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         fishingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         fishingPanel.setLayout(null);
-        fishingPanel.addMouseListener(new MouseAdapter() 
+        fishingPanel.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent e)
             {
-            	if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
                 contentPanel = setContentPanel(contentPanel, "Fishing");
             }
         });
@@ -545,15 +545,15 @@ public class GameWindow extends JFrame
                 nonCombatSelectionPanel.getWidth(), 32);
         cookingPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         cookingPanel.setLayout(null);
-        cookingPanel.addMouseListener(new MouseAdapter() 
+        cookingPanel.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent e)
             {
-            	if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
                 contentPanel = setContentPanel(contentPanel, "Cooking");
             }
         });
@@ -574,20 +574,20 @@ public class GameWindow extends JFrame
         cookingProgressBar.setBounds(cookingNameLabel.getX() + cookingNameLabel.getWidth(), cookingPanel.getHeight()/4,
                 cookingPanel.getWidth() - cookingNameLabel.getX() - cookingNameLabel.getWidth() - 10, 16);
         cookingPanel.add(cookingProgressBar);
-        
+
         JPanel devMenuPanel = new JPanel();
-        devMenuPanel.addMouseListener(new MouseAdapter() 
+        devMenuPanel.addMouseListener(new MouseAdapter()
         {
-        	@Override
-        	public void mouseClicked(MouseEvent e) 
-        	{
-        		if(devMenu != null)
-        		{
-        			devMenu.dispose();
-        		}
-        		devMenu = new DevMenu();
-        		devMenu.setVisible(true);
-        	}
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                if(devMenu != null)
+                {
+                    devMenu.dispose();
+                }
+                devMenu = new DevMenu();
+                devMenu.setVisible(true);
+            }
         });
         devMenuPanel.setOpaque(false);
         devMenuPanel.setBounds(0, 880, 320, 145);
@@ -607,19 +607,19 @@ public class GameWindow extends JFrame
         activityPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         activityPanel.setBounds(0, 0, 260, 60);
         activityPanel.setBackground(new Color(255,255,255));
-        activityPanel.addMouseListener(new MouseAdapter() 
+        activityPanel.addMouseListener(new MouseAdapter()
         {
-            public void mouseEntered( MouseEvent e ) 
+            public void mouseEntered( MouseEvent e )
             {
                 activityPanel.setBackground(new Color(179, 255, 179));
             }
-            public void mouseExited(MouseEvent e) 
+            public void mouseExited(MouseEvent e)
             {
                 activityPanel.setBackground(new Color(255, 255,255));
             }
-            public void mouseClicked(MouseEvent e) 
+            public void mouseClicked(MouseEvent e)
             {
-            	
+
             }
         } );
         topPanel.add(activityPanel);
@@ -632,23 +632,23 @@ public class GameWindow extends JFrame
         inventoryPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         inventoryPanel.setBounds(260, 0, 260, 60);
         inventoryPanel.setBackground(new Color(255, 255,255));
-        inventoryPanel.addMouseListener(new MouseAdapter() 
+        inventoryPanel.addMouseListener(new MouseAdapter()
         {
-            public void mouseEntered( MouseEvent e ) 
+            public void mouseEntered( MouseEvent e )
             {
                 inventoryPanel.setBackground(new Color(179, 255, 179));
             }
-            public void mouseExited(MouseEvent e) 
+            public void mouseExited(MouseEvent e)
             {
                 inventoryPanel.setBackground(new Color(255, 255,255));
             }
-            public void mouseClicked(MouseEvent e) 
+            public void mouseClicked(MouseEvent e)
             {
-            	if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
                 contentPanel = setContentPanel(contentPanel, "Equipment");
             }
         } );
@@ -662,23 +662,23 @@ public class GameWindow extends JFrame
         shopPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         shopPanel.setBounds(520, 0, 260, 60);
         shopPanel.setBackground(new Color(255, 255,255));
-        shopPanel.addMouseListener(new MouseAdapter() 
+        shopPanel.addMouseListener(new MouseAdapter()
         {
-            public void mouseEntered( MouseEvent e ) 
+            public void mouseEntered( MouseEvent e )
             {
                 shopPanel.setBackground(new Color(179, 255, 179));
             }
-            public void mouseExited(MouseEvent e) 
+            public void mouseExited(MouseEvent e)
             {
                 shopPanel.setBackground(new Color(255, 255,255));
             }
-            public void mouseClicked(MouseEvent e) 
+            public void mouseClicked(MouseEvent e)
             {
-            	if(activityThread != null)
-    			{
-    				activityThread.finish();
-    				activityThread = null;
-    			}
+                if(activityThread != null)
+                {
+                    activityThread.finish();
+                    activityThread = null;
+                }
                 contentPanel = setContentPanel(contentPanel, "Shop");
             }
         } );
@@ -693,18 +693,18 @@ public class GameWindow extends JFrame
         topPanel.add(saveButtton);
 
         JButton equipmentButton = new JButton("");
-        equipmentButton.addMouseListener(new MouseAdapter() 
+        equipmentButton.addMouseListener(new MouseAdapter()
         {
-        	@Override
-        	public void mouseClicked(MouseEvent e) 
-        	{
-        		if(equipmentWindow!=null)
-        		{
-        			equipmentWindow.dispose();
-        		}
-        		equipmentWindow = new EquipmentWindow();
-        		equipmentWindow.setVisible(true);
-        	}
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                if(equipmentWindow!=null)
+                {
+                    equipmentWindow.dispose();
+                }
+                equipmentWindow = new EquipmentWindow();
+                equipmentWindow.setVisible(true);
+            }
         });
         equipmentButton.setLayout(new BoxLayout(equipmentButton, BoxLayout.Y_AXIS));
         equipmentButton.setBounds(1400, 0, 100, 60);
@@ -725,7 +725,7 @@ public class GameWindow extends JFrame
         JLabel bgImageMain = new JLabel();
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
         bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png"))
-        		.getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+                .getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
         contentPanel.add(bgImageMain);
         contentPane.add(contentPanel);
 
@@ -764,7 +764,7 @@ public class GameWindow extends JFrame
                 JLabel bgImageMain = new JLabel();
                 bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
                 bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png"))
-                		.getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+                        .getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
                 contentPanel.add(bgImageMain);
                 break;
             case "Woodcutting":
@@ -824,7 +824,7 @@ public class GameWindow extends JFrame
         int help = 1;
         for (int i = 30; i < 380; i=i+66) {
             for (int j = 30; j < 1300; j=j+66) {
-                setEquipmentShop(shelf, help,  j,i );
+                setEquipmentShop(shelf, help,  j,i, true);
                 help++;
             }
         }
@@ -832,9 +832,8 @@ public class GameWindow extends JFrame
         contentPanel.add(eqMain);
     }
     private void itemShop(JPanel shelf, String name, String price, String source, int x, int id){
-        //unitil we dont have icons
-        //ImageIcon icon = new ImageIcon(GameWindow.class.getResource(source),"Brak ikony!");
-        JLabel iconLabel = new JLabel("ICON");
+        ImageIcon icon = new ImageIcon(GameWindow.class.getResource(source),"Brak ikony!");
+        JLabel iconLabel = new JLabel(icon);
         iconLabel.setBackground(new Color(255, 255, 255));
         iconLabel.setOpaque(true); //TODO REMOVE
         iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -873,7 +872,7 @@ public class GameWindow extends JFrame
         shelf.add(priceLabel);
     }
 
-    private void setEquipmentShop(JPanel eqView, int id, int x, int y) {
+    private void setEquipmentShop(JPanel eqView, int id, int x, int y, boolean isEq) {
         JPanel border = new JPanel();
         border.setBounds(x, y, 64, 64);
         border.setBackground(new Color(143, 102, 61));
@@ -888,19 +887,93 @@ public class GameWindow extends JFrame
             }
         });
         if (itemID.playerEq.get(id) != null) {
-            //ImageIcon icon = new ImageIcon(GameWindow.class.getResource(itemID.id_list.get(id)[6]), "TEST");
-            JLabel iconLabel = new JLabel("ICON");
-            iconLabel.setBackground(new Color(255, 255, 255));
-            iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
-            iconLabel.setBounds(16, 16, 64, 64);
+            ImageIcon icon = new ImageIcon(GameWindow.class.getResource(itemID.id_list.get(id)[6]));
+            JLabel iconLabel = new JLabel(icon, SwingConstants.CENTER);
+            iconLabel.setBackground(new Color(143, 102, 61));
+            iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+            iconLabel.setBounds(0, 0, 64, 64);
             border.add(iconLabel);
 
             JLabel amount = new JLabel(itemID.id_list.get(id)[0], SwingConstants.CENTER);
-            amount.setFont(new Font("Tahoma", Font.BOLD, 10));
+            amount.setFont(new Font("Tahoma", Font.BOLD, 8));
             amount.setForeground(new Color(255, 255, 255));
             amount.setBounds(54, 20, 43, 30);
             amount.setHorizontalAlignment(SwingConstants.CENTER);
-            border.add(amount);
+            //border.add(amount);
+            if(isEq){
+                iconLabel.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        System.out.println("WORK");
+
+                        JPanel infoPanel = new JPanel();
+                        infoPanel.setBounds(0, 0, 64, 64);
+                        infoPanel.setBackground(new Color(143, 102, 61));
+                        infoPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+                        //.add(infoPanel);
+
+                        JLabel iconLabel = new JLabel(icon);
+                        iconLabel.setBackground(new Color(143, 102, 61));
+                        iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+                        iconLabel.setBounds(96, 515, 64, 64);
+                        eqView.add(iconLabel);
+
+                        JLabel amount = new JLabel(itemID.id_list.get(id)[0], SwingConstants.CENTER);
+                        amount.setFont(new Font("Tahoma", Font.BOLD, 8));
+                        amount.setForeground(new Color(255, 255, 255));
+                        amount.setBounds(165, 485, 200, 30);
+                        amount.setHorizontalAlignment(SwingConstants.CENTER);
+                        //infoPanel.add(amount);
+
+                        JLabel name = new JLabel();
+                        name.setFont(new Font("Tahoma", Font.BOLD, 15));
+                        name.setForeground(new Color(0,0,0));
+                        name.setBounds(165, 500, 200, 30);
+                        name.setText("Name: "+itemID.id_list.get(id)[0]);
+                        eqView.add(name);
+
+                        JLabel type = new JLabel("Type: "+itemID.id_list.get(id)[1]);
+                        type.setFont(new Font("Tahoma", Font.BOLD, 15));
+                        type.setForeground(new Color(0,0,0));
+                        type.setBounds(165, 515, 200, 30);
+                        type.setText("Type: "+itemID.id_list.get(id)[1]);
+                        eqView.add(type);
+
+                        JLabel attack = new JLabel();
+                        attack.setFont(new Font("Tahoma", Font.BOLD, 15));
+                        attack.setForeground(new Color(0,0,0));
+                        attack.setBounds(165, 530, 200, 30);
+                        attack.setText("Attack: "+itemID.id_list.get(id)[2]);
+                        eqView.add(attack);
+
+                        JLabel defense = new JLabel();
+                        defense.setFont(new Font("Tahoma", Font.BOLD, 15));
+                        defense.setForeground(new Color(0,0,0));
+                        defense.setBounds(165, 545, 200, 30);
+                        defense.setText("Defense: "+itemID.id_list.get(id)[3]);
+                        eqView.add(defense);
+
+                        JLabel lifeSteal = new JLabel();
+                        lifeSteal.setFont(new Font("Tahoma", Font.BOLD, 15));
+                        lifeSteal.setForeground(new Color(0,0,0));
+                        lifeSteal.setBounds(165, 560, 200, 30);
+                        lifeSteal.setText("Life steal: "+itemID.id_list.get(id)[4]);
+                        eqView.add(lifeSteal);
+
+                        JLabel price = new JLabel();
+                        price.setFont(new Font("Tahoma", Font.BOLD, 15));
+                        price.setForeground(new Color(0,0,0));
+                        price.setBounds(165, 575, 200, 30);
+                        price.setText("Price: "+itemID.id_list.get(id)[5]);
+                        eqView.add(price);
+
+                        //it works partially
+                        //we need find some way to refresh that panel without fucking up alpha
+                    }
+                });
+            }
+        }
+        else{
+
         }
         eqView.add(border);
 
@@ -915,7 +988,7 @@ public class GameWindow extends JFrame
         bgImage.setBounds(0, 0, shopMain.getWidth(), shopMain.getHeight());
         //tried to scale image but results with white box -_-
         bgImage.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/shop.png")).getImage().getScaledInstance(
-        		bgImage.getWidth(), bgImage.getHeight(), Image.SCALE_SMOOTH)));
+                bgImage.getWidth(), bgImage.getHeight(), Image.SCALE_SMOOTH)));
         shopMain.add(bgImage);
         JPanel shelf = new JPanel();
         shelf.setBackground(new Color(255, 255, 255, 128));
@@ -938,7 +1011,7 @@ public class GameWindow extends JFrame
         int help = 1;
         for (int i = 30; i < 320; i=i+66) {
             for (int j = 30; j < 1500; j=j+66) {
-                setEquipmentShop(eqView, help,  j,i );
+                setEquipmentShop(eqView, help,  j,i, false );
                 help++;
             }
         }
@@ -1001,6 +1074,7 @@ public class GameWindow extends JFrame
     private void skillcontent(JPanel contentPanel, String name, String icon, int level,int reqlevel, int x, int y, int exp, int tick )
     {
         //if we need, we can add parameters to change position of .setBounds
+        ImageIcon iconMain = new ImageIcon(GameWindow.class.getResource(icon));
         JPanel activityContent = new JPanel();
         activityContent.setBorder(new LineBorder(new Color(0,0,0)));
         activityContent.setBackground(new Color(0, 32, 128));
@@ -1013,7 +1087,7 @@ public class GameWindow extends JFrame
         nameLabel.setBounds(0, 0, 350, 100);
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         activityContent.add(nameLabel);
-        JLabel iconLabel = new JLabel(icon, SwingConstants.CENTER);
+        JLabel iconLabel = new JLabel(iconMain, SwingConstants.CENTER);
         iconLabel.setBackground(new Color(255, 255, 255));
         iconLabel.setOpaque(true); //TODO REMOVE
         iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1040,27 +1114,27 @@ public class GameWindow extends JFrame
         }
         else
         {
-        	activityContent.addMouseListener(new MouseAdapter(){
-        		public void mouseEntered(MouseEvent e)
-        		{
-        			activityContent.setBackground(new Color(0, 32, 64));
-        		}
-        		public void mouseExited(MouseEvent e)
-        		{
-        			activityContent.setBackground(new Color(0, 32, 128));
-        		}
-        		public void mousePressed(MouseEvent e)
-        		{
-        			if(activityThread != null)
-        			{
-        				activityThread.finish();
-        				activityThread = null;
-        			}
-        			activityThread = new ActivityThread(activityContent, progressBar, tick);
+            activityContent.addMouseListener(new MouseAdapter(){
+                public void mouseEntered(MouseEvent e)
+                {
+                    activityContent.setBackground(new Color(0, 32, 64));
+                }
+                public void mouseExited(MouseEvent e)
+                {
+                    activityContent.setBackground(new Color(0, 32, 128));
+                }
+                public void mousePressed(MouseEvent e)
+                {
+                    if(activityThread != null)
+                    {
+                        activityThread.finish();
+                        activityThread = null;
+                    }
+                    activityThread = new ActivityThread(activityContent, progressBar, tick);
                     activityThread.start();
-        		}
-        	});
-        
+                }
+            });
+
         }
         /*
 
@@ -1086,18 +1160,18 @@ public class GameWindow extends JFrame
     }
     private void setWoodcuttingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Oak Tree", "Icon", player.getWoodcuttingOverall(), 1,50,25,10,100 );
-        skillcontent(contentPanel,"Spruce Tree", "0000",  player.getWoodcuttingOverall(), 4,425,25,15,1200);
-        skillcontent(contentPanel,"Birch Tree", "Icon",  player.getWoodcuttingOverall(), 7,800,25,25,1200);
-        skillcontent(contentPanel,"Acocoa Tree", "Icon",  player.getWoodcuttingOverall(), 10,1175,25,40,900 );
-        skillcontent(contentPanel,"Mangrove Tree", "Icon",  player.getWoodcuttingOverall(), 13,50,300,65,900);
-        skillcontent(contentPanel,"Ash Tree", "Icon",  player.getWoodcuttingOverall(), 16,425,300,105,1200);
-        skillcontent(contentPanel,"Maple Tree", "Icon",  player.getWoodcuttingOverall(), 19,800,300,170,1500);
-        skillcontent(contentPanel,"Sycamore Tree", "Icon",  player.getWoodcuttingOverall(), 22,1175,300,275,188);
-        skillcontent(contentPanel,"Adler Tree", "Icon",  player.getWoodcuttingOverall(), 25,50,575,445,2100);
-        skillcontent(contentPanel,"Hornbeam Tree", "Icon", player.getWoodcuttingOverall(), 28,425,575,720,2400);
-        skillcontent(contentPanel,"Pine Tree", "Icon",  player.getWoodcuttingOverall(), 31,800,575,1165,2700);
-        skillcontent(contentPanel,"Baobab Tree", "Icon", player.getWoodcuttingOverall(), 34,1175,575,1885,3600);
+        skillcontent(contentPanel,"Oak Tree", "/afafi/images/icons/Woodcutting/oak_tree.png", player.getWoodcuttingOverall(), 1,50,25,10,100 );
+        skillcontent(contentPanel,"Spruce Tree", "/afafi/images/icons/Woodcutting/spruce_tree.png",  player.getWoodcuttingOverall(), 4,425,25,15,1200);
+        skillcontent(contentPanel,"Birch Tree", "/afafi/images/icons/Woodcutting/birch_tree.png",  player.getWoodcuttingOverall(), 7,800,25,25,1200);
+        skillcontent(contentPanel,"Acocoa Tree", "/afafi/images/icons/Woodcutting/acocoa_tree.png",  player.getWoodcuttingOverall(), 10,1175,25,40,900 );
+        skillcontent(contentPanel,"Mangrove Tree", "/afafi/images/icons/Woodcutting/mangrove_tree.png",  player.getWoodcuttingOverall(), 13,50,300,65,900);
+        skillcontent(contentPanel,"Ash Tree", "/afafi/images/icons/Woodcutting/ash_tree.png",  player.getWoodcuttingOverall(), 16,425,300,105,1200);
+        skillcontent(contentPanel,"Maple Tree", "/afafi/images/icons/Woodcutting/maple_tree.png",  player.getWoodcuttingOverall(), 19,800,300,170,1500);
+        skillcontent(contentPanel,"Sycamore Tree", "/afafi/images/icons/Woodcutting/sycamore_tree.png",  player.getWoodcuttingOverall(), 22,1175,300,275,188);
+        skillcontent(contentPanel,"Adler Tree", "/afafi/images/icons/Woodcutting/adler_tree.png",  player.getWoodcuttingOverall(), 25,50,575,445,2100);
+        skillcontent(contentPanel,"Hornbeam Tree", "/afafi/images/icons/Woodcutting/hornbeam_tree.png", player.getWoodcuttingOverall(), 28,425,575,720,2400);
+        skillcontent(contentPanel,"Pine Tree", "/afafi/images/icons/Woodcutting/pine_tree.png",  player.getWoodcuttingOverall(), 31,800,575,1165,2700);
+        skillcontent(contentPanel,"Baobab Tree", "/afafi/images/icons/Woodcutting/baobab_tree.png", player.getWoodcuttingOverall(), 34,1175,575,1885,3600);
         overallContent(contentPanel, player.getWoodcuttingOverall());
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
@@ -1106,16 +1180,16 @@ public class GameWindow extends JFrame
     }
     private void setCookingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Toasts with butter", "Icon", player.getCookingOverall(), 1,50,25,10,1200 );
-        skillcontent(contentPanel,"Fish Soup", "0000",  player.getCookingOverall(), 3,425,25,15,1200);
-        skillcontent(contentPanel,"Instant soup", "Icon",  player.getCookingOverall(), 6,800,25,25,1200);
-        skillcontent(contentPanel,"Muesli", "Icon",  player.getCookingOverall(), 10,1175,25,40,900 );
-        skillcontent(contentPanel,"Pasta", "Icon",  player.getCookingOverall(), 14,50,300,65,900);
-        skillcontent(contentPanel,"Ravioli", "Icon",  player.getCookingOverall(), 18,425,300,105,1200);
-        skillcontent(contentPanel,"Ramen", "Icon",  player.getCookingOverall(), 22,800,300,170,1500);
-        skillcontent(contentPanel,"Grilled steak", "Icon",  player.getCookingOverall(), 26,1175,300,275,188);
-        skillcontent(contentPanel,"Roasted Chicken", "Icon",  player.getCookingOverall(), 30,50,575,445,2100);
-        skillcontent(contentPanel,"Chicken soup", "Icon", player.getCookingOverall(), 34,425,575,720,2400);
+        skillcontent(contentPanel,"Sandwich", "/afafi/images/icons/Cooking/sandwich.png", player.getCookingOverall(), 1,50,25,10,1200 );
+        skillcontent(contentPanel,"Cookies", "/afafi/images/icons/Cooking/cookies.png",  player.getCookingOverall(), 3,425,25,15,1200);
+        skillcontent(contentPanel,"Omlet", "/afafi/images/icons/Cooking/omlet.png",  player.getCookingOverall(), 6,800,25,25,1200);
+        skillcontent(contentPanel,"Donut", "/afafi/images/icons/Cooking/donut.png",  player.getCookingOverall(), 10,1175,25,40,900 );
+        skillcontent(contentPanel,"Pasta", "/afafi/images/icons/Cooking/pasta.png",  player.getCookingOverall(), 14,50,300,65,900);
+        skillcontent(contentPanel,"Waffle", "/afafi/images/icons/Cooking/waffle.png",  player.getCookingOverall(), 18,425,300,105,1200);
+        skillcontent(contentPanel,"Ramen", "/afafi/images/icons/Cooking/ramen.png",  player.getCookingOverall(), 22,800,300,170,1500);
+        skillcontent(contentPanel,"Grilled steak", "/afafi/images/icons/Cooking/steak.png",  player.getCookingOverall(), 26,1175,300,275,188);
+        skillcontent(contentPanel,"Roasted Chicken", "/afafi/images/icons/Cooking/roasted_chicken.png",  player.getCookingOverall(), 30,50,575,445,2100);
+        skillcontent(contentPanel,"Pizza", "/afafi/images/icons/Cooking/pizza.png", player.getCookingOverall(), 34,425,575,720,2400);
         overallContent(contentPanel, player.getCookingOverall());
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
@@ -1124,16 +1198,16 @@ public class GameWindow extends JFrame
     }
     private void setFarmingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Wheat", "Icon", player.getFarmingOverall(), 1,50,25,30,2400 );
-        skillcontent(contentPanel,"Rye", "0000",  player.getFarmingOverall(), 4,425,25,50,3600);
-        skillcontent(contentPanel,"Barley", "Icon",  player.getFarmingOverall(), 7,800,25,80,4800);
-        skillcontent(contentPanel,"Corn", "Icon",  player.getFarmingOverall(), 11,1175,25,200,6000 );
-        skillcontent(contentPanel,"Oat", "Icon",  player.getFarmingOverall(), 15,50,300,420,7200);
-        skillcontent(contentPanel,"Hop", "Icon",  player.getFarmingOverall(), 19,425,300,840,8400);
-        skillcontent(contentPanel,"Pumpkin", "Icon",  player.getFarmingOverall(), 23,800,300,1680,9600);
-        skillcontent(contentPanel,"Rice", "Icon",  player.getFarmingOverall(), 27,1175,300,3360,10800);
-        skillcontent(contentPanel,"Melon", "Icon",  player.getFarmingOverall(), 31,50,575,6720,1200);
-        skillcontent(contentPanel,"Potato", "Icon", player.getCookingOverall(), 35,425,575,13340,13200);
+        skillcontent(contentPanel,"Apple", "/afafi/images/icons/Farming/apple.png", player.getFarmingOverall(), 1,50,25,30,2400 );
+        skillcontent(contentPanel,"Pear", "/afafi/images/icons/Farming/pear.png",  player.getFarmingOverall(), 4,425,25,50,3600);
+        skillcontent(contentPanel,"Carrot", "/afafi/images/icons/Farming/carrot.png",  player.getFarmingOverall(), 7,800,25,80,4800);
+        skillcontent(contentPanel,"Banana", "/afafi/images/icons/Farming/banana.png",  player.getFarmingOverall(), 11,1175,25,200,6000 );
+        skillcontent(contentPanel,"Corn", "/afafi/images/icons/Farming/corn.png",  player.getFarmingOverall(), 15,50,300,420,7200);
+        skillcontent(contentPanel,"Lemon", "/afafi/images/icons/Farming/lemon.png",  player.getFarmingOverall(), 19,425,300,840,8400);
+        skillcontent(contentPanel,"Tomato", "/afafi/images/icons/Farming/tomato.png",  player.getFarmingOverall(), 23,800,300,1680,9600);
+        skillcontent(contentPanel,"Strawberry", "/afafi/images/icons/Farming/strawberry.png",  player.getFarmingOverall(), 27,1175,300,3360,10800);
+        skillcontent(contentPanel,"Piripiri", "/afafi/images/icons/Farming/piripiri.png",  player.getFarmingOverall(), 31,50,575,6720,1200);
+        skillcontent(contentPanel,"Onion", "/afafi/images/icons/Farming/polack.png", player.getCookingOverall(), 35,425,575,13340,13200);
         overallContent(contentPanel, player.getFarmingOverall());
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
@@ -1143,15 +1217,15 @@ public class GameWindow extends JFrame
 
     private void setFishingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Perch", "Icon", player.getFishingOverall(), 1,50,25,25,1800 );
-        skillcontent(contentPanel,"Pike", "0000",  player.getFishingOverall(), 5,425,25,50,2400);
-        skillcontent(contentPanel,"Bream", "Icon",  player.getFishingOverall(), 9,800,25,100,3000);
-        skillcontent(contentPanel,"Cod", "Icon",  player.getFishingOverall(), 13,1175,25,205,3600 );
-        skillcontent(contentPanel,"Sea Trout", "Icon",  player.getFishingOverall(), 17,50,300,410,4200);
-        skillcontent(contentPanel,"Catfish", "Icon",  player.getFishingOverall(), 21,425,300,815,4800);
-        skillcontent(contentPanel,"Barbel", "Icon",  player.getFishingOverall(), 25,800,300,1625,5400);
-        skillcontent(contentPanel,"Powan", "Icon",  player.getFishingOverall(), 29,1175,300,3250,6000);
-        skillcontent(contentPanel,"Shark", "Icon",  player.getFishingOverall(), 33,50,575,6500,6600);
+        skillcontent(contentPanel,"Perch", "/afafi/images/icons/Fishing/Perch.png", player.getFishingOverall(), 1,50,25,25,1800 );
+        skillcontent(contentPanel,"Pike", "/afafi/images/icons/Fishing/Pike.png",  player.getFishingOverall(), 5,425,25,50,2400);
+        skillcontent(contentPanel,"Bream", "/afafi/images/icons/Fishing/Bream.png",  player.getFishingOverall(), 9,800,25,100,3000);
+        skillcontent(contentPanel,"Cod", "/afafi/images/icons/Fishing/Cod.png",  player.getFishingOverall(), 13,1175,25,205,3600 );
+        skillcontent(contentPanel,"Octopus", "/afafi/images/icons/Fishing/Octo.png",  player.getFishingOverall(), 17,50,300,410,4200);
+        skillcontent(contentPanel,"Turtle", "/afafi/images/icons/Fishing/Turtle.png",  player.getFishingOverall(), 21,425,300,815,4800);
+        skillcontent(contentPanel,"Powan", "/afafi/images/icons/Fishing/Powan.png",  player.getFishingOverall(), 25,800,300,1625,5400);
+        skillcontent(contentPanel,"Nemo", "/afafi/images/icons/Fishing/Nemo.png",  player.getFishingOverall(), 29,1175,300,3250,6000);
+        skillcontent(contentPanel,"Aqua Treasure", "/afafi/images/icons/Fishing/Aqua_treasure.png",  player.getFishingOverall(), 33,50,575,6500,6600);
         overallContent(contentPanel, player.getFishingOverall());
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
@@ -1161,15 +1235,15 @@ public class GameWindow extends JFrame
 
     private void setMiningContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Coal", "Icon", player.getMiningOverall(), 1,50,25,5,600);
-        skillcontent(contentPanel,"Copper", "0000",  player.getMiningOverall(), 2,425,25,10,600);
-        skillcontent(contentPanel,"Silver", "Icon",  player.getMiningOverall(), 5,800,25,25,1200);
-        skillcontent(contentPanel,"Iron", "Icon",  player.getMiningOverall(), 10,1175,25,75,1800 );
-        skillcontent(contentPanel,"Nickel", "Icon",  player.getMiningOverall(), 15,50,300,180,2400);
-        skillcontent(contentPanel,"Allumium", "Icon",  player.getMiningOverall(), 20,425,300,350,3000);
-        skillcontent(contentPanel,"Platinium", "Icon",  player.getMiningOverall(), 25,800,300,750,3600);
-        skillcontent(contentPanel,"Cobalt", "Icon",  player.getMiningOverall(), 30,1175,300,1500,4200);
-        skillcontent(contentPanel,"Titanium", "Icon",  player.getMiningOverall(), 35,50,575,3500,4800);
+        skillcontent(contentPanel,"Coal", "/afafi/images/icons/Mining/coal.png", player.getMiningOverall(), 1,50,25,5,600);
+        skillcontent(contentPanel,"Copper", "/afafi/images/icons/Mining/copper_ore.png",  player.getMiningOverall(), 2,425,25,10,600);
+        skillcontent(contentPanel,"Silver", "/afafi/images/icons/Mining/silver_ore.png",  player.getMiningOverall(), 5,800,25,25,1200);
+        skillcontent(contentPanel,"Iron", "/afafi/images/icons/Mining/iron_ore.png",  player.getMiningOverall(), 10,1175,25,75,1800 );
+        skillcontent(contentPanel,"Gold", "/afafi/images/icons/Mining/gold_ore.png",  player.getMiningOverall(), 15,50,300,180,2400);
+        skillcontent(contentPanel,"Allumium", "/afafi/images/icons/Mining/allumium_ore.png",  player.getMiningOverall(), 20,425,300,350,3000);
+        skillcontent(contentPanel,"Platinium", "/afafi/images/icons/Mining/platinum_ore.png",  player.getMiningOverall(), 25,800,300,750,3600);
+        skillcontent(contentPanel,"Cobalt", "/afafi/images/icons/Mining/cobalt_ore.png",  player.getMiningOverall(), 30,1175,300,1500,4200);
+        skillcontent(contentPanel,"Titanium", "/afafi/images/icons/Mining/titanium_ore.png",  player.getMiningOverall(), 35,50,575,3500,4800);
         overallContent(contentPanel, player.getMiningOverall());
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
@@ -1179,15 +1253,15 @@ public class GameWindow extends JFrame
 
     private void setSmithingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Stone", "Icon", player.getSmithingOverall(), 1,50,25,10,1200);
-        skillcontent(contentPanel,"Copper", "0000",  player.getSmithingOverall(), 3,425,25,20,1200);
-        skillcontent(contentPanel,"Silver", "Icon",  player.getSmithingOverall(), 6,800,25,50,2400);
-        skillcontent(contentPanel,"Iron", "Icon",  player.getSmithingOverall(), 11,1175,25,150,3600 );
-        skillcontent(contentPanel,"Nickel", "Icon",  player.getSmithingOverall(), 16,50,300,360,4800);
-        skillcontent(contentPanel,"Allumium", "Icon",  player.getSmithingOverall(), 21,425,300,700,6000);
-        skillcontent(contentPanel,"Platinium", "Icon",  player.getSmithingOverall(), 26,800,300,1500,7200);
-        skillcontent(contentPanel,"Cobalt", "Icon",  player.getSmithingOverall(), 31,1175,300,3000,8400);
-        skillcontent(contentPanel,"Titanium", "Icon",  player.getSmithingOverall(), 36,50,575,7000,9600);
+        skillcontent(contentPanel,"Stone", "/afafi/images/icons/Smithing/stone.png", player.getSmithingOverall(), 1,50,25,10,1200);
+        skillcontent(contentPanel,"Copper", "/afafi/images/icons/Smithing/copper.png",  player.getSmithingOverall(), 3,425,25,20,1200);
+        skillcontent(contentPanel,"Silver", "/afafi/images/icons/Smithing/silver.png",  player.getSmithingOverall(), 6,800,25,50,2400);
+        skillcontent(contentPanel,"Iron", "/afafi/images/icons/Smithing/iron.png",  player.getSmithingOverall(), 11,1175,25,150,3600 );
+        skillcontent(contentPanel,"Gold", "/afafi/images/icons/Smithing/gold.png",  player.getSmithingOverall(), 16,50,300,360,4800);
+        skillcontent(contentPanel,"Allumium", "/afafi/images/icons/Smithing/Allumium.png",  player.getSmithingOverall(), 21,425,300,700,6000);
+        skillcontent(contentPanel,"Platinium", "/afafi/images/icons/Smithing/platinum.png",  player.getSmithingOverall(), 26,800,300,1500,7200);
+        skillcontent(contentPanel,"Cobalt", "/afafi/images/icons/Smithing/cobalt.png",  player.getSmithingOverall(), 31,1175,300,3000,8400);
+        skillcontent(contentPanel,"Titanium", "/afafi/images/icons/Smithing/Titanium.png",  player.getSmithingOverall(), 36,50,575,7000,9600);
         overallContent(contentPanel, player.getSmithingOverall());
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
