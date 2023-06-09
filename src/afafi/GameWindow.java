@@ -49,6 +49,7 @@ public class GameWindow extends JFrame
     private JPanel contentPanel;
     private JPanel logoPanel;
     private EquipmentWindow equipmentWindow;
+    private CombatWindow combatWindow;
     private DevMenu devMenu;
     itemID itemID = new itemID();
     public int idItemID=1;
@@ -945,7 +946,7 @@ public class GameWindow extends JFrame
         contentPanel.add(eqView);
         contentPanel.add(shopMain);
     }
-    private void combatcontent(JPanel contentPanel, String name, int size, int x){
+    private void combatcontent(JPanel contentPanel, String name, int size, int x, int start){
         JPanel combat = new JPanel();
         combat.setBorder(new LineBorder(new Color(0,0,0)));
         combat.setBackground(new Color(203, 184, 184));
@@ -970,17 +971,31 @@ public class GameWindow extends JFrame
 
         JButton[] buttons = new JButton[size];
         for (int i = 0; i < size; i++) {
-            buttons[i] = new JButton("Monster name");
+            buttons[i] = new JButton(itemID.monster_list.get(start+i)[0]);
             buttons[i].setBackground(new Color(42, 141, 110));
             buttons[i].setBounds(0, (i+1)*101, 350, 100);
             combat.add(buttons[i]);
+            int finalI = start+i;
+            buttons[i].addMouseListener(new MouseAdapter()
+            {
+                @Override
+                public void mouseClicked(MouseEvent e)
+                {
+                    if(combatWindow!=null)
+                    {
+                        combatWindow.dispose();
+                    }
+                    combatWindow = new CombatWindow(itemID.monster_list.get(finalI));
+                    combatWindow.setVisible(true);
+                }
+            });
         }
     }
     private void setCombatContent(JPanel contentPanel){
-        combatcontent(contentPanel, "Catacombs", 4, 40);
-        combatcontent(contentPanel, "Skidway's basement", 4, 430);
-        combatcontent(contentPanel, "Kurut08's basement", 4, 820);
-        combatcontent(contentPanel, "Mangekyou's basement", 4, 1210);
+        combatcontent(contentPanel, "Catacombs", 4, 40, 1);
+        combatcontent(contentPanel, "Skidway's basement", 4, 430, 1);
+        combatcontent(contentPanel, "Kurut08's basement", 4, 820, 1);
+        combatcontent(contentPanel, "Mangekyou's basement", 4, 1210, 1);
     }
 
     private void skillcontent(JPanel contentPanel, String name, String icon, int level,int reqlevel, int x, int y, int exp, int tick )

@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class itemID {
     public HashMap<Integer, String[]> id_list = new HashMap<>();
+    public HashMap<Integer, String[]> monster_list = new HashMap<>();
     public HashMap<Integer, Integer> playerEq = new HashMap<>();
     public void readItems(){
         //ITEMS
@@ -38,6 +39,9 @@ public class itemID {
 
         //MONSTERS
         //int id; String name[0], hp[1], damage[2], defense[3], source[4]
-        id_list.put(50, new String[]{"husk","200","10","5","/afafi/images/plik.png"});
+        monster_list.put(1, new String[]{"husk 1","200","10","5","/afafi/images/plik.png"});
+        monster_list.put(2, new String[]{"husk 2","200","10","5","/afafi/images/plik.png"});
+        monster_list.put(3, new String[]{"husk 3","200","10","5","/afafi/images/plik.png"});
+        monster_list.put(4, new String[]{"husk 4","200","10","5","/afafi/images/plik.png"});
     }
 }
