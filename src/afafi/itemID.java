@@ -49,6 +49,10 @@ public class itemID {
         monster_list.put(3, new String[]{"husk 3","200","10","5","/afafi/images/plik.png"});
         monster_list.put(4, new String[]{"husk 4","200","10","5","/afafi/images/plik.png"});
 
+        monster_list.put(5,new String[]{"CJ", "400", "20", "10", "/afafi/images/monsters/Los_Zielonas_Goras/CJ.png"});
+        monster_list.put(6,new String[]{"Claude", "500", "22", "12", "/afafi/images/monsters/Los_Zielonas_Goras/Claude.png"});
+        monster_list.put(7,new String[]{"Tommy Vercetti", "800", "30", "18", "/afafi/images/monsters/Los_Zielonas_Goras/Tommy_Vercetti.png"});
+
         monster_list.put(100,new String[]{"SkidwayProGaming","1000","100","50", "/afafi/images/monsters/dev_room/SkidwayProGaming.png"});
         monster_list.put(101,new String[]{"Mangekyou","1000","100","50", "/afafi/images/monsters/dev_room/Mangekyou.png"});
         monster_list.put(102,new String[]{"Kurut08","1000","100","50", "/afafi/images/monsters/dev_room/Kurut08.png"});

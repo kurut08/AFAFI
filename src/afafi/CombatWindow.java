@@ -13,7 +13,7 @@ public class CombatWindow extends JFrame{
     private int monsterHP = 70;
 
 
-    public CombatWindow(String[] monster){
+    public CombatWindow(String[] monster, String bg_image){
         setTitle("AFAFI - Combat");
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -135,7 +135,7 @@ public class CombatWindow extends JFrame{
         });
 
         JLabel bg = new JLabel("");
-        bg.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/monsters/bg/cave.jpg")).getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
+        bg.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource(bg_image)).getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
         bg.setBounds(0, 0, getWidth(), getHeight());
         contentPane.add(bg);
 

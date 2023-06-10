@@ -1019,19 +1019,25 @@ public class GameWindow extends JFrame
         contentPanel.add(eqView);
         contentPanel.add(shopMain);
     }
-    private void combatcontent(JPanel contentPanel, String name, int size, int x, int start){
+
+    private void combatcontent(JPanel contentPanel, String name, int size, int x, int start, String bg){
         JPanel combat = new JPanel();
         combat.setBorder(new LineBorder(new Color(0,0,0)));
-        combat.setBackground(new Color(203, 184, 184));
+        combat.setBackground(new Color(21, 29, 110,0));
         combat.setBounds(x,100, 350, 100);
+        combat.setOpaque(false);
         combat.setLayout(null);
-        combat.setOpaque(true);
         contentPanel.add(combat);
         JButton dung = new JButton(name);
-        dung.setBackground(new Color(91, 45, 45));
+        dung.setFont(new Font("Tahoma", Font.BOLD, 28));
         dung.setBounds(0,0,350,100);
-        setVisible(true);
-        combat.add(dung);
+        dung.setOpaque(false);
+        dung.setContentAreaFilled(false);
+        dung.setFocusable(false);
+        dung.setBorder(BorderFactory.createLineBorder(new Color(0,0,0),2,true));
+        dung.setBorderPainted(true);
+        dung.setForeground(new Color(0,0,0));
+
         dung.addMouseListener(new MouseAdapter()
         {
             public void mouseClicked(MouseEvent e)
@@ -1044,11 +1050,20 @@ public class GameWindow extends JFrame
             }
         });
 
+        combat.add(dung);
         JButton[] buttons = new JButton[size];
         for (int i = 0; i < size; i++) {
             buttons[i] = new JButton(itemID.monster_list.get(start+i)[0]);
-            buttons[i].setBackground(new Color(42, 141, 110));
+            buttons[i].setFocusPainted(false);
+            buttons[i].setFont(new Font("Tahoma", Font.BOLD, 28));
+            buttons[i].setBackground(new Color(21, 29, 110,0));
             buttons[i].setBounds(0, (i+1)*101, 350, 100);
+            buttons[i].setOpaque(false);
+            buttons[i].setContentAreaFilled(false);
+            buttons[i].setFocusable(false);
+            buttons[i].setBorder(BorderFactory.createLineBorder(new Color(0,0,0),2,true));
+            buttons[i].setBorderPainted(true);
+            buttons[i].setForeground(new Color(0,0,0));
             combat.add(buttons[i]);
             int finalI = start+i;
             buttons[i].addMouseListener(new MouseAdapter()
@@ -1060,20 +1075,148 @@ public class GameWindow extends JFrame
                     {
                         combatWindow.dispose();
                     }
-                    combatWindow = new CombatWindow(itemID.monster_list.get(finalI));
+                    combatWindow = new CombatWindow(itemID.monster_list.get(finalI),bg);
                     combatWindow.setVisible(true);
                 }
             });
         }
+
     }
     private void setCombatContent(JPanel contentPanel){
-        combatcontent(contentPanel, "Catacombs", 4, 40, 100);
-        combatcontent(contentPanel, "Skidway's basement", 4, 430, 100);
-        combatcontent(contentPanel, "Kurut08's basement", 4, 820, 100);
-        combatcontent(contentPanel, "Dev Room", 4, 1210, 100);
+        JPanel stats = new JPanel();
+        stats.setOpaque(false);
+        stats.setFocusable(false);
+        stats.setBorder(BorderFactory.createLineBorder(new Color(0,0,0),2,true));
+        stats.setBorder(new LineBorder(new Color(0,0,0)));
+        stats.setBackground(new Color(0,0,0));
+        stats.setBounds(0,contentPanel.getHeight()-50, contentPanel.getWidth(), 50);
+        contentPanel.add(stats);
+
+        JLabel nameLabel = new JLabel("Stats progress", SwingConstants.CENTER);
+        nameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+        nameLabel.setForeground(new Color(0,0,0));
+        nameLabel.setBounds(0,contentPanel.getHeight()-50, contentPanel.getWidth(), 35);
+        stats.add(nameLabel);
+
+        // bars
+        JLabel attackLabel = new JLabel("Attack experience", SwingConstants.CENTER);
+        attackLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+        attackLabel.setForeground(new Color(0,0,0));
+        attackLabel.setBounds(0,25, contentPanel.getWidth(), 25);
+
+        JProgressBar attack = new JProgressBar(0, 100);
+        attack.setValue(50);
+        attack.setForeground(new Color(255, 0, 0));
+        attack.setBounds(50, 50, stats.getWidth()-100, 15);
+        attack.setStringPainted(true);
+        attack.setString(50 +"/"+ 100);
+
+        JLabel strengthLabel = new JLabel("Strength experience", SwingConstants.CENTER);
+        strengthLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+        strengthLabel.setForeground(new Color(0,0,0));
+        strengthLabel.setBounds(0,75, contentPanel.getWidth(), 25);
+
+        JProgressBar strength = new JProgressBar(0, 100);
+        strength.setValue(50);
+        strength.setForeground(new Color(255, 0, 0));
+        strength.setBounds(50, 100, stats.getWidth()-100, 15);
+        strength.setStringPainted(true);
+        strength.setString(50 +"/"+ 100);
+
+        JLabel defenceLabel = new JLabel("Defence experience", SwingConstants.CENTER);
+        defenceLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+        defenceLabel.setForeground(new Color(0,0,0));
+        defenceLabel.setBounds(0,125, contentPanel.getWidth(), 25);
+
+        JProgressBar defence = new JProgressBar(0, 100);
+        defence.setValue(50);
+        defence.setForeground(new Color(255, 0, 0));
+        defence.setBounds(50, 150, stats.getWidth()-100, 15);
+        defence.setStringPainted(true);
+        defence.setString(50 +"/"+ 100);
+
+        JLabel hitpointsLabel = new JLabel("Hitpoints experience", SwingConstants.CENTER);
+        hitpointsLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+        hitpointsLabel.setForeground(new Color(0,0,0));
+        hitpointsLabel.setBounds(0,175, contentPanel.getWidth(), 25);
+
+        JProgressBar hitpoints = new JProgressBar(0, 100);
+        hitpoints.setValue(50);
+        hitpoints.setForeground(new Color(255, 0, 0));
+        hitpoints.setBounds(50, 200, stats.getWidth()-100, 15);
+        hitpoints.setStringPainted(true);
+        hitpoints.setString(50 +"/"+ 100);
+
+        JLabel rangedLabel = new JLabel("Ranged experience", SwingConstants.CENTER);
+        rangedLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+        rangedLabel.setForeground(new Color(0,0,0));
+        rangedLabel.setBounds(0,225, contentPanel.getWidth(), 25);
+
+        JProgressBar ranged = new JProgressBar(0, 100);
+        ranged.setValue(50);
+        ranged.setForeground(new Color(255, 0, 0));
+        ranged.setBounds(50, 250, stats.getWidth()-100, 15);
+        ranged.setStringPainted(true);
+        ranged.setString(50 +"/"+ 100);
+
+        JLabel magicLabel = new JLabel("Magic experience", SwingConstants.CENTER);
+        magicLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+        magicLabel.setForeground(new Color(0,0,0));
+        magicLabel.setBounds(0,275, contentPanel.getWidth(), 25);
+
+        JProgressBar magic = new JProgressBar(0, 100);
+        magic.setValue(50);
+        magic.setForeground(new Color(255, 0, 0));
+        magic.setBounds(50, 300, stats.getWidth()-100, 15);
+        magic.setStringPainted(true);
+        magic.setString(50 +"/"+ 100);
+
+        nameLabel.addMouseListener(new MouseAdapter()
+
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                if(stats.getHeight()> 100){
+                    stats.setBounds(0,contentPanel.getHeight()-50, contentPanel.getWidth(), 50);
+                    stats.remove(attack);
+                    stats.remove(strength);
+                    stats.remove(defence);
+                    stats.remove(hitpoints);
+                    stats.remove(ranged);
+                    stats.remove(magic);
+                    stats.remove(attackLabel);
+                    stats.remove(strengthLabel);
+                    stats.remove(defenceLabel);
+                    stats.remove(hitpointsLabel);
+                    stats.remove(rangedLabel);
+                    stats.remove(magicLabel);
+                }else{
+                    stats.setBounds(0, contentPanel.getHeight()-400, contentPanel.getWidth(),400);
+                    stats.add(attack);
+                    stats.add(strength);
+                    stats.add(defence);
+                    stats.add(hitpoints);
+                    stats.add(ranged);
+                    stats.add(magic);
+                    stats.add(attackLabel);
+                    stats.add(strengthLabel);
+                    stats.add(defenceLabel);
+                    stats.add(hitpointsLabel);
+                    stats.add(rangedLabel);
+                    stats.add(magicLabel);
+                }
+            }
+        });
+
+
+
+        combatcontent(contentPanel, "Catacombs", 4, 40, 100, "/afafi/images/monsters/bg/cave.jpg");
+        combatcontent(contentPanel, "Skidway's basement", 4, 430, 100, "/afafi/images/monsters/bg/cave.jpg");
+        combatcontent(contentPanel, "Los Zielonas Goras", 3, 820, 5, "/afafi/images/monsters/bg/gta.jpg");
+        combatcontent(contentPanel, "Dev Room", 4, 1210, 100, "/afafi/images/monsters/bg/cave.jpg");
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
-        bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/monsters/bg/default_combat.jpg")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+        bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/monsters/bg/default_combat.jpg")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH)));
         contentPanel.add(bgImageMain);
     }
 
