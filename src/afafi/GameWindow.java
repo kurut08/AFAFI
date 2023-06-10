@@ -1029,6 +1029,7 @@ public class GameWindow extends JFrame
         JButton dung = new JButton(name);
         dung.setBackground(new Color(91, 45, 45));
         dung.setBounds(0,0,350,100);
+        setVisible(true);
         combat.add(dung);
         dung.addMouseListener(new MouseAdapter()
         {
@@ -1065,10 +1066,10 @@ public class GameWindow extends JFrame
         }
     }
     private void setCombatContent(JPanel contentPanel){
-        combatcontent(contentPanel, "Catacombs", 4, 40, 1);
-        combatcontent(contentPanel, "Skidway's basement", 4, 430, 1);
-        combatcontent(contentPanel, "Kurut08's basement", 4, 820, 1);
-        combatcontent(contentPanel, "Mangekyou's basement", 4, 1210, 1);
+        combatcontent(contentPanel, "Catacombs", 4, 40, 100);
+        combatcontent(contentPanel, "Skidway's basement", 4, 430, 100);
+        combatcontent(contentPanel, "Kurut08's basement", 4, 820, 100);
+        combatcontent(contentPanel, "Dev Room", 4, 1210, 100);
     }
 
     private void skillcontent(JPanel contentPanel, String name, String icon, int level,int reqlevel, int x, int y, int exp, int tick )

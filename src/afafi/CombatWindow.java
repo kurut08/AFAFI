@@ -54,6 +54,8 @@ public class CombatWindow extends JFrame{
         monsterIcon.setHorizontalAlignment(SwingConstants.CENTER);
         monsterIcon.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         monsterIcon.setBounds(510, 50, 250, 250);
+        monsterIcon.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource(monster[4])).getImage().getScaledInstance(
+                monsterIcon.getWidth(), monsterIcon.getHeight(), Image.SCALE_SMOOTH)));
         contentPane.add(monsterIcon);
 
 
