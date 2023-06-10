@@ -23,6 +23,7 @@ public class CombatWindow extends JFrame{
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
+
         JProgressBar playerHPbar = new JProgressBar(0, 100);
         playerHPbar.setValue(playerHP);
         playerHPbar.setForeground(new Color(255, 0, 0));
@@ -132,6 +133,12 @@ public class CombatWindow extends JFrame{
                 contentPane.add(fight);
             }
         });
+
+        JLabel bg = new JLabel("");
+        bg.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/monsters/bg/cave.jpg")).getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
+        bg.setBounds(0, 0, getWidth(), getHeight());
+        contentPane.add(bg);
+
 
 
 

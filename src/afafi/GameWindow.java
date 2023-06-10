@@ -1025,6 +1025,7 @@ public class GameWindow extends JFrame
         combat.setBackground(new Color(203, 184, 184));
         combat.setBounds(x,100, 350, 100);
         combat.setLayout(null);
+        combat.setOpaque(true);
         contentPanel.add(combat);
         JButton dung = new JButton(name);
         dung.setBackground(new Color(91, 45, 45));
@@ -1070,6 +1071,10 @@ public class GameWindow extends JFrame
         combatcontent(contentPanel, "Skidway's basement", 4, 430, 100);
         combatcontent(contentPanel, "Kurut08's basement", 4, 820, 100);
         combatcontent(contentPanel, "Dev Room", 4, 1210, 100);
+        JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
+        bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
+        bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/monsters/bg/default_combat.jpg")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
+        contentPanel.add(bgImageMain);
     }
 
     private void skillcontent(JPanel contentPanel, String name, String icon, int level,int reqlevel, int x, int y, int exp, int tick )
