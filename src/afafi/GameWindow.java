@@ -11,8 +11,11 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Properties;
 import javax.swing.border.LineBorder;
 
 public class GameWindow extends JFrame
@@ -20,6 +23,9 @@ public class GameWindow extends JFrame
 
     private JPanel contentPane;
     Player player = new Player();
+    HashMap<Integer,Integer> exp1 = new HashMap<>();
+    HashMap<Integer,Integer> exp2 = new HashMap<>();
+
 
     public static void main(String[] args)
     {
@@ -60,6 +66,29 @@ public class GameWindow extends JFrame
     public GameWindow(String characterName)
     {
 
+        Properties pexp2 = new Properties();
+        Properties pexp1 = new Properties();
+        try {
+            pexp2.load(new FileInputStream("data/exp2.properties"));
+            pexp1.load(new FileInputStream("data/exp1.properties"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        for (String key : pexp2.stringPropertyNames()) {
+            exp2.put(Integer.parseInt(key), Integer.parseInt(pexp2.get(key).toString()));
+        }
+        for (String key : pexp1.stringPropertyNames()) {
+            exp1.put(Integer.parseInt(key), Integer.parseInt(pexp1.get(key).toString()));
+        }
+
+        if(new File("data/accounts/admin/"+characterName+"/level.properties").isFile() && new File("data/accounts/admin/"+characterName+"/exp.properties").isFile()){
+            try {
+                player = new Player(characterName);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         setResizable(false);
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
@@ -603,7 +632,7 @@ public class GameWindow extends JFrame
                 {
                     devMenu.dispose();
                 }
-                devMenu = new DevMenu();
+                devMenu = new DevMenu(player);
                 devMenu.setVisible(true);
             }
         });
@@ -711,7 +740,11 @@ public class GameWindow extends JFrame
         saveButtton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+                try {
+                    player.save(characterName);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         topPanel.add(saveButtton);
@@ -791,7 +824,6 @@ public class GameWindow extends JFrame
                 contentPanel.add(bgImageMain);
                 break;
             case "Woodcutting":
-                player.setLEVEL("woodcutting",5);//example
                 setWoodcuttingContent(contentPanel);
                 break;
             case "Cooking":
@@ -1127,72 +1159,72 @@ public class GameWindow extends JFrame
         attackLabel.setForeground(new Color(0,0,0));
         attackLabel.setBounds(0,25, contentPanel.getWidth(), 25);
 
-        JProgressBar attack = new JProgressBar(0, 100);
-        attack.setValue(50);
+        JProgressBar attack = new JProgressBar(exp1.get(player.getLEVEL("attack")), exp2.get(player.getLEVEL("attack")));
+        attack.setValue(player.getEXP("attack"));
         attack.setForeground(new Color(255, 0, 0));
         attack.setBounds(50, 50, stats.getWidth()-100, 15);
         attack.setStringPainted(true);
-        attack.setString(50 +"/"+ 100);
+        attack.setString(player.getEXP("attack") +"/"+ exp2.get(player.getLEVEL("attack")));
 
         JLabel strengthLabel = new JLabel("Strength experience", SwingConstants.CENTER);
         strengthLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         strengthLabel.setForeground(new Color(0,0,0));
         strengthLabel.setBounds(0,75, contentPanel.getWidth(), 25);
 
-        JProgressBar strength = new JProgressBar(0, 100);
-        strength.setValue(50);
+        JProgressBar strength = new JProgressBar(exp1.get(player.getLEVEL("strength")), exp2.get(player.getLEVEL("strength")));
+        strength.setValue(player.getEXP("strength"));
         strength.setForeground(new Color(255, 0, 0));
         strength.setBounds(50, 100, stats.getWidth()-100, 15);
         strength.setStringPainted(true);
-        strength.setString(50 +"/"+ 100);
+        strength.setString(player.getEXP("strength") +"/"+ exp2.get(player.getLEVEL("strength")));
 
         JLabel defenceLabel = new JLabel("Defence experience", SwingConstants.CENTER);
         defenceLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         defenceLabel.setForeground(new Color(0,0,0));
         defenceLabel.setBounds(0,125, contentPanel.getWidth(), 25);
 
-        JProgressBar defence = new JProgressBar(0, 100);
-        defence.setValue(50);
+        JProgressBar defence = new JProgressBar(exp1.get(player.getLEVEL("defense")), exp2.get(player.getLEVEL("defense")));
+        defence.setValue(player.getEXP("defense"));
         defence.setForeground(new Color(255, 0, 0));
         defence.setBounds(50, 150, stats.getWidth()-100, 15);
         defence.setStringPainted(true);
-        defence.setString(50 +"/"+ 100);
+        defence.setString(player.getEXP("defense") +"/"+ exp2.get(player.getLEVEL("defense")));
 
         JLabel hitpointsLabel = new JLabel("Hitpoints experience", SwingConstants.CENTER);
         hitpointsLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         hitpointsLabel.setForeground(new Color(0,0,0));
         hitpointsLabel.setBounds(0,175, contentPanel.getWidth(), 25);
 
-        JProgressBar hitpoints = new JProgressBar(0, 100);
-        hitpoints.setValue(50);
+        JProgressBar hitpoints = new JProgressBar(exp1.get(player.getLEVEL("hitpoints")), exp2.get(player.getLEVEL("hitpoints")));
+        hitpoints.setValue(player.getEXP("hitpoints"));
         hitpoints.setForeground(new Color(255, 0, 0));
         hitpoints.setBounds(50, 200, stats.getWidth()-100, 15);
         hitpoints.setStringPainted(true);
-        hitpoints.setString(50 +"/"+ 100);
+        hitpoints.setString(player.getEXP("hitpoints") +"/"+ exp2.get(player.getLEVEL("hitpoints")));
 
         JLabel rangedLabel = new JLabel("Ranged experience", SwingConstants.CENTER);
         rangedLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         rangedLabel.setForeground(new Color(0,0,0));
         rangedLabel.setBounds(0,225, contentPanel.getWidth(), 25);
 
-        JProgressBar ranged = new JProgressBar(0, 100);
-        ranged.setValue(50);
+        JProgressBar ranged = new JProgressBar(exp1.get(player.getLEVEL("ranged")), exp2.get(player.getLEVEL("ranged")));
+        ranged.setValue(player.getEXP("ranged"));
         ranged.setForeground(new Color(255, 0, 0));
         ranged.setBounds(50, 250, stats.getWidth()-100, 15);
         ranged.setStringPainted(true);
-        ranged.setString(50 +"/"+ 100);
+        ranged.setString(player.getEXP("ranged") +"/"+ exp2.get(player.getLEVEL("ranged")));
 
         JLabel magicLabel = new JLabel("Magic experience", SwingConstants.CENTER);
         magicLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         magicLabel.setForeground(new Color(0,0,0));
         magicLabel.setBounds(0,275, contentPanel.getWidth(), 25);
 
-        JProgressBar magic = new JProgressBar(0, 100);
-        magic.setValue(50);
+        JProgressBar magic = new JProgressBar(exp1.get(player.getLEVEL("magic")), exp2.get(player.getLEVEL("magic")));
+        magic.setValue(player.getEXP("magic"));
         magic.setForeground(new Color(255, 0, 0));
         magic.setBounds(50, 300, stats.getWidth()-100, 15);
         magic.setStringPainted(true);
-        magic.setString(50 +"/"+ 100);
+        magic.setString(player.getEXP("magic") +"/"+ exp2.get(player.getLEVEL("magic")));
 
         nameLabel.addMouseListener(new MouseAdapter()
 
@@ -1440,4 +1472,5 @@ public class GameWindow extends JFrame
         bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
         contentPanel.add(bgImageMain);
     }
+
 }
