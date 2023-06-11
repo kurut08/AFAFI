@@ -195,6 +195,7 @@ public class GameWindow extends JFrame
         attackIconLabel.setBounds(0, 0, 32, 32);
         attackIconLabel.setBackground(new Color(255, 255, 255)); attackIconLabel.setOpaque(true); //TODO REMOVE
         attackIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        attackIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Attack.png")));
         combatAttackPanel.add(attackIconLabel);
 
         JLabel attackNameLabel = new JLabel("Attack");
@@ -220,6 +221,7 @@ public class GameWindow extends JFrame
         strengthIconLabel.setBounds(0, 0, 32, 32);
         strengthIconLabel.setBackground(new Color(255, 255, 255)); strengthIconLabel.setOpaque(true); //TODO REMOVE
         strengthIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        strengthIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Strength.png")));
         combatStrengthPanel.add(strengthIconLabel);
 
         JLabel strengthNameLabel = new JLabel("Strength");
@@ -247,6 +249,7 @@ public class GameWindow extends JFrame
         defenceIconLabel.setBounds(0, 0, 32, 32);
         defenceIconLabel.setBackground(new Color(255, 255, 255)); defenceIconLabel.setOpaque(true); //TODO REMOVE
         defenceIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        defenceIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Defense.png")));
         combatDefencePanel.add(defenceIconLabel);
 
         JLabel defenceNameLabel = new JLabel("Defense");
@@ -273,6 +276,7 @@ public class GameWindow extends JFrame
         hpIconLabel.setBounds(0, 0, 32, 32);
         hpIconLabel.setBackground(new Color(255, 255, 255)); hpIconLabel.setOpaque(true); //TODO REMOVE
         hpIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        hpIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Hitpoints.png")));
         combatHpPanel.add(hpIconLabel);
 
         JLabel hpNameLabel = new JLabel("Hitpoints");
@@ -300,6 +304,7 @@ public class GameWindow extends JFrame
         rangedIconLabel.setBounds(0, 0, 32, 32);
         rangedIconLabel.setBackground(new Color(255, 255, 255)); rangedIconLabel.setOpaque(true); //TODO REMOVE
         rangedIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        rangedIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Range.png")));
         combatRangedPanel.add(rangedIconLabel);
 
         JLabel rangedNameLabel = new JLabel("Ranged");
@@ -326,6 +331,7 @@ public class GameWindow extends JFrame
         magicIconLabel.setBounds(0, 0, 32, 32);
         magicIconLabel.setBackground(new Color(255, 255, 255)); magicIconLabel.setOpaque(true); //TODO REMOVE
         magicIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        magicIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Magic.png")));
         combatMagicPanel.add(magicIconLabel);
 
         JLabel magicNameLabel = new JLabel("Magic");
@@ -384,6 +390,7 @@ public class GameWindow extends JFrame
         miningIconLabel.setBackground(new Color(255, 255, 255)); miningIconLabel.setOpaque(true); //TODO REMOVE
         miningIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         miningIconLabel.setBounds(0, 0, 32, 32);
+        miningIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Mining.png")));
         miningPanel.add(miningIconLabel);
 
         JLabel miningNameLabel = new JLabel("Mining");
@@ -421,6 +428,7 @@ public class GameWindow extends JFrame
         smithingIconLabel.setBackground(new Color(255, 255, 255)); smithingIconLabel.setOpaque(true); //TODO REMOVE
         smithingIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         smithingIconLabel.setBounds(0, 0, 32, 32);
+        smithingIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Smithing.png")));
         smithingPanel.add(smithingIconLabel);
 
         JLabel smithingNameLabel = new JLabel("Smithing");
@@ -459,6 +467,7 @@ public class GameWindow extends JFrame
         woodcuttingIconLabel.setBackground(new Color(255, 255, 255)); woodcuttingIconLabel.setOpaque(true); //TODO REMOVE
         woodcuttingIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         woodcuttingIconLabel.setBounds(0, 0, 32, 32);
+        woodcuttingIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Woodcutting.png")));
         woodcuttingPanel.add(woodcuttingIconLabel);
 
         JLabel woodcuttingNameLabel = new JLabel("Woodcutting");
@@ -534,6 +543,7 @@ public class GameWindow extends JFrame
         farmingIconLabel.setBackground(new Color(255, 255, 255)); farmingIconLabel.setOpaque(true); //TODO REMOVE
         farmingIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         farmingIconLabel.setBounds(0, 0, 32, 32);
+        farmingIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Farming.png")));
         farmingPanel.add(farmingIconLabel);
 
         JLabel farmingNameLabel = new JLabel("Farming");
@@ -572,6 +582,7 @@ public class GameWindow extends JFrame
         fishingIconLabel.setBackground(new Color(255, 255, 255)); fishingIconLabel.setOpaque(true); //TODO REMOVE
         fishingIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
         fishingIconLabel.setBounds(0, 0, 32, 32);
+        fishingIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Fishing.png")));
         fishingPanel.add(fishingIconLabel);
 
         JLabel fishingNameLabel = new JLabel("Fishing");
@@ -610,6 +621,7 @@ public class GameWindow extends JFrame
         cookingIconLabel.setBackground(new Color(255, 255, 255)); cookingIconLabel.setOpaque(true); //TODO REMOVE
         cookingIconLabel.setBounds(0, 0, 32, 32);
         cookingIconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+        cookingIconLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/icons/Skill_icons/Cooking.png")));
         cookingPanel.add(cookingIconLabel);
 
         JLabel cookingNameLabel = new JLabel("Cooking");
@@ -1027,9 +1039,20 @@ public class GameWindow extends JFrame
                     }
                 });
             }
-        }
-        else{
-
+            else{
+                iconLabel.addMouseListener(new MouseAdapter()
+                {
+                    public void mouseClicked(MouseEvent e)
+                    {
+                        int isYes = JOptionPane.showConfirmDialog(iconLabel,"Do you want to sell this item?", "SHOP - AFAFI", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+                        if (isYes==JOptionPane.YES_OPTION){
+                            itemID.playerEq.remove(id);
+                            int money = player.getLEVEL("money")+Integer.parseInt(itemID.id_list.get(id)[5]);
+                            player.currentLEVEL.put("money",money);
+                    }
+                    }
+                });
+            }
         }
         eqView.add(border);
 
@@ -1276,7 +1299,7 @@ public class GameWindow extends JFrame
         contentPanel.add(bgImageMain);
     }
 
-    private void skillcontent(JPanel contentPanel, String name, String icon, int level,int reqlevel, int x, int y, int exp, int tick )
+    private void skillcontent(JPanel contentPanel, String name, String icon, int level,int reqlevel, int x, int y, int exp, int tick, String type )
     {
         //if we need, we can add parameters to change position of .setBounds
         ImageIcon iconMain = new ImageIcon(GameWindow.class.getResource(icon));
@@ -1337,6 +1360,8 @@ public class GameWindow extends JFrame
                     }
                     activityThread = new ActivityThread(activityContent, progressBar, tick);
                     activityThread.start();
+                    int received = player.getEXP(type)+exp;
+                    player.setEXP(type, received);
                 }
             });
 
@@ -1365,18 +1390,18 @@ public class GameWindow extends JFrame
     }
     private void setWoodcuttingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Oak Tree", "/afafi/images/icons/Woodcutting/oak_tree.png", player.getLEVEL("woodcutting"), 1,50,25,10,100 );
-        skillcontent(contentPanel,"Spruce Tree", "/afafi/images/icons/Woodcutting/spruce_tree.png",  player.getLEVEL("woodcutting"), 4,425,25,15,1200);
-        skillcontent(contentPanel,"Birch Tree", "/afafi/images/icons/Woodcutting/birch_tree.png",  player.getLEVEL("woodcutting"), 7,800,25,25,1200);
-        skillcontent(contentPanel,"Acocoa Tree", "/afafi/images/icons/Woodcutting/acocoa_tree.png",  player.getLEVEL("woodcutting"), 10,1175,25,40,900 );
-        skillcontent(contentPanel,"Mangrove Tree", "/afafi/images/icons/Woodcutting/mangrove_tree.png",  player.getLEVEL("woodcutting"), 13,50,300,65,900);
-        skillcontent(contentPanel,"Ash Tree", "/afafi/images/icons/Woodcutting/ash_tree.png",  player.getLEVEL("woodcutting"), 16,425,300,105,1200);
-        skillcontent(contentPanel,"Maple Tree", "/afafi/images/icons/Woodcutting/maple_tree.png",  player.getLEVEL("woodcutting"), 19,800,300,170,1500);
-        skillcontent(contentPanel,"Sycamore Tree", "/afafi/images/icons/Woodcutting/sycamore_tree.png",  player.getLEVEL("woodcutting"), 22,1175,300,275,188);
-        skillcontent(contentPanel,"Adler Tree", "/afafi/images/icons/Woodcutting/adler_tree.png",  player.getLEVEL("woodcutting"), 25,50,575,445,2100);
-        skillcontent(contentPanel,"Hornbeam Tree", "/afafi/images/icons/Woodcutting/hornbeam_tree.png", player.getLEVEL("woodcutting"), 28,425,575,720,2400);
-        skillcontent(contentPanel,"Pine Tree", "/afafi/images/icons/Woodcutting/pine_tree.png",  player.getLEVEL("woodcutting"), 31,800,575,1165,2700);
-        skillcontent(contentPanel,"Baobab Tree", "/afafi/images/icons/Woodcutting/baobab_tree.png", player.getLEVEL("woodcutting"), 34,1175,575,1885,3600);
+        skillcontent(contentPanel,"Oak Tree", "/afafi/images/icons/Woodcutting/oak_tree.png", player.getLEVEL("woodcutting"), 1,50,25,100,10, "woodcutting" );
+        skillcontent(contentPanel,"Spruce Tree", "/afafi/images/icons/Woodcutting/spruce_tree.png",  player.getLEVEL("woodcutting"), 4,425,25,15,1200, "woodcutting" );
+        skillcontent(contentPanel,"Birch Tree", "/afafi/images/icons/Woodcutting/birch_tree.png",  player.getLEVEL("woodcutting"), 7,800,25,25,1200, "woodcutting" );
+        skillcontent(contentPanel,"Acocoa Tree", "/afafi/images/icons/Woodcutting/acocoa_tree.png",  player.getLEVEL("woodcutting"), 10,1175,25,40,900 , "woodcutting" );
+        skillcontent(contentPanel,"Mangrove Tree", "/afafi/images/icons/Woodcutting/mangrove_tree.png",  player.getLEVEL("woodcutting"), 13,50,300,65,900, "woodcutting" );
+        skillcontent(contentPanel,"Ash Tree", "/afafi/images/icons/Woodcutting/ash_tree.png",  player.getLEVEL("woodcutting"), 16,425,300,105,1200, "woodcutting" );
+        skillcontent(contentPanel,"Maple Tree", "/afafi/images/icons/Woodcutting/maple_tree.png",  player.getLEVEL("woodcutting"), 19,800,300,170,1500, "woodcutting" );
+        skillcontent(contentPanel,"Sycamore Tree", "/afafi/images/icons/Woodcutting/sycamore_tree.png",  player.getLEVEL("woodcutting"), 22,1175,300,275,188, "woodcutting" );
+        skillcontent(contentPanel,"Adler Tree", "/afafi/images/icons/Woodcutting/adler_tree.png",  player.getLEVEL("woodcutting"), 25,50,575,445,2100, "woodcutting" );
+        skillcontent(contentPanel,"Hornbeam Tree", "/afafi/images/icons/Woodcutting/hornbeam_tree.png", player.getLEVEL("woodcutting"), 28,425,575,720,2400, "woodcutting" );
+        skillcontent(contentPanel,"Pine Tree", "/afafi/images/icons/Woodcutting/pine_tree.png",  player.getLEVEL("woodcutting"), 31,800,575,1165,2700, "woodcutting" );
+        skillcontent(contentPanel,"Baobab Tree", "/afafi/images/icons/Woodcutting/baobab_tree.png", player.getLEVEL("woodcutting"), 34,1175,575,1885,3600, "woodcutting" );
         overallContent(contentPanel, player.getLEVEL("woodcutting"));
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
@@ -1385,16 +1410,16 @@ public class GameWindow extends JFrame
     }
     private void setCookingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Sandwich", "/afafi/images/icons/Cooking/sandwich.png", player.getLEVEL("cooking"), 1,50,25,10,1200 );
-        skillcontent(contentPanel,"Cookies", "/afafi/images/icons/Cooking/cookies.png",  player.getLEVEL("cooking"), 3,425,25,15,1200);
-        skillcontent(contentPanel,"Omlet", "/afafi/images/icons/Cooking/omlet.png",  player.getLEVEL("cooking"), 6,800,25,25,1200);
-        skillcontent(contentPanel,"Donut", "/afafi/images/icons/Cooking/donut.png",  player.getLEVEL("cooking"), 10,1175,25,40,900 );
-        skillcontent(contentPanel,"Pasta", "/afafi/images/icons/Cooking/pasta.png",  player.getLEVEL("cooking"), 14,50,300,65,900);
-        skillcontent(contentPanel,"Waffle", "/afafi/images/icons/Cooking/waffle.png",  player.getLEVEL("cooking"), 18,425,300,105,1200);
-        skillcontent(contentPanel,"Ramen", "/afafi/images/icons/Cooking/ramen.png",  player.getLEVEL("cooking"), 22,800,300,170,1500);
-        skillcontent(contentPanel,"Grilled steak", "/afafi/images/icons/Cooking/steak.png",  player.getLEVEL("cooking"), 26,1175,300,275,188);
-        skillcontent(contentPanel,"Roasted Chicken", "/afafi/images/icons/Cooking/roasted_chicken.png",  player.getLEVEL("cooking"), 30,50,575,445,2100);
-        skillcontent(contentPanel,"Pizza", "/afafi/images/icons/Cooking/pizza.png", player.getLEVEL("cooking"), 34,425,575,720,2400);
+        skillcontent(contentPanel,"Sandwich", "/afafi/images/icons/Cooking/sandwich.png", player.getLEVEL("cooking"), 1,50,25,10,1200 , "cooking" );
+        skillcontent(contentPanel,"Cookies", "/afafi/images/icons/Cooking/cookies.png",  player.getLEVEL("cooking"), 3,425,25,15,1200, "cooking");
+        skillcontent(contentPanel,"Omlet", "/afafi/images/icons/Cooking/omlet.png",  player.getLEVEL("cooking"), 6,800,25,25,1200, "cooking");
+        skillcontent(contentPanel,"Donut", "/afafi/images/icons/Cooking/donut.png",  player.getLEVEL("cooking"), 10,1175,25,40,900 , "cooking");
+        skillcontent(contentPanel,"Pasta", "/afafi/images/icons/Cooking/pasta.png",  player.getLEVEL("cooking"), 14,50,300,65,900, "cooking");
+        skillcontent(contentPanel,"Waffle", "/afafi/images/icons/Cooking/waffle.png",  player.getLEVEL("cooking"), 18,425,300,105,1200, "cooking");
+        skillcontent(contentPanel,"Ramen", "/afafi/images/icons/Cooking/ramen.png",  player.getLEVEL("cooking"), 22,800,300,170,1500, "cooking");
+        skillcontent(contentPanel,"Grilled steak", "/afafi/images/icons/Cooking/steak.png",  player.getLEVEL("cooking"), 26,1175,300,275,188, "cooking");
+        skillcontent(contentPanel,"Roasted Chicken", "/afafi/images/icons/Cooking/roasted_chicken.png",  player.getLEVEL("cooking"), 30,50,575,445,2100, "cooking");
+        skillcontent(contentPanel,"Pizza", "/afafi/images/icons/Cooking/pizza.png", player.getLEVEL("cooking"), 34,425,575,720,2400, "cooking");
         overallContent(contentPanel, player.getLEVEL("cooking"));
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
@@ -1403,16 +1428,16 @@ public class GameWindow extends JFrame
     }
     private void setFarmingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Apple", "/afafi/images/icons/Farming/apple.png", player.getLEVEL("farming"), 1,50,25,30,2400 );
-        skillcontent(contentPanel,"Pear", "/afafi/images/icons/Farming/pear.png",  player.getLEVEL("farming"), 4,425,25,50,3600);
-        skillcontent(contentPanel,"Carrot", "/afafi/images/icons/Farming/carrot.png",  player.getLEVEL("farming"), 7,800,25,80,4800);
-        skillcontent(contentPanel,"Banana", "/afafi/images/icons/Farming/banana.png",  player.getLEVEL("farming"), 11,1175,25,200,6000 );
-        skillcontent(contentPanel,"Corn", "/afafi/images/icons/Farming/corn.png",  player.getLEVEL("farming"), 15,50,300,420,7200);
-        skillcontent(contentPanel,"Lemon", "/afafi/images/icons/Farming/lemon.png",  player.getLEVEL("farming"), 19,425,300,840,8400);
-        skillcontent(contentPanel,"Tomato", "/afafi/images/icons/Farming/tomato.png",  player.getLEVEL("farming"), 23,800,300,1680,9600);
-        skillcontent(contentPanel,"Strawberry", "/afafi/images/icons/Farming/strawberry.png",  player.getLEVEL("farming"), 27,1175,300,3360,10800);
-        skillcontent(contentPanel,"Piripiri", "/afafi/images/icons/Farming/piripiri.png",  player.getLEVEL("farming"), 31,50,575,6720,1200);
-        skillcontent(contentPanel,"Onion", "/afafi/images/icons/Farming/polack.png", player.getLEVEL("cooking"), 35,425,575,13340,13200);
+        skillcontent(contentPanel,"Apple", "/afafi/images/icons/Farming/apple.png", player.getLEVEL("farming"), 1,50,25,30,2400, "farming" );
+        skillcontent(contentPanel,"Pear", "/afafi/images/icons/Farming/pear.png",  player.getLEVEL("farming"), 4,425,25,50,3600, "farming");
+        skillcontent(contentPanel,"Carrot", "/afafi/images/icons/Farming/carrot.png",  player.getLEVEL("farming"), 7,800,25,80,4800, "farming");
+        skillcontent(contentPanel,"Banana", "/afafi/images/icons/Farming/banana.png",  player.getLEVEL("farming"), 11,1175,25,200,6000, "farming" );
+        skillcontent(contentPanel,"Corn", "/afafi/images/icons/Farming/corn.png",  player.getLEVEL("farming"), 15,50,300,420,7200, "farming");
+        skillcontent(contentPanel,"Lemon", "/afafi/images/icons/Farming/lemon.png",  player.getLEVEL("farming"), 19,425,300,840,8400, "farming");
+        skillcontent(contentPanel,"Tomato", "/afafi/images/icons/Farming/tomato.png",  player.getLEVEL("farming"), 23,800,300,1680,9600, "farming");
+        skillcontent(contentPanel,"Strawberry", "/afafi/images/icons/Farming/strawberry.png",  player.getLEVEL("farming"), 27,1175,300,3360,10800, "farming");
+        skillcontent(contentPanel,"Piripiri", "/afafi/images/icons/Farming/piripiri.png",  player.getLEVEL("farming"), 31,50,575,6720,1200, "farming");
+        skillcontent(contentPanel,"Onion", "/afafi/images/icons/Farming/polack.png", player.getLEVEL("cooking"), 35,425,575,13340,13200, "farming");
         overallContent(contentPanel, player.getLEVEL("farming"));
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
@@ -1422,15 +1447,15 @@ public class GameWindow extends JFrame
 
     private void setFishingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Perch", "/afafi/images/icons/Fishing/Perch.png", player.getLEVEL("fishing"), 1,50,25,25,1800 );
-        skillcontent(contentPanel,"Pike", "/afafi/images/icons/Fishing/Pike.png",  player.getLEVEL("fishing"), 5,425,25,50,2400);
-        skillcontent(contentPanel,"Bream", "/afafi/images/icons/Fishing/Bream.png",  player.getLEVEL("fishing"), 9,800,25,100,3000);
-        skillcontent(contentPanel,"Cod", "/afafi/images/icons/Fishing/Cod.png",  player.getLEVEL("fishing"), 13,1175,25,205,3600 );
-        skillcontent(contentPanel,"Octopus", "/afafi/images/icons/Fishing/Octo.png",  player.getLEVEL("fishing"), 17,50,300,410,4200);
-        skillcontent(contentPanel,"Turtle", "/afafi/images/icons/Fishing/Turtle.png",  player.getLEVEL("fishing"), 21,425,300,815,4800);
-        skillcontent(contentPanel,"Powan", "/afafi/images/icons/Fishing/Powan.png",  player.getLEVEL("fishing"), 25,800,300,1625,5400);
-        skillcontent(contentPanel,"Nemo", "/afafi/images/icons/Fishing/Nemo.png",  player.getLEVEL("fishing"), 29,1175,300,3250,6000);
-        skillcontent(contentPanel,"Aqua Treasure", "/afafi/images/icons/Fishing/Aqua_treasure.png",  player.getLEVEL("fishing"), 33,50,575,6500,6600);
+        skillcontent(contentPanel,"Perch", "/afafi/images/icons/Fishing/Perch.png", player.getLEVEL("fishing"), 1,50,25,25,1800 , "fishing");
+        skillcontent(contentPanel,"Pike", "/afafi/images/icons/Fishing/Pike.png",  player.getLEVEL("fishing"), 5,425,25,50,2400, "fishing");
+        skillcontent(contentPanel,"Bream", "/afafi/images/icons/Fishing/Bream.png",  player.getLEVEL("fishing"), 9,800,25,100,3000, "fishing");
+        skillcontent(contentPanel,"Cod", "/afafi/images/icons/Fishing/Cod.png",  player.getLEVEL("fishing"), 13,1175,25,205,3600, "fishing" );
+        skillcontent(contentPanel,"Octopus", "/afafi/images/icons/Fishing/Octo.png",  player.getLEVEL("fishing"), 17,50,300,410,4200, "fishing");
+        skillcontent(contentPanel,"Turtle", "/afafi/images/icons/Fishing/Turtle.png",  player.getLEVEL("fishing"), 21,425,300,815,4800, "fishing");
+        skillcontent(contentPanel,"Powan", "/afafi/images/icons/Fishing/Powan.png",  player.getLEVEL("fishing"), 25,800,300,1625,5400, "fishing");
+        skillcontent(contentPanel,"Nemo", "/afafi/images/icons/Fishing/Nemo.png",  player.getLEVEL("fishing"), 29,1175,300,3250,6000, "fishing");
+        skillcontent(contentPanel,"Aqua Treasure", "/afafi/images/icons/Fishing/Aqua_treasure.png",  player.getLEVEL("fishing"), 33,50,575,6500,6600, "fishing");
         overallContent(contentPanel, player.getLEVEL("fishing"));
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
@@ -1440,15 +1465,15 @@ public class GameWindow extends JFrame
 
     private void setMiningContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Coal", "/afafi/images/icons/Mining/coal.png", player.getLEVEL("mining"), 1,50,25,5,600);
-        skillcontent(contentPanel,"Copper", "/afafi/images/icons/Mining/copper_ore.png",  player.getLEVEL("mining"), 2,425,25,10,600);
-        skillcontent(contentPanel,"Silver", "/afafi/images/icons/Mining/silver_ore.png",  player.getLEVEL("mining"), 5,800,25,25,1200);
-        skillcontent(contentPanel,"Iron", "/afafi/images/icons/Mining/iron_ore.png",  player.getLEVEL("mining"), 10,1175,25,75,1800 );
-        skillcontent(contentPanel,"Gold", "/afafi/images/icons/Mining/gold_ore.png",  player.getLEVEL("mining"), 15,50,300,180,2400);
-        skillcontent(contentPanel,"Allumium", "/afafi/images/icons/Mining/allumium_ore.png",  player.getLEVEL("mining"), 20,425,300,350,3000);
-        skillcontent(contentPanel,"Platinium", "/afafi/images/icons/Mining/platinum_ore.png",  player.getLEVEL("mining"), 25,800,300,750,3600);
-        skillcontent(contentPanel,"Cobalt", "/afafi/images/icons/Mining/cobalt_ore.png",  player.getLEVEL("mining"), 30,1175,300,1500,4200);
-        skillcontent(contentPanel,"Titanium", "/afafi/images/icons/Mining/titanium_ore.png",  player.getLEVEL("mining"), 35,50,575,3500,4800);
+        skillcontent(contentPanel,"Coal", "/afafi/images/icons/Mining/coal.png", player.getLEVEL("mining"), 1,50,25,5,600, "mining");
+        skillcontent(contentPanel,"Copper", "/afafi/images/icons/Mining/copper_ore.png",  player.getLEVEL("mining"), 2,425,25,10,600, "mining");
+        skillcontent(contentPanel,"Silver", "/afafi/images/icons/Mining/silver_ore.png",  player.getLEVEL("mining"), 5,800,25,25,1200, "mining");
+        skillcontent(contentPanel,"Iron", "/afafi/images/icons/Mining/iron_ore.png",  player.getLEVEL("mining"), 10,1175,25,75,1800 , "mining");
+        skillcontent(contentPanel,"Gold", "/afafi/images/icons/Mining/gold_ore.png",  player.getLEVEL("mining"), 15,50,300,180,2400, "mining");
+        skillcontent(contentPanel,"Allumium", "/afafi/images/icons/Mining/allumium_ore.png",  player.getLEVEL("mining"), 20,425,300,350,3000, "mining");
+        skillcontent(contentPanel,"Platinium", "/afafi/images/icons/Mining/platinum_ore.png",  player.getLEVEL("mining"), 25,800,300,750,3600, "mining");
+        skillcontent(contentPanel,"Cobalt", "/afafi/images/icons/Mining/cobalt_ore.png",  player.getLEVEL("mining"), 30,1175,300,1500,4200, "mining");
+        skillcontent(contentPanel,"Titanium", "/afafi/images/icons/Mining/titanium_ore.png",  player.getLEVEL("mining"), 35,50,575,3500,4800, "mining");
         overallContent(contentPanel, player.getLEVEL("mining"));
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
@@ -1458,15 +1483,15 @@ public class GameWindow extends JFrame
 
     private void setSmithingContent(JPanel contentPanel)
     {
-        skillcontent(contentPanel,"Stone", "/afafi/images/icons/Smithing/stone.png", player.getLEVEL("smithing"), 1,50,25,10,1200);
-        skillcontent(contentPanel,"Copper", "/afafi/images/icons/Smithing/copper.png",  player.getLEVEL("smithing"), 3,425,25,20,1200);
-        skillcontent(contentPanel,"Silver", "/afafi/images/icons/Smithing/silver.png",  player.getLEVEL("smithing"), 6,800,25,50,2400);
-        skillcontent(contentPanel,"Iron", "/afafi/images/icons/Smithing/iron.png",  player.getLEVEL("smithing"), 11,1175,25,150,3600 );
-        skillcontent(contentPanel,"Gold", "/afafi/images/icons/Smithing/gold.png",  player.getLEVEL("smithing"), 16,50,300,360,4800);
-        skillcontent(contentPanel,"Allumium", "/afafi/images/icons/Smithing/Allumium.png",  player.getLEVEL("smithing"), 21,425,300,700,6000);
-        skillcontent(contentPanel,"Platinium", "/afafi/images/icons/Smithing/platinum.png",  player.getLEVEL("smithing"), 26,800,300,1500,7200);
-        skillcontent(contentPanel,"Cobalt", "/afafi/images/icons/Smithing/cobalt.png",  player.getLEVEL("smithing"), 31,1175,300,3000,8400);
-        skillcontent(contentPanel,"Titanium", "/afafi/images/icons/Smithing/Titanium.png",  player.getLEVEL("smithing"), 36,50,575,7000,9600);
+        skillcontent(contentPanel,"Stone", "/afafi/images/icons/Smithing/stone.png", player.getLEVEL("smithing"), 1,50,25,10,1200, "smithing");
+        skillcontent(contentPanel,"Copper", "/afafi/images/icons/Smithing/copper.png",  player.getLEVEL("smithing"), 3,425,25,20,1200, "smithing");
+        skillcontent(contentPanel,"Silver", "/afafi/images/icons/Smithing/silver.png",  player.getLEVEL("smithing"), 6,800,25,50,2400, "smithing");
+        skillcontent(contentPanel,"Iron", "/afafi/images/icons/Smithing/iron.png",  player.getLEVEL("smithing"), 11,1175,25,150,3600 , "smithing");
+        skillcontent(contentPanel,"Gold", "/afafi/images/icons/Smithing/gold.png",  player.getLEVEL("smithing"), 16,50,300,360,4800, "smithing");
+        skillcontent(contentPanel,"Allumium", "/afafi/images/icons/Smithing/Allumium.png",  player.getLEVEL("smithing"), 21,425,300,700,6000, "smithing");
+        skillcontent(contentPanel,"Platinium", "/afafi/images/icons/Smithing/platinum.png",  player.getLEVEL("smithing"), 26,800,300,1500,7200, "smithing");
+        skillcontent(contentPanel,"Cobalt", "/afafi/images/icons/Smithing/cobalt.png",  player.getLEVEL("smithing"), 31,1175,300,3000,8400, "smithing");
+        skillcontent(contentPanel,"Titanium", "/afafi/images/icons/Smithing/Titanium.png",  player.getLEVEL("smithing"), 36,50,575,7000,9600, "smithing");
         overallContent(contentPanel, player.getLEVEL("smithing"));
         JLabel bgImageMain = new JLabel();//we can change pics more pics=better look
         bgImageMain.setBounds(0,0, contentPanel.getWidth(), contentPanel.getHeight());
