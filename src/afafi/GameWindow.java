@@ -994,9 +994,20 @@ public class GameWindow extends JFrame
                     }
                 });
             }
-        }
-        else{
-
+            else{
+                iconLabel.addMouseListener(new MouseAdapter()
+                {
+                    public void mouseClicked(MouseEvent e)
+                    {
+                        int isYes = JOptionPane.showConfirmDialog(iconLabel,"Do you want to sell this item?", "SHOP - AFAFI", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+                        if (isYes==JOptionPane.YES_OPTION){
+                            itemID.playerEq.remove(id);
+                            int money = player.getLEVEL("money")+Integer.parseInt(itemID.id_list.get(id)[5]);
+                            player.currentLEVEL.put("money",money);
+                    }
+                    }
+                });
+            }
         }
         eqView.add(border);
 
