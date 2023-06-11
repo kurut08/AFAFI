@@ -1,10 +1,7 @@
 package afafi;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JSpinner;
-import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
@@ -249,7 +246,7 @@ public class DevMenu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				player.setLEVEL("woodcuting", player.getLEVEL("woodcuting") -1);
+				player.setLEVEL("woodcutting", player.getLEVEL("woodcutting") -1);
 			}
 		});
 		

@@ -74,7 +74,7 @@ public class Player
         currentLEVEL.replace(name, value);
     }
     public void setEXP(String name, int value){
-        currentEXP.put(name, value);
+        currentEXP.replace(name, value);
     }
     public int getLEVEL(String name){
         return currentLEVEL.get(name);

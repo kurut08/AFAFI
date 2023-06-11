@@ -233,6 +233,7 @@ public class GameWindow extends JFrame
         strengthProgressBar.setValue(player.getLEVEL("strength"));
         combatStrengthPanel.add(strengthProgressBar);
 
+
         //Combat defence
         JPanel combatDefencePanel = new JPanel();
         combatDefencePanel.setBounds(0, combatStrengthPanel.getY() + combatStrengthPanel.getHeight(),
@@ -1153,7 +1154,7 @@ public class GameWindow extends JFrame
         nameLabel.setBounds(0,contentPanel.getHeight()-50, contentPanel.getWidth(), 35);
         stats.add(nameLabel);
 
-        // bars
+
         JLabel attackLabel = new JLabel("Attack experience", SwingConstants.CENTER);
         attackLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         attackLabel.setForeground(new Color(0,0,0));
@@ -1472,5 +1473,6 @@ public class GameWindow extends JFrame
         bgImageMain.setIcon(new ImageIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/mainbg.png")).getImage().getScaledInstance(bgImageMain.getWidth(), bgImageMain.getHeight(), Image.SCALE_SMOOTH), "Nie działa obrazek XD"));
         contentPanel.add(bgImageMain);
     }
+
 
 }
