@@ -5,7 +5,9 @@ public class Player
 	private int attackOverall, strengthOverall, defenseOverall, hitpointsOverall, rangedOverall,
 	magicOverall, woodcuttingOverall, craftingOverall, miningOverall, smithingOverall, fishingOverall,
 	farmingOverall, cookingOverall, money;
+    Player(){
 
+    }
 	
 	public int getAttackOverall() {
         return attackOverall;

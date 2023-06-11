@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.HashMap;
 import javax.swing.border.LineBorder;
 
@@ -19,6 +20,7 @@ public class GameWindow extends JFrame
 
     private JPanel contentPane;
     Player player = new Player();
+
     public static void main(String[] args)
     {
         EventQueue.invokeLater(new Runnable()
@@ -54,8 +56,10 @@ public class GameWindow extends JFrame
     itemID itemID = new itemID();
     public int idItemID=1;
     ActivityThread activityThread;
+
     public GameWindow(String characterName)
     {
+
         setResizable(false);
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
@@ -74,11 +78,12 @@ public class GameWindow extends JFrame
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
+
         //Side Panel
 
         sidePanel = new JPanel();
         sidePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-        sidePanel.setBackground(Color.GREEN);
+        //sidePanel.setBackground(new Color(0,0,0,255));
         sidePanel.setBounds(0, 0, this.getWidth()/6, this.getHeight());
         contentPane.add(sidePanel);
         sidePanel.setLayout(null);
@@ -99,9 +104,8 @@ public class GameWindow extends JFrame
             }
         });
         logoPanel.setBounds(0, 0, sidePanel.getWidth(), sidePanel.getHeight()/8);
-        logoPanel.setBackground(sidePanel.getBackground());
+        logoPanel.setBackground((sidePanel.getBackground()));
         sidePanel.add(logoPanel);
-
         JLabel logoLabel = new JLabel("");
         logoLabel.setIcon(new ImageIcon(GameWindow.class.getResource("/afafi/images/logo.png")));
         logoLabel.setBounds(0, 0, logoPanel.getWidth(), logoPanel.getHeight());
@@ -169,9 +173,10 @@ public class GameWindow extends JFrame
         attackNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatAttackPanel.getHeight()/4, 75, 16);
         combatAttackPanel.add(attackNameLabel);
 
-        JProgressBar attackProgressBar = new JProgressBar();
+        JProgressBar attackProgressBar = new JProgressBar(0,100);
         attackProgressBar.setBounds(attackNameLabel.getX() + attackNameLabel.getWidth(), combatAttackPanel.getHeight()/4
                 , combatAttackPanel.getWidth() - attackNameLabel.getX() - attackNameLabel.getWidth() - 10, 16);
+        attackProgressBar.setValue(player.getAttackOverall());
         combatAttackPanel.add(attackProgressBar);
 
         //Combat Strength
@@ -193,9 +198,10 @@ public class GameWindow extends JFrame
         strengthNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatStrengthPanel.getHeight()/4, 75, 16);
         combatStrengthPanel.add(strengthNameLabel);
 
-        JProgressBar strengthProgressBar = new JProgressBar();
+        JProgressBar strengthProgressBar = new JProgressBar(0,100);
         strengthProgressBar.setBounds(strengthNameLabel.getX() + strengthNameLabel.getWidth(), combatStrengthPanel.getHeight()/4
                 , combatStrengthPanel.getWidth() - strengthNameLabel.getX() - strengthNameLabel.getWidth() - 10, 16);
+        strengthProgressBar.setValue(player.getStrengthOverall());
         combatStrengthPanel.add(strengthProgressBar);
 
         //Combat defence
@@ -218,9 +224,10 @@ public class GameWindow extends JFrame
         defenceNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatDefencePanel.getHeight()/4, 75, 16);
         combatDefencePanel.add(defenceNameLabel);
 
-        JProgressBar defenseProgressBar = new JProgressBar();
+        JProgressBar defenseProgressBar = new JProgressBar(0,100);
         defenseProgressBar.setBounds(defenceNameLabel.getX() + defenceNameLabel.getWidth(), combatDefencePanel.getHeight()/4
                 , combatDefencePanel.getWidth() - defenceNameLabel.getX() - defenceNameLabel.getWidth() - 10, 16);
+        defenseProgressBar.setValue(player.getDefenseOverall());
         combatDefencePanel.add(defenseProgressBar);
 
         //Combat Hitpoints
@@ -243,10 +250,12 @@ public class GameWindow extends JFrame
         hpNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatHpPanel.getHeight()/4, 75, 16);
         combatHpPanel.add(hpNameLabel);
 
-        JProgressBar hpProgressBar = new JProgressBar();
+        JProgressBar hpProgressBar = new JProgressBar(0,100);
         hpProgressBar.setBounds(hpNameLabel.getX() + hpNameLabel.getWidth(), combatHpPanel.getHeight()/4
                 , combatHpPanel.getWidth() - hpNameLabel.getX() - hpNameLabel.getWidth() - 10, 16);
+        hpProgressBar.setValue(player.getHitpointsOverall());
         combatHpPanel.add(hpProgressBar);
+
 
         //Combat Ranged
         JPanel combatRangedPanel = new JPanel();
@@ -268,9 +277,10 @@ public class GameWindow extends JFrame
         rangedNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatRangedPanel.getHeight()/4, 75, 16);
         combatRangedPanel.add(rangedNameLabel);
 
-        JProgressBar rangedProgressBar = new JProgressBar();
+        JProgressBar rangedProgressBar = new JProgressBar(0,100);
         rangedProgressBar.setBounds(rangedNameLabel.getX() + rangedNameLabel.getWidth(), combatRangedPanel.getHeight()/4
                 , combatRangedPanel.getWidth() - rangedNameLabel.getX() - rangedNameLabel.getWidth() - 10, 16);
+        rangedProgressBar.setValue(player.getRangedOverall());
         combatRangedPanel.add(rangedProgressBar);
 
         //Combat Magic
@@ -293,9 +303,10 @@ public class GameWindow extends JFrame
         magicNameLabel.setBounds(attackIconLabel.getWidth() + 10, combatMagicPanel.getHeight()/4, 75, 16);
         combatMagicPanel.add(magicNameLabel);
 
-        JProgressBar magicProgressBar = new JProgressBar();
+        JProgressBar magicProgressBar = new JProgressBar(0,100);
         magicProgressBar.setBounds(magicNameLabel.getX() + magicNameLabel.getWidth(), combatMagicPanel.getHeight()/4
                 , combatMagicPanel.getWidth() - magicNameLabel.getX() - magicNameLabel.getWidth() - 10, 16);
+        magicProgressBar.setValue(player.getMagicOverall());
         combatMagicPanel.add(magicProgressBar);
 
         //Noncombat activities panels
@@ -350,9 +361,10 @@ public class GameWindow extends JFrame
         miningNameLabel.setBounds(miningIconLabel.getWidth() + 10, miningPanel.getHeight()/4, 75, 16);
         miningPanel.add(miningNameLabel);
 
-        JProgressBar miningProgressBar = new JProgressBar();
+        JProgressBar miningProgressBar = new JProgressBar(0,100);
         miningProgressBar.setBounds(miningNameLabel.getX() + miningNameLabel.getWidth(), miningPanel.getHeight()/4,
                 miningPanel.getWidth() - miningNameLabel.getX() - miningNameLabel.getWidth() - 10, 16);
+        miningProgressBar.setValue(player.getMiningOverall());
         miningPanel.add(miningProgressBar);
 
         //Noncombat smithing
@@ -386,9 +398,10 @@ public class GameWindow extends JFrame
         smithingNameLabel.setBounds(smithingIconLabel.getWidth() + 10, smithingPanel.getHeight()/4, 75, 16);
         smithingPanel.add(smithingNameLabel);
 
-        JProgressBar smithingProgressBar = new JProgressBar();
+        JProgressBar smithingProgressBar = new JProgressBar(0,100);
         smithingProgressBar.setBounds(smithingNameLabel.getX() + smithingNameLabel.getWidth(), smithingPanel.getHeight()/4,
                 smithingPanel.getWidth() - smithingNameLabel.getX() - smithingNameLabel.getWidth() - 10, 16);
+        smithingProgressBar.setValue(player.getSmithingOverall());
         smithingPanel.add(smithingProgressBar);
 
         //Noncombat woodcutting
@@ -423,9 +436,10 @@ public class GameWindow extends JFrame
         woodcuttingNameLabel.setBounds(woodcuttingIconLabel.getWidth() + 10, woodcuttingPanel.getHeight()/4, 75, 16);
         woodcuttingPanel.add(woodcuttingNameLabel);
 
-        JProgressBar woodcuttingProgressBar = new JProgressBar();
+        JProgressBar woodcuttingProgressBar = new JProgressBar(0,100);
         woodcuttingProgressBar.setBounds(woodcuttingNameLabel.getX() + woodcuttingNameLabel.getWidth(), woodcuttingPanel.getHeight()/4
                 , woodcuttingPanel.getWidth() - woodcuttingNameLabel.getX() - woodcuttingNameLabel.getWidth() - 10, 16);
+        woodcuttingProgressBar.setValue(player.getWoodcuttingOverall());
         woodcuttingPanel.add(woodcuttingProgressBar);
 
         //Noncombat crafting
@@ -459,9 +473,10 @@ public class GameWindow extends JFrame
         craftingNameLabel.setBounds(craftingIconLabel.getWidth() + 10, craftingPanel.getHeight()/4, 75, 16);
         craftingPanel.add(craftingNameLabel);
 
-        JProgressBar craftingProgressBar = new JProgressBar();
+        JProgressBar craftingProgressBar = new JProgressBar(0,100);
         craftingProgressBar.setBounds(craftingNameLabel.getX() + craftingNameLabel.getWidth(), craftingPanel.getHeight()/4
                 , craftingPanel.getWidth() - craftingNameLabel.getX() - craftingNameLabel.getWidth() - 10, 16);
+        craftingProgressBar.setValue(player.getCraftingOverall());
         craftingPanel.add(craftingProgressBar);
 
         //Noncombat farming
@@ -496,9 +511,10 @@ public class GameWindow extends JFrame
         farmingNameLabel.setBounds(farmingIconLabel.getWidth() + 10, farmingPanel.getHeight()/4, 75, 16);
         farmingPanel.add(farmingNameLabel);
 
-        JProgressBar farmingProgressBar = new JProgressBar();
+        JProgressBar farmingProgressBar = new JProgressBar(0,100);
         farmingProgressBar.setBounds(farmingNameLabel.getX() + farmingNameLabel.getWidth(), farmingPanel.getHeight()/4
                 , farmingPanel.getWidth() - farmingNameLabel.getX() - farmingNameLabel.getWidth() - 10, 16);
+        farmingProgressBar.setValue(player.getFarmingOverall());
         farmingPanel.add(farmingProgressBar);
 
         //Noncombat fishing
@@ -533,9 +549,10 @@ public class GameWindow extends JFrame
         fishingNameLabel.setBounds(fishingIconLabel.getWidth() + 10, fishingPanel.getHeight()/4, 75, 16);
         fishingPanel.add(fishingNameLabel);
 
-        JProgressBar fishingProgressBar = new JProgressBar();
+        JProgressBar fishingProgressBar = new JProgressBar(0,100);
         fishingProgressBar.setBounds(fishingNameLabel.getX() + fishingNameLabel.getWidth(), fishingPanel.getHeight()/4
                 , fishingPanel.getWidth() - fishingNameLabel.getX() - fishingNameLabel.getWidth() - 10, 16);
+        fishingProgressBar.setValue(player.getFishingOverall());
         fishingPanel.add(fishingProgressBar);
 
         //Noncombat cooking
@@ -570,9 +587,10 @@ public class GameWindow extends JFrame
         cookingNameLabel.setBounds(cookingIconLabel.getWidth() + 10, cookingPanel.getHeight()/4, 75, 16);
         cookingPanel.add(cookingNameLabel);
 
-        JProgressBar cookingProgressBar = new JProgressBar();
+        JProgressBar cookingProgressBar = new JProgressBar(0,100);
         cookingProgressBar.setBounds(cookingNameLabel.getX() + cookingNameLabel.getWidth(), cookingPanel.getHeight()/4,
                 cookingPanel.getWidth() - cookingNameLabel.getX() - cookingNameLabel.getWidth() - 10, 16);
+        cookingProgressBar.setValue(player.getCookingOverall());
         cookingPanel.add(cookingProgressBar);
 
         JPanel devMenuPanel = new JPanel();
@@ -592,13 +610,13 @@ public class GameWindow extends JFrame
         devMenuPanel.setOpaque(false);
         devMenuPanel.setBounds(0, 880, 320, 145);
         sidePanel.add(devMenuPanel);
-
+        //sidePanel.add(labelSidePanel);
 
         //Top Panel
 
         topPanel = new JPanel();
         topPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-        topPanel.setBackground(Color.RED);
+        topPanel.setBackground(new Color(0,0,0,0));
         topPanel.setBounds(sidePanel.getWidth(), 0, this.getWidth() - sidePanel.getWidth(), this.getHeight()/18);
         contentPane.add(topPanel);
         topPanel.setLayout(null);
@@ -690,6 +708,12 @@ public class GameWindow extends JFrame
 
         JButton saveButtton = new JButton("Save");
         saveButtton.setBounds(1500, 0, 90, 60);
+        saveButtton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+            }
+        });
         topPanel.add(saveButtton);
 
         JButton equipmentButton = new JButton("");
@@ -715,7 +739,6 @@ public class GameWindow extends JFrame
         equipmentButton.add(equipmentButtonLabel1);
         equipmentButton.add(equipmentButtonLabel2);
         topPanel.add(equipmentButton);
-
         //Content Panel
 
         contentPanel = new JPanel();
