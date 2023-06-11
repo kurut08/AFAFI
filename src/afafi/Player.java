@@ -1,8 +1,11 @@
 package afafi;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class Player
@@ -54,8 +57,21 @@ public class Player
         }
     }
 
+    public void save(String characterName) throws IOException {
+        Properties level =  new Properties();
+        Properties exp =  new Properties();
+        for (Map.Entry<String, Integer> entry : currentLEVEL.entrySet()){
+            level.put(entry.getKey(), Integer.toString(entry.getValue()));
+        }
+        level.store(new FileOutputStream("data/accounts/admin/"+characterName+"/level.properties"), null);
+        for (Map.Entry<String, Integer> entry : currentEXP.entrySet()){
+            exp.put(entry.getKey(), Integer.toString(entry.getValue()));
+        }
+        exp.store(new FileOutputStream("data/accounts/admin/"+characterName+"/exp.properties"), null);
+    }
+
     public void setLEVEL(String name, int value){
-        currentLEVEL.put(name, value);
+        currentLEVEL.replace(name, value);
     }
     public void setEXP(String name, int value){
         currentEXP.put(name, value);
